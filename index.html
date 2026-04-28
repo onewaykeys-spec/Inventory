@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>ONE WAY KEYS — Inventory</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+:root{
+  --R:#CC0000;--Rh:#FF3333;
+  --BG:#0d0d0d;--P:#141414;--P2:#1a1a1a;--P3:#202020;
+  --BD:#2a2a2a;--T:#f0f0f0;--T2:#999;--T3:#555;
+  --G:#1a9e4a;--A:#d4780a;--B:#1a6fd4;--Gold:#b8941f;
+}
+html,body{background:var(--BG);color:var(--T);font-family:'Barlow',sans-serif;font-size:14px;min-height:100vh;overflow-x:hidden;}
+
+/* ── HEADER ── */
+.hdr{background:var(--P);border-bottom:2px solid var(--R);padding:0 14px;display:flex;align-items:center;justify-content:space-between;height:54px;position:fixed;top:0;left:0;right:0;z-index:200;}
+.logo-pill{background:#000;border:2px solid var(--R);border-radius:18px;padding:4px 12px;display:flex;align-items:center;}
+.l1{font-family:'Rajdhani',sans-serif;font-size:18px;font-weight:700;color:#ddd;}
+.l2{font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:700;color:var(--R);}
+.l3{font-family:'Rajdhani',sans-serif;font-size:18px;font-weight:700;color:var(--R);letter-spacing:1px;}
+.lk{background:var(--R);color:#fff;font-family:'Rajdhani',sans-serif;font-size:9px;font-weight:700;letter-spacing:3px;padding:2px 6px;border-radius:3px;margin-left:8px;}
+.hdr-right{display:flex;align-items:center;gap:8px;}
+.user-sel{background:var(--P2);border:1px solid var(--BD);border-radius:6px;color:var(--T);font-family:'Barlow',sans-serif;font-size:12px;padding:5px 8px;outline:none;cursor:pointer;max-width:110px;}
+.clock{font-size:10px;color:var(--T2);text-align:right;display:none;}
+@media(min-width:600px){.clock{display:block;}}
+.clock strong{display:block;color:var(--T);font-size:11px;}
+
+/* ── ALERT BANNER ── */
+.alert-bar{background:#1a0000;border-bottom:1px solid #3a0000;padding:6px 14px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;position:fixed;top:54px;left:0;right:0;z-index:199;}
+.alert-lbl{background:var(--R);color:#fff;font-family:'Rajdhani',sans-serif;font-size:9px;font-weight:700;letter-spacing:2px;padding:2px 7px;border-radius:2px;white-space:nowrap;}
+.alert-chip{background:rgba(204,0,0,0.12);border:1px solid rgba(204,0,0,0.35);border-radius:20px;padding:2px 9px;font-size:11px;color:#ff8888;display:flex;align-items:center;gap:4px;}
+.adot{width:5px;height:5px;border-radius:50%;background:#ff3333;animation:blink 1.1s infinite;flex-shrink:0;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.15}}
+.alert-bar-hidden{display:none!important;}
+
+/* ── BODY OFFSET ── */
+.page-body{padding-top:90px;} /* hdr+alert */
+
+/* ── BOTTOM NAV (mobile) ── */
+.bottom-nav{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:200;background:var(--P);border-top:1px solid var(--BD);height:58px;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.bottom-nav::-webkit-scrollbar{display:none;}
+.bn-item{flex:1;min-width:60px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;color:var(--T3);font-size:9px;font-weight:500;letter-spacing:.5px;text-transform:uppercase;padding:6px 4px;border-top:2px solid transparent;transition:all .12s;user-select:none;-webkit-user-select:none;}
+.bn-item:hover,.bn-item.on{color:#ff6666;border-top-color:var(--R);}
+.bn-icon{font-size:18px;}
+.bn-badge{background:var(--R);color:#fff;font-size:9px;font-weight:700;padding:1px 5px;border-radius:8px;min-width:16px;text-align:center;}
+
+/* ── SIDEBAR (desktop only) ── */
+.sidebar{display:none;}
+@media(min-width:900px){
+  .layout{display:grid;grid-template-columns:200px 1fr;}
+  .sidebar{display:block;background:var(--P);border-right:1px solid var(--BD);padding:14px 0;position:fixed;top:90px;left:0;width:200px;height:calc(100vh - 90px);overflow-y:auto;z-index:100;}
+  .bottom-nav{display:none;}
+  .content{margin-left:200px;}
+  .page-body{padding-top:90px;}
+}
+.nl{font-size:9px;font-weight:600;letter-spacing:2px;color:var(--T3);padding:0 14px 5px;text-transform:uppercase;}
+.ni{display:flex;align-items:center;gap:8px;padding:10px 14px;cursor:pointer;color:var(--T2);font-size:12px;border-left:3px solid transparent;transition:all .12s;user-select:none;}
+.ni:hover{background:rgba(255,255,255,0.03);color:var(--T);}
+.ni.on{background:rgba(204,0,0,0.07);color:#ff6666;border-left-color:var(--R);font-weight:500;}
+.nb{margin-left:auto;font-size:10px;font-weight:600;padding:1px 6px;border-radius:10px;}
+.nb.r{background:var(--R);color:#fff;}
+.nb.g{background:var(--G);color:#fff;}
+.nb.a{background:var(--A);color:#fff;}
+.nb.b{background:var(--B);color:#fff;}
+
+/* ── CONTENT ── */
+.content{padding:14px 14px 70px;}
+@media(min-width:900px){.content{padding:18px 18px 20px;}}
+.view{display:none;}
+.view.on{display:block;}
+
+/* ── STAT CARDS ── */
+.sg{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;}
+.sg3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px;}
+.sg4{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;}
+@media(min-width:600px){.sg{grid-template-columns:repeat(4,1fr);}.sg4{grid-template-columns:repeat(4,1fr);}}
+.sg2{display:grid;grid-template-columns:1fr;gap:12px;margin-bottom:12px;}
+@media(min-width:700px){.sg2{grid-template-columns:1fr 1fr;}}
+.sc{background:var(--P);border:1px solid var(--BD);border-radius:8px;padding:12px 14px;position:relative;overflow:hidden;}
+.sc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+.sc.r::before{background:var(--R);}
+.sc.g::before{background:var(--G);}
+.sc.a::before{background:var(--A);}
+.sc.b::before{background:var(--B);}
+.sc.gold::before{background:var(--Gold);}
+.sl{font-size:9px;color:var(--T2);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;}
+.sv{font-family:'Rajdhani',sans-serif;font-size:26px;font-weight:700;color:var(--T);line-height:1;}
+.ss{font-size:11px;color:var(--T3);margin-top:3px;}
+.sw{color:var(--A);font-weight:500;}
+
+/* ── PANELS ── */
+.panel{background:var(--P);border:1px solid var(--BD);border-radius:8px;overflow:hidden;margin-bottom:12px;}
+.ph{padding:10px 14px;border-bottom:1px solid var(--BD);display:flex;align-items:center;justify-content:space-between;gap:8px;background:var(--P2);flex-wrap:wrap;}
+.pt{font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:600;letter-spacing:1px;color:var(--T);}
+.pb{padding:12px 14px;}
+
+/* ── KEY TYPE CARDS ── */
+.ktg{display:grid;grid-template-columns:1fr;gap:8px;margin-bottom:12px;}
+@media(min-width:500px){.ktg{grid-template-columns:repeat(3,1fr);}}
+.kt{background:var(--P2);border:1px solid var(--BD);border-radius:8px;padding:12px;}
+.kt.low{border-color:rgba(212,120,10,0.5);background:rgba(212,120,10,0.04);}
+.kt.crit{border-color:rgba(204,0,0,0.5);background:rgba(204,0,0,0.04);}
+.kth{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;}
+.ktn{font-family:'Rajdhani',sans-serif;font-size:15px;font-weight:600;color:var(--T);}
+.ktag{font-size:9px;font-weight:600;letter-spacing:1px;padding:2px 6px;border-radius:3px;text-transform:uppercase;}
+.tag-am{background:rgba(26,158,74,0.18);color:#4ade80;border:1px solid rgba(26,158,74,0.3);}
+.tag-or{background:rgba(26,111,212,0.18);color:#60a5fa;border:1px solid rgba(26,111,212,0.3);}
+.tag-of{background:rgba(180,148,31,0.18);color:#fbbf24;border:1px solid rgba(180,148,31,0.3);}
+.kc{font-family:'Rajdhani',sans-serif;font-size:38px;font-weight:700;color:var(--T);line-height:1;}
+.kc.warn{color:var(--A);}
+.kc.crit{color:var(--R);}
+.kbar{height:4px;background:var(--BD);border-radius:2px;margin:6px 0;overflow:hidden;}
+.kbf{height:100%;border-radius:2px;}
+.kbf.g{background:var(--G);}
+.kbf.a{background:var(--A);}
+.kbf.r{background:var(--R);}
+.ktf{display:flex;justify-content:space-between;font-size:11px;color:var(--T2);}
+
+/* ── BUTTONS ── */
+.btn{background:transparent;border:1px solid var(--BD);border-radius:6px;color:var(--T2);font-family:'Barlow',sans-serif;font-size:12px;padding:6px 12px;cursor:pointer;transition:all .12s;white-space:nowrap;-webkit-appearance:none;}
+.btn:hover{background:rgba(255,255,255,0.05);color:var(--T);}
+.btn.pr{background:var(--R);border-color:var(--R);color:#fff;}
+.btn.pr:hover{background:var(--Rh);}
+.btn.pg{background:var(--G);border-color:var(--G);color:#fff;}
+.btn.pb2{background:var(--B);border-color:var(--B);color:#fff;}
+.btn-row{display:flex;gap:7px;flex-wrap:wrap;}
+
+/* ── FILTER ROW ── */
+.frow{display:flex;gap:7px;padding:10px 12px;border-bottom:1px solid var(--BD);background:var(--P3);flex-wrap:wrap;align-items:center;}
+.fi{background:var(--BG);border:1px solid var(--BD);border-radius:6px;color:var(--T);font-family:'Barlow',sans-serif;font-size:13px;padding:8px 10px;outline:none;flex:1;min-width:120px;-webkit-appearance:none;}
+.fi:focus{border-color:var(--R);}
+.fi::placeholder{color:var(--T3);}
+.fs{background:var(--BG);border:1px solid var(--BD);border-radius:6px;color:var(--T2);font-family:'Barlow',sans-serif;font-size:13px;padding:8px 10px;outline:none;cursor:pointer;-webkit-appearance:none;min-width:120px;}
+.fs:focus{border-color:var(--R);}
+
+/* ── TABLES ── */
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.tbl{width:100%;border-collapse:collapse;min-width:500px;}
+.tbl th{font-size:9px;letter-spacing:1.5px;color:var(--T3);text-transform:uppercase;padding:8px 10px;border-bottom:1px solid var(--BD);text-align:left;font-weight:500;background:var(--P2);white-space:nowrap;}
+.tbl td{padding:9px 10px;border-bottom:1px solid rgba(42,42,42,0.4);font-size:12px;color:var(--T2);vertical-align:middle;white-space:nowrap;}
+.tbl tr:last-child td{border-bottom:none;}
+.tbl tr:hover td{background:rgba(255,255,255,0.015);}
+
+/* ── PILLS ── */
+.pill{display:inline-block;font-size:10px;font-weight:600;padding:2px 8px;border-radius:10px;}
+.p-av{background:rgba(26,158,74,0.15);color:#4ade80;border:1px solid rgba(26,158,74,0.3);}
+.p-so{background:rgba(26,111,212,0.15);color:#60a5fa;border:1px solid rgba(26,111,212,0.3);}
+.p-dm{background:rgba(204,0,0,0.15);color:#f87171;border:1px solid rgba(204,0,0,0.3);}
+.p-ct{background:rgba(180,148,31,0.15);color:#fbbf24;border:1px solid rgba(180,148,31,0.3);}
+.p-ul{background:rgba(139,92,246,0.15);color:#c4b5fd;border:1px solid rgba(139,92,246,0.3);}
+.vin{font-family:monospace;font-size:10px;color:var(--T3);}
+
+/* ── TABS ── */
+.tabs{display:flex;border-bottom:1px solid var(--BD);background:var(--P2);overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.tabs::-webkit-scrollbar{display:none;}
+.tab{padding:9px 13px;font-size:11px;font-weight:500;color:var(--T3);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap;transition:all .12s;}
+.tab:hover{color:var(--T);}
+.tab.on{color:#ff6666;border-bottom-color:var(--R);}
+
+/* ── SCANNER ── */
+.sbox{background:var(--P2);border:2px dashed var(--BD);border-radius:10px;padding:22px 16px;text-align:center;cursor:pointer;transition:all .2s;}
+.sbox.active{border-color:var(--R);border-style:solid;animation:pb 1.2s infinite;}
+@keyframes pb{0%,100%{border-color:var(--R);}50%{border-color:var(--Rh);}}
+.sico{font-size:34px;margin-bottom:8px;color:var(--T3);}
+.stt{font-family:'Rajdhani',sans-serif;font-size:17px;font-weight:600;color:var(--T);margin-bottom:3px;}
+.sub{font-size:12px;color:var(--T3);}
+.sinput{margin-top:12px;background:var(--BG);border:1px solid var(--BD);border-radius:6px;color:var(--T);font-family:monospace;font-size:15px;padding:10px 14px;width:100%;outline:none;text-align:center;letter-spacing:2px;-webkit-appearance:none;}
+.sinput:focus{border-color:var(--R);}
+.sinput::placeholder{color:var(--T3);letter-spacing:1px;}
+.sact{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px;}
+.sac{border:1px solid var(--BD);border-radius:8px;padding:11px;text-align:center;cursor:pointer;transition:all .12s;}
+.sac.sel{border-width:2px;}
+.sac.s-add{border-color:rgba(26,158,74,0.4);}.sac.s-add.sel{background:rgba(26,158,74,0.1);border-color:#4ade80;}
+.sac.s-sold{border-color:rgba(26,111,212,0.4);}.sac.s-sold.sel{background:rgba(26,111,212,0.1);border-color:#60a5fa;}
+.sac.s-dmg{border-color:rgba(204,0,0,0.4);}.sac.s-dmg.sel{background:rgba(204,0,0,0.1);border-color:#f87171;}
+.sac.s-cut{border-color:rgba(180,148,31,0.4);}.sac.s-cut.sel{background:rgba(180,148,31,0.1);border-color:#fbbf24;}
+.sac-l{font-size:13px;font-weight:500;}
+.sac-s{font-size:10px;color:var(--T3);margin-top:2px;}
+.sres{margin-top:10px;border-radius:6px;padding:8px 12px;font-size:12px;display:none;}
+.sres.show{display:block;}
+
+/* ── SERVICE LOG ── */
+.slog{background:var(--P2);border:1px solid var(--BD);border-radius:6px;overflow:hidden;}
+.sl-row{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border-bottom:1px solid rgba(42,42,42,0.4);}
+.sl-row:last-child{border-bottom:none;}
+.sl-ic{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;margin-top:1px;}
+.ic-k{background:rgba(26,158,74,0.15);border:1px solid rgba(26,158,74,0.3);}
+.ic-c{background:rgba(180,148,31,0.15);border:1px solid rgba(180,148,31,0.3);}
+.ic-u{background:rgba(139,92,246,0.15);border:1px solid rgba(139,92,246,0.3);}
+.ic-d{background:rgba(204,0,0,0.15);border:1px solid rgba(204,0,0,0.3);}
+.sl-body{flex:1;min-width:0;}
+.sl-main{font-size:13px;color:var(--T);font-weight:500;}
+.sl-det{font-size:11px;color:var(--T3);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.sl-meta{display:flex;gap:6px;align-items:center;margin-top:4px;flex-wrap:wrap;}
+.sl-user{font-size:10px;background:rgba(204,0,0,0.12);color:#ff8888;padding:1px 6px;border-radius:3px;}
+.sl-time{font-size:10px;color:var(--T3);}
+
+/* ── REVENUE ── */
+.rev-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;}
+@media(min-width:600px){.rev-grid{grid-template-columns:repeat(4,1fr);}}
+.rev-card{background:var(--P);border:1px solid var(--BD);border-radius:8px;padding:12px 14px;}
+.rev-lbl{font-size:9px;color:var(--T2);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;}
+.rev-val{font-family:'Rajdhani',sans-serif;font-size:24px;font-weight:700;color:var(--T);}
+.rev-sub{font-size:11px;color:var(--T3);margin-top:2px;}
+.rev-pos{color:var(--G);}
+
+.price-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(42,42,42,0.4);font-size:13px;}
+.price-row:last-child{border-bottom:none;}
+.pi{background:var(--BG);border:1px solid var(--BD);border-radius:5px;color:var(--T);font-family:'Barlow',sans-serif;font-size:13px;padding:5px 9px;width:85px;outline:none;text-align:right;-webkit-appearance:none;}
+.pi:focus{border-color:var(--R);}
+
+/* ── ALERT PANEL ── */
+.ap-item{display:flex;align-items:center;gap:12px;padding:12px 14px;border-bottom:1px solid rgba(42,42,42,0.4);}
+.ap-item:last-child{border-bottom:none;}
+.ap-icon{width:38px;height:38px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:700;flex-shrink:0;}
+.ap-crit{background:rgba(204,0,0,0.15);color:#f87171;border:1px solid rgba(204,0,0,0.3);}
+.ap-warn{background:rgba(212,120,10,0.15);color:#fbbf24;border:1px solid rgba(212,120,10,0.3);}
+.ap-ok{background:rgba(26,158,74,0.15);color:#4ade80;border:1px solid rgba(26,158,74,0.3);}
+.ap-main{font-size:13px;color:var(--T);font-weight:500;}
+.ap-sub{font-size:11px;color:var(--T3);margin-top:2px;}
+.ap-right{margin-left:auto;text-align:right;flex-shrink:0;}
+.ap-count{font-family:'Rajdhani',sans-serif;font-size:24px;font-weight:700;}
+.ap-thresh{font-size:10px;color:var(--T3);}
+
+/* ── PROGRESS ── */
+.prog-row{display:flex;align-items:center;gap:8px;margin:5px 0;}
+.prog-lbl{font-size:11px;color:var(--T2);width:95px;flex-shrink:0;}
+.prog-bar{flex:1;height:6px;background:var(--BD);border-radius:3px;overflow:hidden;}
+.prog-fill{height:100%;border-radius:3px;}
+.prog-val{font-size:11px;color:var(--T2);width:26px;text-align:right;flex-shrink:0;}
+
+/* ── HISTORY TIMELINE ── */
+.hist-timeline{padding:12px 14px;}
+.ht-item{display:flex;gap:12px;position:relative;padding-bottom:14px;}
+.ht-item:last-child{padding-bottom:0;}
+.ht-line{position:absolute;left:14px;top:30px;bottom:0;width:1px;background:var(--BD);}
+.ht-item:last-child .ht-line{display:none;}
+.ht-dot{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;z-index:1;border:2px solid var(--P);}
+.ht-in{background:rgba(26,158,74,0.2);border-color:rgba(26,158,74,0.4);color:#4ade80;}
+.ht-sold{background:rgba(26,111,212,0.2);border-color:rgba(26,111,212,0.4);color:#60a5fa;}
+.ht-cut{background:rgba(180,148,31,0.2);border-color:rgba(180,148,31,0.4);color:#fbbf24;}
+.ht-dmg{background:rgba(204,0,0,0.2);border-color:rgba(204,0,0,0.4);color:#f87171;}
+.ht-main{font-size:13px;color:var(--T);font-weight:500;padding-top:3px;}
+.ht-sub{font-size:11px;color:var(--T3);margin-top:2px;}
+
+/* ── REPORTS ── */
+.rpt-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;}
+@media(min-width:700px){.rpt-grid{grid-template-columns:repeat(4,1fr);}}
+.rpt-card{background:var(--P2);border:1px solid var(--BD);border-radius:8px;padding:12px;}
+.rpt-title{font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:600;color:var(--T);margin-bottom:8px;}
+.rpt-line{display:flex;justify-content:space-between;font-size:12px;color:var(--T2);padding:4px 0;border-bottom:1px solid rgba(42,42,42,0.3);}
+.rpt-line:last-child{border-bottom:none;}
+.rpt-val{color:var(--T);font-weight:500;}
+
+/* ── USER CARDS ── */
+.user-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:0;}
+.uc{background:var(--P2);border:1px solid var(--BD);border-radius:8px;padding:12px;text-align:center;}
+.ua{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:700;margin:0 auto 8px;}
+
+/* ── MISC ── */
+.sep{height:1px;background:var(--BD);margin:12px 0;}
+.sec-t{font-size:9px;font-weight:600;letter-spacing:2px;color:var(--T3);text-transform:uppercase;margin-bottom:10px;}
+.prefix-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:8px;}
+.prefix-card{background:var(--P2);border:1px solid var(--BD);border-radius:6px;padding:8px;text-align:center;}
+.sidebar-alert{padding:12px 14px;margin-top:8px;}
+.sa-box{background:rgba(204,0,0,0.07);border:1px solid #2a0000;border-radius:6px;padding:10px 12px;}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:300;align-items:center;justify-content:center;padding:16px;}
+.modal-overlay.show{display:flex;}
+.modal{background:var(--P);border:1px solid var(--BD);border-radius:12px;width:100%;max-width:440px;max-height:90vh;overflow-y:auto;}
+.modal-hdr{padding:14px 16px;border-bottom:1px solid var(--BD);display:flex;justify-content:space-between;align-items:center;}
+.modal-title{font-family:'Rajdhani',sans-serif;font-size:15px;font-weight:600;color:var(--T);}
+.modal-body{padding:16px;}
+.form-group{margin-bottom:14px;}
+.form-label{font-size:11px;color:var(--T2);letter-spacing:1px;text-transform:uppercase;margin-bottom:5px;display:block;}
+.form-input{width:100%;background:var(--BG);border:1px solid var(--BD);border-radius:6px;color:var(--T);font-family:'Barlow',sans-serif;font-size:14px;padding:9px 12px;outline:none;-webkit-appearance:none;}
+.form-input:focus{border-color:var(--R);}
+.form-select{width:100%;background:var(--BG);border:1px solid var(--BD);border-radius:6px;color:var(--T);font-family:'Barlow',sans-serif;font-size:14px;padding:9px 12px;outline:none;cursor:pointer;-webkit-appearance:none;}
+.form-select:focus{border-color:var(--R);}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="hdr">
+  <div class="logo-pill">
+    <span class="l1">ON</span><span class="l2">1</span><span class="l3">WAY</span>
+    <span class="lk">KEYS</span>
+  </div>
+  <div class="hdr-right">
+    <select class="user-sel" id="cur-user">
+      <option>Carlos</option>
+      <option>Maria</option>
+      <option>Alex</option>
+    </select>
+    <div class="clock"><strong id="dt"></strong><span id="tm"></span></div>
+  </div>
+</div>
+
+<!-- ALERT BANNER -->
+<div class="alert-bar" id="alert-bar">
+  <span class="alert-lbl">⚠ LOW STOCK</span>
+  <div id="alert-chips" style="display:flex;gap:6px;flex-wrap:wrap;"></div>
+  <span style="margin-left:auto;font-size:10px;color:var(--T3);" id="alert-count"></span>
+</div>
+
+<div class="page-body">
+<!-- SIDEBAR (desktop) -->
+<div class="sidebar" id="sidebar">
+  <div style="margin-bottom:10px;">
+    <div class="nl">Overview</div>
+    <div class="ni on" onclick="go('dashboard')">◧ Dashboard</div>
+    <div class="ni" onclick="go('alerts')">⚠ Stock Alerts <span class="nb a" id="snb-d">2</span></div>
+    <div class="ni" onclick="go('scanner')">⊡ Scanner</div>
+  </div>
+  <div style="margin-bottom:10px;">
+    <div class="nl">Inventory</div>
+    <div class="ni" onclick="go('inventory')">⊟ All Keys <span class="nb g">47</span></div>
+    <div class="ni" onclick="go('sold')">✓ Sold <span class="nb b">128</span></div>
+    <div class="ni" onclick="go('damaged')">✕ Damaged <span class="nb r">7</span></div>
+    <div class="ni" onclick="go('services')">⚙ Services</div>
+    <div class="ni" onclick="go('history')">◷ Key History</div>
+  </div>
+  <div>
+    <div class="nl">Finance</div>
+    <div class="ni" onclick="go('revenue')">$ Revenue</div>
+    <div class="ni" onclick="go('reports')">⊞ Reports</div>
+  </div>
+  <div class="sidebar-alert">
+    <div class="sa-box">
+      <div style="font-size:9px;color:#ff6666;font-weight:600;letter-spacing:1px;margin-bottom:3px;">THRESHOLD: 5 UNITS</div>
+      <div id="sb-txt" style="font-size:11px;color:var(--T3);">2 types below limit</div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="content">
+
+<!-- ═══════════ DASHBOARD ═══════════ -->
+<div class="view on" id="v-dashboard">
+  <div class="sg">
+    <div class="sc g"><div class="sl">Available</div><div class="sv">47</div><div class="ss">All types</div></div>
+    <div class="sc r"><div class="sl">Sold (all time)</div><div class="sv">128</div><div class="ss">Since launch</div></div>
+    <div class="sc a"><div class="sl">Damaged</div><div class="sv">7</div><div class="ss sw">+2 this week</div></div>
+    <div class="sc gold"><div class="sl">Services</div><div class="sv">34</div><div class="ss">Cuts + Unlocks</div></div>
+  </div>
+  <div class="sec-t">Key Types — Live Stock</div>
+  <div class="ktg">
+    <div class="kt">
+      <div class="kth"><div class="ktn">Aftermarket</div><span class="ktag tag-am">Standard</span></div>
+      <div class="kc">28</div>
+      <div class="kbar"><div class="kbf g" style="width:70%"></div></div>
+      <div class="ktf"><span>Sold: 62</span><span style="color:#4ade80;">✓ In Stock</span></div>
+    </div>
+    <div class="kt low">
+      <div class="kth"><div class="ktn">OEM Recase</div><span class="ktag tag-or">OEM</span></div>
+      <div class="kc warn">3</div>
+      <div class="kbar"><div class="kbf a" style="width:15%"></div></div>
+      <div class="ktf"><span>Sold: 41</span><span style="color:var(--A);">⚠ Low</span></div>
+    </div>
+    <div class="kt crit">
+      <div class="kth"><div class="ktn">OEM Refurb</div><span class="ktag tag-of">Refurb</span></div>
+      <div class="kc crit">2</div>
+      <div class="kbar"><div class="kbf r" style="width:10%"></div></div>
+      <div class="ktf"><span>Sold: 25</span><span style="color:#f87171;">⚠ Critical</span></div>
+    </div>
+  </div>
+  <div class="sg2">
+    <div class="panel">
+      <div class="ph"><span class="pt">RECENT ACTIVITY</span><span style="font-size:10px;color:var(--T3);">Today</span></div>
+      <div class="slog">
+        <div class="sl-row"><div class="sl-ic ic-k">🔑</div><div class="sl-body"><div class="sl-main">Key Sold — OEM Recase</div><div class="sl-det">VIN: 1HGBH41JXMN109186 · Toyota Camry 21</div><div class="sl-meta"><span class="sl-user">Carlos</span><span class="sl-time">2:14 PM</span></div></div></div>
+        <div class="sl-row"><div class="sl-ic ic-c">✂</div><div class="sl-body"><div class="sl-main">Key Cut — Aftermarket</div><div class="sl-det">VIN: 2T1BURHE0JC011234 · Ford F-150</div><div class="sl-meta"><span class="sl-user">Maria</span><span class="sl-time">1:47 PM</span></div></div></div>
+        <div class="sl-row"><div class="sl-ic ic-u">🔓</div><div class="sl-body"><div class="sl-main">Lock Opened — Service</div><div class="sl-det">Hyundai Elantra 2020 · No VIN</div><div class="sl-meta"><span class="sl-user">Alex</span><span class="sl-time">11:32 AM</span></div></div></div>
+        <div class="sl-row"><div class="sl-ic ic-k">🔑</div><div class="sl-body"><div class="sl-main">Key Sold — Aftermarket</div><div class="sl-det">VIN: 5TDDZRFH0HS012345 · Chevy Silverado</div><div class="sl-meta"><span class="sl-user">Carlos</span><span class="sl-time">9:05 AM</span></div></div></div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="ph"><span class="pt">TODAY'S REVENUE</span></div>
+      <div class="pb">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          <div style="background:var(--P2);border:1px solid var(--BD);border-radius:6px;padding:10px;"><div class="rev-lbl">Keys Sold</div><div style="font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:700;color:var(--T);">$340</div><div class="rev-sub">4 keys</div></div>
+          <div style="background:var(--P2);border:1px solid var(--BD);border-radius:6px;padding:10px;"><div class="rev-lbl">Key Cuts</div><div style="font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:700;color:var(--T);">$75</div><div class="rev-sub">3 cuts</div></div>
+          <div style="background:var(--P2);border:1px solid var(--BD);border-radius:6px;padding:10px;"><div class="rev-lbl">Unlocks</div><div style="font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:700;color:var(--T);">$45</div><div class="rev-sub">1 service</div></div>
+          <div style="background:var(--P2);border:2px solid var(--G);border-radius:6px;padding:10px;"><div class="rev-lbl">Total Today</div><div style="font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:700;color:#4ade80;">$460</div><div class="rev-sub rev-pos">▲ 12% vs avg</div></div>
+        </div>
+        <div style="margin-top:10px;"><button class="btn" style="width:100%;" onclick="go('revenue')">Full Revenue Report →</button></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ STOCK ALERTS ═══════════ -->
+<div class="view" id="v-alerts">
+  <div class="sec-t">Stock Alert Dashboard</div>
+  <div class="panel">
+    <div class="ph"><span class="pt">ALL KEY TYPES — STATUS</span><span style="font-size:10px;color:var(--T3);">Threshold: 5 units</span></div>
+    <div class="ap-item">
+      <div class="ap-icon ap-ok">AM</div>
+      <div><div class="ap-main">Aftermarket Keys</div><div class="ap-sub">Standard replacement</div></div>
+      <div class="ap-right"><div class="ap-count" style="color:#4ade80;">28</div><div class="ap-thresh">/ min: 5</div></div>
+    </div>
+    <div class="ap-item">
+      <div class="ap-icon ap-warn">OR</div>
+      <div><div class="ap-main">OEM Recase Keys</div><div class="ap-sub">OEM shell + aftermarket</div></div>
+      <div class="ap-right"><div class="ap-count" style="color:var(--A);">3</div><div class="ap-thresh">⚠ Below min</div></div>
+    </div>
+    <div class="ap-item">
+      <div class="ap-icon ap-crit">OF</div>
+      <div><div class="ap-main">OEM Refurb Keys</div><div class="ap-sub">Fully restored OEM</div></div>
+      <div class="ap-right"><div class="ap-count" style="color:#f87171;">2</div><div class="ap-thresh">⚠ Critical</div></div>
+    </div>
+  </div>
+  <div class="panel">
+    <div class="ph"><span class="pt">VISUAL STOCK LEVELS</span></div>
+    <div class="pb">
+      <div class="prog-row"><span class="prog-lbl">Aftermarket</span><div class="prog-bar"><div class="prog-fill" style="width:70%;background:var(--G);"></div></div><span class="prog-val">28</span></div>
+      <div class="prog-row"><span class="prog-lbl">OEM Recase</span><div class="prog-bar"><div class="prog-fill" style="width:15%;background:var(--A);"></div></div><span class="prog-val">3</span></div>
+      <div class="prog-row"><span class="prog-lbl">OEM Refurb</span><div class="prog-bar"><div class="prog-fill" style="width:10%;background:var(--R);"></div></div><span class="prog-val">2</span></div>
+    </div>
+  </div>
+  <div class="sg2">
+    <div class="panel">
+      <div class="ph"><span class="pt">ALERT HISTORY</span></div>
+      <div class="slog">
+        <div class="sl-row"><div class="sl-ic ap-warn" style="font-size:14px;">⚠</div><div class="sl-body"><div class="sl-main">OEM Refurb below 5</div><div class="sl-det">Triggered by sale · Apr 25</div></div></div>
+        <div class="sl-row"><div class="sl-ic ap-warn" style="font-size:14px;">⚠</div><div class="sl-body"><div class="sl-main">OEM Recase below 5</div><div class="sl-det">Triggered by sale · Apr 26</div></div></div>
+        <div class="sl-row"><div class="sl-ic ap-ok" style="font-size:14px;">✓</div><div class="sl-body"><div class="sl-main">Aftermarket restocked</div><div class="sl-det">+15 units added · Apr 20</div></div></div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="ph"><span class="pt">QUICK RESTOCK</span></div>
+      <div class="pb">
+        <div style="margin-bottom:12px;">
+          <div style="font-size:12px;color:var(--T);margin-bottom:7px;font-weight:500;">OEM Recase</div>
+          <div style="display:flex;gap:7px;">
+            <input class="fi" placeholder="Qty..." style="max-width:90px;" type="number">
+            <button class="btn pr">Log Restock</button>
+          </div>
+        </div>
+        <div class="sep"></div>
+        <div>
+          <div style="font-size:12px;color:var(--T);margin-bottom:7px;font-weight:500;">OEM Refurb</div>
+          <div style="display:flex;gap:7px;">
+            <input class="fi" placeholder="Qty..." style="max-width:90px;" type="number">
+            <button class="btn pr">Log Restock</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ SCANNER ═══════════ -->
+<div class="view" id="v-scanner">
+  <div class="sg3">
+    <div class="sc g"><div class="sl">Scanned Today</div><div class="sv" id="sc-count">0</div><div class="ss">Processed</div></div>
+    <div class="sc gold"><div class="sl">Auto-Classified</div><div class="sv" id="sc-auto">0</div><div class="ss">By prefix</div></div>
+    <div class="sc a"><div class="sl">Manual Review</div><div class="sv" id="sc-manual">0</div><div class="ss">Unknown</div></div>
+  </div>
+  <div class="sg2">
+    <div class="panel">
+      <div class="ph"><span class="pt">SCAN ACTION</span><span style="font-size:10px;color:var(--G);">● Ready</span></div>
+      <div class="pb">
+        <div class="sec-t">Select action first</div>
+        <div class="sact" style="margin-bottom:14px;">
+          <div class="sac s-add sel" id="sa-add" onclick="selAction('add')"><div class="sac-l" style="color:#4ade80;">+ Add Stock</div><div class="sac-s">Receive new keys</div></div>
+          <div class="sac s-sold" id="sa-sold" onclick="selAction('sold')"><div class="sac-l" style="color:#60a5fa;">Mark Sold</div><div class="sac-s">Complete a sale</div></div>
+          <div class="sac s-dmg" id="sa-dmg" onclick="selAction('dmg')"><div class="sac-l" style="color:#f87171;">Damaged</div><div class="sac-s">Remove from stock</div></div>
+          <div class="sac s-cut" id="sa-cut" onclick="selAction('cut')"><div class="sac-l" style="color:#fbbf24;">Key Cut</div><div class="sac-s">Log cutting service</div></div>
+        </div>
+        <div class="sbox active" onclick="document.getElementById('main-scan').focus()">
+          <div class="sico">⊡</div>
+          <div class="stt">Ready to Scan</div>
+          <div class="sub">Camera or USB barcode scanner</div>
+          <input class="sinput" id="main-scan" placeholder="SCAN OR TYPE CODE..." autocomplete="off" oninput="processScan(this.value)">
+        </div>
+        <div class="sres" id="scan-res"></div>
+        <div class="sec-t" style="margin-top:14px;">Barcode prefix → Key type</div>
+        <div class="prefix-grid">
+          <div class="prefix-card"><div style="font-size:9px;color:var(--T3);">Prefix</div><div style="font-family:'Rajdhani',sans-serif;font-size:16px;color:#4ade80;font-weight:700;">AM-</div><div style="font-size:10px;color:var(--T2);">Aftermarket</div></div>
+          <div class="prefix-card"><div style="font-size:9px;color:var(--T3);">Prefix</div><div style="font-family:'Rajdhani',sans-serif;font-size:16px;color:#60a5fa;font-weight:700;">OR-</div><div style="font-size:10px;color:var(--T2);">OEM Recase</div></div>
+          <div class="prefix-card"><div style="font-size:9px;color:var(--T3);">Prefix</div><div style="font-family:'Rajdhani',sans-serif;font-size:16px;color:#fbbf24;font-weight:700;">OF-</div><div style="font-size:10px;color:var(--T2);">OEM Refurb</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="ph"><span class="pt">SCAN LOG — TODAY</span></div>
+      <div class="tbl-wrap">
+        <table class="tbl" style="min-width:300px;">
+          <thead><tr><th style="width:60px">Time</th><th style="width:90px">Key ID</th><th>Type</th><th style="width:70px">Action</th></tr></thead>
+          <tbody id="scan-log-body"><tr><td colspan="4" style="text-align:center;color:var(--T3);padding:18px;">No scans yet</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ INVENTORY ═══════════ -->
+<div class="view" id="v-inventory">
+  <div class="panel">
+    <div class="ph">
+      <span class="pt">FULL INVENTORY</span>
+      <div class="btn-row">
+        <button class="btn pr" onclick="openModal('add-key-modal')">+ Add Key</button>
+        <button class="btn">Export CSV</button>
+      </div>
+    </div>
+    <div class="tabs">
+      <span class="tab on">All (47)</span>
+      <span class="tab">Aftermarket (28)</span>
+      <span class="tab">OEM Recase (3)</span>
+      <span class="tab">OEM Refurb (2)</span>
+    </div>
+    <div class="frow">
+      <input class="fi" placeholder="Search VIN, Key ID, make..." style="min-width:100%;">
+      <select class="fs"><option>All Status</option><option>Available</option><option>Sold</option><option>Damaged</option></select>
+      <select class="fs"><option>All Types</option><option>Aftermarket</option><option>OEM Recase</option><option>OEM Refurb</option></select>
+      <input type="date" class="fi" style="min-width:0;flex:none;">
+    </div>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th style="width:85px">Key ID</th><th style="width:85px">Type</th><th style="width:120px">Vehicle</th><th style="width:120px">VIN</th><th style="width:75px">Date</th><th style="width:65px">User</th><th style="width:70px">Status</th><th style="width:55px"></th></tr></thead>
+        <tbody>
+          <tr><td style="font-family:monospace;color:var(--T);">AM-00128</td><td><span class="ktag tag-am">Aftermarket</span></td><td style="color:var(--T);">Toyota Camry 22</td><td><span class="vin">1HGBH41JXMN109186</span></td><td>Apr 25</td><td style="color:#ff8888;">Carlos</td><td><span class="pill p-av">Available</span></td><td><button class="btn" style="padding:4px 7px;font-size:10px;" onclick="go('history')">History</button></td></tr>
+          <tr><td style="font-family:monospace;color:var(--T);">OR-00041</td><td><span class="ktag tag-or">OEM Recase</span></td><td style="color:var(--T);">Ford F-150 2020</td><td><span class="vin">2T1BURHE0JC011234</span></td><td>Apr 22</td><td style="color:#ff8888;">Maria</td><td><span class="pill p-so">Sold</span></td><td><button class="btn" style="padding:4px 7px;font-size:10px;">History</button></td></tr>
+          <tr><td style="font-family:monospace;color:var(--T);">OF-00025</td><td><span class="ktag tag-of">OEM Refurb</span></td><td style="color:var(--T);">Chevy Silverado</td><td><span class="vin">5TDDZRFH0HS012345</span></td><td>Apr 18</td><td style="color:#ff8888;">Alex</td><td><span class="pill p-av">Available</span></td><td><button class="btn" style="padding:4px 7px;font-size:10px;">History</button></td></tr>
+          <tr><td style="font-family:monospace;color:var(--T);">AM-00119</td><td><span class="ktag tag-am">Aftermarket</span></td><td style="color:var(--T);">Nissan Altima 19</td><td><span class="vin">1N4AL3AP7JC127456</span></td><td>Apr 15</td><td style="color:#ff8888;">Carlos</td><td><span class="pill p-dm">Damaged</span></td><td><button class="btn" style="padding:4px 7px;font-size:10px;">History</button></td></tr>
+          <tr><td style="font-family:monospace;color:var(--T);">OR-00038</td><td><span class="ktag tag-or">OEM Recase</span></td><td style="color:var(--T);">Jeep Wrangler 21</td><td><span class="vin">1C4HJXFN8LW123456</span></td><td>Apr 10</td><td style="color:#ff8888;">Maria</td><td><span class="pill p-av">Available</span></td><td><button class="btn" style="padding:4px 7px;font-size:10px;">History</button></td></tr>
+          <tr><td style="font-family:monospace;color:var(--T);">AM-00115</td><td><span class="ktag tag-am">Aftermarket</span></td><td style="color:var(--T);">GMC Sierra 2021</td><td><span class="vin">—</span></td><td>Apr 8</td><td style="color:#ff8888;">Alex</td><td><span class="pill p-ct">Cut</span></td><td><button class="btn" style="padding:4px 7px;font-size:10px;">History</button></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ SOLD ═══════════ -->
+<div class="view" id="v-sold">
+  <div class="panel">
+    <div class="ph"><span class="pt">SOLD KEYS</span><button class="btn">Export CSV</button></div>
+    <div class="frow">
+      <input class="fi" placeholder="Search VIN, Key ID, vehicle...">
+      <select class="fs"><option>All Types</option><option>Aftermarket</option><option>OEM Recase</option><option>OEM Refurb</option></select>
+      <select class="fs"><option>All Users</option><option>Carlos</option><option>Maria</option><option>Alex</option></select>
+      <input type="date" class="fi" style="flex:none;">
+    </div>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th style="width:85px">Key ID</th><th style="width:85px">Type</th><th style="width:120px">Vehicle</th><th style="width:120px">VIN</th><th style="width:75px">Date</th><th style="width:65px">Sold By</th><th style="width:65px">Price</th></tr></thead>
+        <tbody>
+          <tr><td style="font-family:monospace;color:var(--T);">OR-00041</td><td><span class="ktag tag-or">OEM Recase</span></td><td style="color:var(--T);">Toyota Camry 21</td><td><span class="vin">1HGBH41JXMN109186</span></td><td>Apr 27</td><td style="color:#ff8888;">Carlos</td><td style="color:#4ade80;font-weight:600;">$85</td></tr>
+          <tr><td style="font-family:monospace;color:var(--T);">AM-00127</td><td><span class="ktag tag-am">Aftermarket</span></td><td style="color:var(--T);">Chevy Silverado</td><td><span class="vin">5TDDZRFH0HS012345</span></td><td>Apr 27</td><td style="color:#ff8888;">Carlos</td><td style="color:#4ade80;font-weight:600;">$45</td></tr>
+          <tr><td style="font-family:monospace;color:var(--T);">OF-00023</td><td><span class="ktag tag-of">OEM Refurb</span></td><td style="color:var(--T);">Nissan Altima 20</td><td><span class="vin">1N4AL3AP0KC107821</span></td><td>Apr 26</td><td style="color:#ff8888;">Maria</td><td style="color:#4ade80;font-weight:600;">$120</td></tr>
+          <tr><td style="font-family:monospace;color:var(--T);">AM-00126</td><td><span class="ktag tag-am">Aftermarket</span></td><td style="color:var(--T);">Ford F-150 2019</td><td><span class="vin">2T1BURHE0JC011234</span></td><td>Apr 26</td><td style="color:#ff8888;">Alex</td><td style="color:#4ade80;font-weight:600;">$45</td></tr>
+          <tr><td style="font-family:monospace;color:var(--T);">OR-00040</td><td><span class="ktag tag-or">OEM Recase</span></td><td style="color:var(--T);">Jeep Cherokee 22</td><td><span class="vin">1C4PJLAB3FW123456</span></td><td>Apr 25</td><td style="color:#ff8888;">Carlos</td><td style="color:#4ade80;font-weight:600;">$85</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ DAMAGED ═══════════ -->
+<div class="view" id="v-damaged">
+  <div class="panel">
+    <div class="ph"><span class="pt">DAMAGED KEYS</span><span style="font-size:11px;color:var(--A);">7 removed from stock</span></div>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th style="width:85px">Key ID</th><th style="width:85px">Type</th><th style="width:120px">Vehicle</th><th style="width:75px">Date</th><th style="width:70px">Reported By</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td style="font-family:monospace;color:var(--T);">AM-00119</td><td><span class="ktag tag-am">Aftermarket</span></td><td style="color:var(--T);">Nissan Altima 19</td><td>Apr 15</td><td style="color:#ff8888;">Carlos</td><td style="color:var(--T3);">Chip cracked</td></tr>
+          <tr><td style="font-family:monospace;color:var(--T);">OF-00018</td><td><span class="ktag tag-of">OEM Refurb</span></td><td style="color:var(--T);">Ford Escape 2020</td><td>Apr 10</td><td style="color:#ff8888;">Maria</td><td style="color:var(--T3);">Housing broken</td></tr>
+          <tr><td style="font-family:monospace;color:var(--T);">OR-00034</td><td><span class="ktag tag-or">OEM Recase</span></td><td style="color:var(--T);">Dodge Ram 2018</td><td>Apr 5</td><td style="color:#ff8888;">Alex</td><td style="color:var(--T3);">Buttons failed</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ SERVICES ═══════════ -->
+<div class="view" id="v-services">
+  <div class="sg3">
+    <div class="sc gold"><div class="sl">Key Cuts</div><div class="sv">18</div><div class="ss">$450 this month</div></div>
+    <div class="sc b"><div class="sl">Lock Openings</div><div class="sv">9</div><div class="ss">$405 this month</div></div>
+    <div class="sc g"><div class="sl">Keys Sold</div><div class="sv">128</div><div class="ss">All time</div></div>
+  </div>
+  <div class="panel">
+    <div class="ph">
+      <span class="pt">SERVICE LOG</span>
+      <div class="btn-row">
+        <button class="btn pr" onclick="openModal('add-service-modal')">+ Log Service</button>
+        <button class="btn">Export</button>
+      </div>
+    </div>
+    <div class="frow">
+      <input class="fi" placeholder="Search vehicle, VIN, user...">
+      <select class="fs"><option>All Services</option><option>Key Sale</option><option>Key Cut</option><option>Lock Opened</option></select>
+      <select class="fs"><option>All Users</option><option>Carlos</option><option>Maria</option><option>Alex</option></select>
+      <input type="date" class="fi" style="flex:none;">
+    </div>
+    <div class="slog">
+      <div class="sl-row"><div class="sl-ic ic-k">🔑</div><div class="sl-body"><div class="sl-main">Key Sold — OEM Recase · OR-00041</div><div class="sl-det">Toyota Camry 2021 · VIN: 1HGBH41JXMN109186 · $85.00</div><div class="sl-meta"><span class="sl-user">Carlos</span><span class="sl-time">Apr 27 · 2:14 PM</span></div></div></div>
+      <div class="sl-row"><div class="sl-ic ic-c">✂</div><div class="sl-body"><div class="sl-main">Key Cut — Aftermarket blank</div><div class="sl-det">Ford F-150 2019 · VIN: 2T1BURHE0JC011234 · $25.00</div><div class="sl-meta"><span class="sl-user">Maria</span><span class="sl-time">Apr 27 · 1:47 PM</span></div></div></div>
+      <div class="sl-row"><div class="sl-ic ic-u">🔓</div><div class="sl-body"><div class="sl-main">Lock Opened — Hyundai Elantra 2020</div><div class="sl-det">Customer locked out · $45.00</div><div class="sl-meta"><span class="sl-user">Alex</span><span class="sl-time">Apr 27 · 11:32 AM</span></div></div></div>
+      <div class="sl-row"><div class="sl-ic ic-k">🔑</div><div class="sl-body"><div class="sl-main">Key Sold — Aftermarket · AM-00127</div><div class="sl-det">Chevy Silverado · VIN: 5TDDZRFH0HS012345 · $45.00</div><div class="sl-meta"><span class="sl-user">Carlos</span><span class="sl-time">Apr 27 · 9:05 AM</span></div></div></div>
+      <div class="sl-row"><div class="sl-ic ic-c">✂</div><div class="sl-body"><div class="sl-main">Key Cut — OEM blank</div><div class="sl-det">Kia Sorento 2022 · VIN: 5XYPGDA30LG123456 · $30.00</div><div class="sl-meta"><span class="sl-user">Maria</span><span class="sl-time">Apr 26 · 3:20 PM</span></div></div></div>
+      <div class="sl-row"><div class="sl-ic ic-u">🔓</div><div class="sl-body"><div class="sl-main">Lock Opened — GMC Sierra 2021</div><div class="sl-det">Keys locked inside · $45.00</div><div class="sl-meta"><span class="sl-user">Alex</span><span class="sl-time">Apr 26 · 1:10 PM</span></div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ KEY HISTORY ═══════════ -->
+<div class="view" id="v-history">
+  <div class="panel" style="margin-bottom:12px;">
+    <div class="ph"><span class="pt">KEY HISTORY LOOKUP</span></div>
+    <div class="frow">
+      <input class="fi" placeholder="Enter Key ID (e.g. AM-00128) or VIN...">
+      <button class="btn pr">Search</button>
+    </div>
+  </div>
+  <div class="sg2">
+    <div class="panel">
+      <div class="ph"><span class="pt">AM-00128 · TIMELINE</span></div>
+      <div class="hist-timeline">
+        <div class="ht-item"><div class="ht-line"></div><div class="ht-dot ht-in">+</div><div><div class="ht-main">Received into stock</div><div class="ht-sub">Apr 20, 2026 · Added by Carlos</div></div></div>
+        <div class="ht-item"><div class="ht-line"></div><div class="ht-dot ht-cut">✂</div><div><div class="ht-main">Key Cut</div><div class="ht-sub">Apr 23, 2026 · Cut by Maria · Toyota Camry</div></div></div>
+        <div class="ht-item"><div class="ht-dot ht-sold">$</div><div><div class="ht-main">Sold to customer</div><div class="ht-sub">Apr 27, 2026 · Sold by Carlos · $45.00</div></div></div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="ph"><span class="pt">KEY DETAILS</span></div>
+      <div class="pb">
+        <table style="width:100%;font-size:13px;border-collapse:collapse;">
+          <tr><td style="color:var(--T3);padding:6px 0;border-bottom:1px solid rgba(42,42,42,0.3);">Key ID</td><td style="font-family:monospace;color:var(--T);text-align:right;border-bottom:1px solid rgba(42,42,42,0.3);padding:6px 0;">AM-00128</td></tr>
+          <tr><td style="color:var(--T3);padding:6px 0;border-bottom:1px solid rgba(42,42,42,0.3);">Type</td><td style="text-align:right;border-bottom:1px solid rgba(42,42,42,0.3);padding:6px 0;"><span class="ktag tag-am">Aftermarket</span></td></tr>
+          <tr><td style="color:var(--T3);padding:6px 0;border-bottom:1px solid rgba(42,42,42,0.3);">Vehicle</td><td style="color:var(--T);text-align:right;border-bottom:1px solid rgba(42,42,42,0.3);padding:6px 0;">Toyota Camry 2022</td></tr>
+          <tr><td style="color:var(--T3);padding:6px 0;border-bottom:1px solid rgba(42,42,42,0.3);">VIN</td><td style="text-align:right;border-bottom:1px solid rgba(42,42,42,0.3);padding:6px 0;"><span class="vin">1HGBH41JXMN109186</span></td></tr>
+          <tr><td style="color:var(--T3);padding:6px 0;border-bottom:1px solid rgba(42,42,42,0.3);">Date Added</td><td style="color:var(--T);text-align:right;border-bottom:1px solid rgba(42,42,42,0.3);padding:6px 0;">Apr 20, 2026</td></tr>
+          <tr><td style="color:var(--T3);padding:6px 0;border-bottom:1px solid rgba(42,42,42,0.3);">Status</td><td style="text-align:right;border-bottom:1px solid rgba(42,42,42,0.3);padding:6px 0;"><span class="pill p-so">Sold</span></td></tr>
+          <tr><td style="color:var(--T3);padding:6px 0;">Sale Price</td><td style="color:#4ade80;font-weight:600;text-align:right;padding:6px 0;">$45.00</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ REVENUE ═══════════ -->
+<div class="view" id="v-revenue">
+  <div class="rev-grid">
+    <div class="rev-card"><div class="rev-lbl">Total Revenue</div><div class="rev-val">$7,840</div><div class="rev-sub rev-pos">All time</div></div>
+    <div class="rev-card"><div class="rev-lbl">This Month</div><div class="rev-val">$1,240</div><div class="rev-sub rev-pos">▲ 8% vs last month</div></div>
+    <div class="rev-card"><div class="rev-lbl">This Week</div><div class="rev-val">$460</div><div class="rev-sub rev-pos">▲ 12% vs avg</div></div>
+    <div class="rev-card"><div class="rev-lbl">Today</div><div class="rev-val">$460</div><div class="rev-sub">4 sales · 3 cuts</div></div>
+  </div>
+  <div class="sg2">
+    <div class="panel">
+      <div class="ph"><span class="pt">REVENUE BY SOURCE</span></div>
+      <div class="pb">
+        <div class="price-row"><span style="color:var(--T);">Key Sales</span><div style="display:flex;align-items:center;gap:8px;"><div style="width:70px;height:5px;background:var(--BD);border-radius:2px;overflow:hidden;"><div style="width:65%;height:100%;background:var(--G);border-radius:2px;"></div></div><span style="color:#4ade80;font-weight:600;">$5,760</span></div></div>
+        <div class="price-row"><span style="color:var(--T);">Key Cuts</span><div style="display:flex;align-items:center;gap:8px;"><div style="width:70px;height:5px;background:var(--BD);border-radius:2px;overflow:hidden;"><div style="width:25%;height:100%;background:var(--A);border-radius:2px;"></div></div><span style="color:#fbbf24;font-weight:600;">$1,530</span></div></div>
+        <div class="price-row"><span style="color:var(--T);">Lock Openings</span><div style="display:flex;align-items:center;gap:8px;"><div style="width:70px;height:5px;background:var(--BD);border-radius:2px;overflow:hidden;"><div style="width:10%;height:100%;background:var(--B);border-radius:2px;"></div></div><span style="color:#60a5fa;font-weight:600;">$550</span></div></div>
+        <div class="sep"></div>
+        <div class="price-row"><span style="color:var(--T);font-weight:500;">Total</span><span style="color:#4ade80;font-weight:600;font-size:15px;">$7,840</span></div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="ph"><span class="pt">SET SERVICE PRICES</span></div>
+      <div class="pb">
+        <div class="price-row"><span style="color:var(--T);">Aftermarket key</span><div style="display:flex;align-items:center;gap:5px;"><span style="color:var(--T3);">$</span><input class="pi" value="45" type="number"></div></div>
+        <div class="price-row"><span style="color:var(--T);">OEM Recase key</span><div style="display:flex;align-items:center;gap:5px;"><span style="color:var(--T3);">$</span><input class="pi" value="85" type="number"></div></div>
+        <div class="price-row"><span style="color:var(--T);">OEM Refurb key</span><div style="display:flex;align-items:center;gap:5px;"><span style="color:var(--T3);">$</span><input class="pi" value="120" type="number"></div></div>
+        <div class="price-row"><span style="color:var(--T);">Key Cut</span><div style="display:flex;align-items:center;gap:5px;"><span style="color:var(--T3);">$</span><input class="pi" value="25" type="number"></div></div>
+        <div class="price-row"><span style="color:var(--T);">Lock Opening</span><div style="display:flex;align-items:center;gap:5px;"><span style="color:var(--T3);">$</span><input class="pi" value="45" type="number"></div></div>
+        <div style="margin-top:12px;"><button class="btn pr" style="width:100%;">Save Prices</button></div>
+      </div>
+    </div>
+  </div>
+  <div class="panel">
+    <div class="ph"><span class="pt">REVENUE BY USER</span></div>
+    <div class="pb">
+      <div class="user-grid">
+        <div class="uc"><div class="ua" style="background:rgba(204,0,0,0.2);border:1px solid rgba(204,0,0,0.4);color:#ff8888;">CA</div><div style="font-size:13px;color:var(--T);font-weight:500;margin-bottom:3px;">Carlos</div><div style="font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:700;color:#4ade80;">$3,240</div><div style="font-size:10px;color:var(--T3);">52 transactions</div></div>
+        <div class="uc"><div class="ua" style="background:rgba(26,111,212,0.2);border:1px solid rgba(26,111,212,0.4);color:#60a5fa;">MA</div><div style="font-size:13px;color:var(--T);font-weight:500;margin-bottom:3px;">Maria</div><div style="font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:700;color:#4ade80;">$2,890</div><div style="font-size:10px;color:var(--T3);">44 transactions</div></div>
+        <div class="uc"><div class="ua" style="background:rgba(180,148,31,0.2);border:1px solid rgba(180,148,31,0.4);color:#fbbf24;">AL</div><div style="font-size:13px;color:var(--T);font-weight:500;margin-bottom:3px;">Alex</div><div style="font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:700;color:#4ade80;">$1,710</div><div style="font-size:10px;color:var(--T3);">35 transactions</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ REPORTS ═══════════ -->
+<div class="view" id="v-reports">
+  <div class="panel" style="margin-bottom:12px;">
+    <div class="ph"><span class="pt">GENERATE REPORT</span></div>
+    <div class="frow">
+      <select class="fs"><option>Daily Report</option><option>Weekly Report</option><option>Monthly Report</option><option>Custom Range</option></select>
+      <select class="fs"><option>All Users</option><option>Carlos</option><option>Maria</option><option>Alex</option></select>
+      <input type="date" class="fi" style="flex:none;">
+      <input type="date" class="fi" style="flex:none;">
+      <button class="btn pr">Generate</button>
+      <button class="btn">Export CSV</button>
+      <button class="btn" onclick="window.print()">Print</button>
+    </div>
+  </div>
+  <div class="rpt-grid">
+    <div class="rpt-card"><div class="rpt-title">Keys Sold — April</div><div class="rpt-line"><span>Aftermarket</span><span class="rpt-val">62 · $2,790</span></div><div class="rpt-line"><span>OEM Recase</span><span class="rpt-val">41 · $3,485</span></div><div class="rpt-line"><span>OEM Refurb</span><span class="rpt-val">25 · $3,000</span></div><div class="rpt-line"><span style="font-weight:500;color:var(--T);">Total</span><span class="rpt-val" style="color:#4ade80;">$9,275</span></div></div>
+    <div class="rpt-card"><div class="rpt-title">Services — April</div><div class="rpt-line"><span>Key Cuts</span><span class="rpt-val">18 · $450</span></div><div class="rpt-line"><span>Lock Openings</span><span class="rpt-val">9 · $405</span></div><div class="rpt-line"><span>Grand Total</span><span class="rpt-val" style="color:#4ade80;">$855</span></div></div>
+    <div class="rpt-card"><div class="rpt-title">Inventory Movement</div><div class="rpt-line"><span>Added</span><span class="rpt-val">+32</span></div><div class="rpt-line"><span>Sold</span><span class="rpt-val">-128</span></div><div class="rpt-line"><span>Damaged</span><span class="rpt-val">-7</span></div><div class="rpt-line"><span>Net</span><span class="rpt-val" style="color:var(--A);">-103</span></div></div>
+    <div class="rpt-card"><div class="rpt-title">Top Performer</div><div style="text-align:center;padding:8px 0;"><div class="ua" style="background:rgba(204,0,0,0.15);border:1px solid rgba(204,0,0,0.3);color:#ff8888;margin:0 auto 6px;">CA</div><div style="font-size:13px;color:var(--T);font-weight:500;">Carlos</div><div style="font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:700;color:#4ade80;margin-top:3px;">$3,240</div><div style="font-size:10px;color:var(--T3);">52 transactions</div></div></div>
+  </div>
+</div>
+
+</div><!-- end content -->
+</div><!-- end page-body -->
+
+<!-- BOTTOM NAV (mobile) -->
+<div class="bottom-nav" id="bottom-nav">
+  <div class="bn-item on" onclick="go('dashboard')"><span class="bn-icon">◧</span><span>Home</span></div>
+  <div class="bn-item" onclick="go('alerts')"><span class="bn-icon">⚠</span><span>Alerts</span></div>
+  <div class="bn-item" onclick="go('scanner')"><span class="bn-icon">⊡</span><span>Scan</span></div>
+  <div class="bn-item" onclick="go('inventory')"><span class="bn-icon">⊟</span><span>Keys</span></div>
+  <div class="bn-item" onclick="go('services')"><span class="bn-icon">⚙</span><span>Services</span></div>
+  <div class="bn-item" onclick="go('revenue')"><span class="bn-icon">$</span><span>Revenue</span></div>
+  <div class="bn-item" onclick="go('reports')"><span class="bn-icon">⊞</span><span>Reports</span></div>
+</div>
+
+<!-- ADD KEY MODAL -->
+<div class="modal-overlay" id="add-key-modal" onclick="closeModal('add-key-modal',event)">
+  <div class="modal">
+    <div class="modal-hdr">
+      <span class="modal-title">ADD NEW KEY</span>
+      <button class="btn" onclick="closeModal('add-key-modal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group"><label class="form-label">Key Type</label><select class="form-select"><option>Aftermarket</option><option>OEM Recase</option><option>OEM Refurb</option></select></div>
+      <div class="form-group"><label class="form-label">Key ID / Barcode</label><input class="form-input" placeholder="e.g. AM-00129"></div>
+      <div class="form-group"><label class="form-label">Make &amp; Model</label><input class="form-input" placeholder="e.g. Toyota Camry 2022"></div>
+      <div class="form-group"><label class="form-label">VIN (optional)</label><input class="form-input" placeholder="17-character VIN" maxlength="17"></div>
+      <div class="form-group"><label class="form-label">Date Received</label><input class="form-input" type="date"></div>
+      <div class="form-group"><label class="form-label">Added By</label><select class="form-select"><option>Carlos</option><option>Maria</option><option>Alex</option></select></div>
+      <div class="form-group"><label class="form-label">Notes</label><input class="form-input" placeholder="Optional notes..."></div>
+      <div style="display:flex;gap:8px;margin-top:4px;"><button class="btn pr" style="flex:1;">Add to Inventory</button><button class="btn" style="flex:1;" onclick="closeModal('add-key-modal')">Cancel</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- ADD SERVICE MODAL -->
+<div class="modal-overlay" id="add-service-modal" onclick="closeModal('add-service-modal',event)">
+  <div class="modal">
+    <div class="modal-hdr">
+      <span class="modal-title">LOG SERVICE</span>
+      <button class="btn" onclick="closeModal('add-service-modal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group"><label class="form-label">Service Type</label><select class="form-select"><option>Key Sale</option><option>Key Cut</option><option>Lock Opened</option></select></div>
+      <div class="form-group"><label class="form-label">Key ID (if applicable)</label><input class="form-input" placeholder="e.g. AM-00128"></div>
+      <div class="form-group"><label class="form-label">Vehicle Make &amp; Model</label><input class="form-input" placeholder="e.g. Ford F-150 2020"></div>
+      <div class="form-group"><label class="form-label">VIN (optional)</label><input class="form-input" placeholder="17-character VIN" maxlength="17"></div>
+      <div class="form-group"><label class="form-label">Price Charged ($)</label><input class="form-input" type="number" placeholder="0.00"></div>
+      <div class="form-group"><label class="form-label">Performed By</label><select class="form-select"><option>Carlos</option><option>Maria</option><option>Alex</option></select></div>
+      <div class="form-group"><label class="form-label">Notes</label><input class="form-input" placeholder="Optional notes..."></div>
+      <div style="display:flex;gap:8px;margin-top:4px;"><button class="btn pr" style="flex:1;">Save Service</button><button class="btn" style="flex:1;" onclick="closeModal('add-service-modal')">Cancel</button></div>
+    </div>
+  </div>
+</div>
+
+<script>
+var VIEWS=['dashboard','alerts','scanner','inventory','sold','damaged','services','history','revenue','reports'];
+var scanAction='add';
+var scanCount=0,scanAuto=0,scanManual=0;
+
+function go(id){
+  VIEWS.forEach(function(v){
+    var el=document.getElementById('v-'+v);
+    if(el) el.className='view'+(v===id?' on':'');
+  });
+  // sidebar
+  document.querySelectorAll('.ni').forEach(function(n){n.classList.remove('on');});
+  document.querySelectorAll('.ni').forEach(function(n){
+    if(n.textContent.toLowerCase().indexOf(id.replace('-',' '))>-1||
+       (id==='dashboard'&&n.textContent.indexOf('Dashboard')>-1)||
+       (id==='alerts'&&n.textContent.indexOf('Stock')>-1)||
+       (id==='scanner'&&n.textContent.indexOf('Scanner')>-1)||
+       (id==='inventory'&&n.textContent.indexOf('All Keys')>-1)||
+       (id==='sold'&&n.textContent.trim().indexOf('Sold')===0)||
+       (id==='damaged'&&n.textContent.indexOf('Damaged')>-1)||
+       (id==='services'&&n.textContent.indexOf('Services')>-1)||
+       (id==='history'&&n.textContent.indexOf('History')>-1)||
+       (id==='revenue'&&n.textContent.indexOf('Revenue')>-1)||
+       (id==='reports'&&n.textContent.indexOf('Reports')>-1)
+    ) n.classList.add('on');
+  });
+  // bottom nav
+  document.querySelectorAll('.bn-item').forEach(function(b){b.classList.remove('on');});
+  var bnMap={dashboard:0,alerts:1,scanner:2,inventory:3,services:4,revenue:5,reports:6,sold:3,damaged:3,history:3};
+  var idx=bnMap[id];
+  var bns=document.querySelectorAll('.bn-item');
+  if(bns[idx]) bns[idx].classList.add('on');
+  // scroll top
+  window.scrollTo(0,0);
+}
+
+function selAction(a){
+  scanAction=a;
+  ['add','sold','dmg','cut'].forEach(function(x){document.getElementById('sa-'+x).classList.remove('sel');});
+  document.getElementById('sa-'+a).classList.add('sel');
+}
+
+function classifyKey(code){
+  var c=code.toUpperCase();
+  if(c.startsWith('AM-')) return 'Aftermarket';
+  if(c.startsWith('OR-')) return 'OEM Recase';
+  if(c.startsWith('OF-')) return 'OEM Refurb';
+  return null;
+}
+
+function processScan(val){
+  if(val.length<4) return;
+  var input=document.getElementById('main-scan');
+  var res=document.getElementById('scan-res');
+  var type=classifyKey(val);
+  var user=document.getElementById('cur-user').value;
+  scanCount++;document.getElementById('sc-count').textContent=scanCount;
+  if(type){scanAuto++;document.getElementById('sc-auto').textContent=scanAuto;}
+  else{scanManual++;document.getElementById('sc-manual').textContent=scanManual;type='Unknown';}
+  var actionLabels={add:'Added to stock',sold:'Marked Sold',dmg:'Marked Damaged',cut:'Cut logged'};
+  var colors={add:'#4ade80',sold:'#60a5fa',dmg:'#f87171',cut:'#fbbf24'};
+  var bgColors={add:'rgba(26,158,74,0.08)',sold:'rgba(26,111,212,0.08)',dmg:'rgba(204,0,0,0.08)',cut:'rgba(180,148,31,0.08)'};
+  var bdColors={add:'rgba(26,158,74,0.3)',sold:'rgba(26,111,212,0.3)',dmg:'rgba(204,0,0,0.3)',cut:'rgba(180,148,31,0.3)'};
+  res.style.background=bgColors[scanAction];
+  res.style.border='1px solid '+bdColors[scanAction];
+  res.style.color=colors[scanAction];
+  res.textContent='✓ '+val.toUpperCase()+' → '+type+' · '+actionLabels[scanAction]+' · '+user;
+  res.className='sres show';
+  var now=new Date();
+  var t=now.getHours().toString().padStart(2,'0')+':'+now.getMinutes().toString().padStart(2,'0');
+  var tagMap={'Aftermarket':'tag-am','OEM Recase':'tag-or','OEM Refurb':'tag-of','Unknown':''};
+  var pMap={add:'p-av',sold:'p-so',dmg:'p-dm',cut:'p-ct'};
+  var pTxt={add:'Added',sold:'Sold',dmg:'Damaged',cut:'Cut'};
+  var tbody=document.getElementById('scan-log-body');
+  if(tbody.children.length===1&&tbody.children[0].children[0]&&tbody.children[0].children[0].colSpan>1) tbody.innerHTML='';
+  var row=document.createElement('tr');
+  row.innerHTML='<td>'+t+'</td><td style="font-family:monospace;color:var(--T);">'+val.toUpperCase()+'</td><td><span class="ktag '+tagMap[type]+'">'+type+'</span></td><td><span class="pill '+pMap[scanAction]+'">'+pTxt[scanAction]+'</span></td>';
+  tbody.insertBefore(row,tbody.firstChild);
+  setTimeout(function(){input.value='';res.classList.remove('show');},2800);
+}
+
+function updateClock(){
+  var now=new Date();
+  var days=['SUN','MON','TUE','WED','THU','FRI','SAT'];
+  var months=['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+  var d=document.getElementById('dt');
+  var t=document.getElementById('tm');
+  if(d) d.textContent=days[now.getDay()]+' '+months[now.getMonth()]+' '+now.getDate()+' '+now.getFullYear();
+  if(t) t.textContent=now.getHours().toString().padStart(2,'0')+':'+now.getMinutes().toString().padStart(2,'0')+':'+now.getSeconds().toString().padStart(2,'0');
+}
+setInterval(updateClock,1000);
+updateClock();
+
+var stockData=[{name:'Aftermarket',qty:28},{name:'OEM Recase',qty:3},{name:'OEM Refurb',qty:2}];
+var thresh=5;
+function renderAlerts(){
+  var chips=document.getElementById('alert-chips');
+  var low=stockData.filter(function(s){return s.qty<thresh;});
+  chips.innerHTML=low.map(function(s){return '<span class="alert-chip"><span class="adot"></span>'+s.name+' — '+s.qty+' left</span>';}).join('');
+  document.getElementById('alert-count').textContent=low.length+' alert'+(low.length!==1?'s':'')+' active';
+  var snb=document.getElementById('snb-d');
+  if(snb) snb.textContent=low.length;
+}
+renderAlerts();
+
+function openModal(id){
+  document.getElementById(id).classList.add('show');
+  document.body.style.overflow='hidden';
+}
+function closeModal(id,e){
+  if(!e||e.target===document.getElementById(id)){
+    document.getElementById(id).classList.remove('show');
+    document.body.style.overflow='';
+  }
+}
+
+// Tab switching
+document.querySelectorAll('.tab').forEach(function(tab){
+  tab.addEventListener('click',function(){
+    var tabs=this.parentElement.querySelectorAll('.tab');
+    tabs.forEach(function(t){t.classList.remove('on');});
+    this.classList.add('on');
+  });
+});
+</script>
+</body>
+</html>
