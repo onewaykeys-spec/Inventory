@@ -15,7 +15,7 @@
 }
 html,body{background:var(--BG);color:var(--T);font-family:'Barlow',sans-serif;font-size:14px;min-height:100vh;overflow-x:hidden;}
 
-/* ── HEADER ── */
+/* HEADER */
 .hdr{background:var(--P);border-bottom:2px solid var(--R);padding:0 14px;display:flex;align-items:center;justify-content:space-between;height:54px;position:fixed;top:0;left:0;right:0;z-index:200;}
 .logo-pill{background:#000;border:2px solid var(--R);border-radius:18px;padding:4px 12px;display:flex;align-items:center;}
 .l1{font-family:'Rajdhani',sans-serif;font-size:18px;font-weight:700;color:#ddd;}
@@ -23,38 +23,35 @@ html,body{background:var(--BG);color:var(--T);font-family:'Barlow',sans-serif;fo
 .l3{font-family:'Rajdhani',sans-serif;font-size:18px;font-weight:700;color:var(--R);letter-spacing:1px;}
 .lk{background:var(--R);color:#fff;font-family:'Rajdhani',sans-serif;font-size:9px;font-weight:700;letter-spacing:3px;padding:2px 6px;border-radius:3px;margin-left:8px;}
 .hdr-right{display:flex;align-items:center;gap:8px;}
-.user-sel{background:var(--P2);border:1px solid var(--BD);border-radius:6px;color:var(--T);font-family:'Barlow',sans-serif;font-size:12px;padding:5px 8px;outline:none;cursor:pointer;max-width:110px;}
-.clock{font-size:10px;color:var(--T2);text-align:right;display:none;}
-@media(min-width:600px){.clock{display:block;}}
+.user-sel{background:var(--P2);border:1px solid var(--BD);border-radius:6px;color:var(--T);font-family:'Barlow',sans-serif;font-size:12px;padding:5px 8px;outline:none;cursor:pointer;}
+.clock{font-size:10px;color:var(--T2);text-align:right;}
 .clock strong{display:block;color:var(--T);font-size:11px;}
 
-/* ── ALERT BANNER ── */
+/* ALERT BANNER */
 .alert-bar{background:#1a0000;border-bottom:1px solid #3a0000;padding:6px 14px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;position:fixed;top:54px;left:0;right:0;z-index:199;}
 .alert-lbl{background:var(--R);color:#fff;font-family:'Rajdhani',sans-serif;font-size:9px;font-weight:700;letter-spacing:2px;padding:2px 7px;border-radius:2px;white-space:nowrap;}
 .alert-chip{background:rgba(204,0,0,0.12);border:1px solid rgba(204,0,0,0.35);border-radius:20px;padding:2px 9px;font-size:11px;color:#ff8888;display:flex;align-items:center;gap:4px;}
 .adot{width:5px;height:5px;border-radius:50%;background:#ff3333;animation:blink 1.1s infinite;flex-shrink:0;}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.15}}
-.alert-bar-hidden{display:none!important;}
+.no-alerts{font-size:11px;color:var(--T3);}
 
-/* ── BODY OFFSET ── */
-.page-body{padding-top:90px;} /* hdr+alert */
+/* BODY */
+.page-body{padding-top:90px;}
 
-/* ── BOTTOM NAV (mobile) ── */
+/* BOTTOM NAV */
 .bottom-nav{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:200;background:var(--P);border-top:1px solid var(--BD);height:58px;overflow-x:auto;-webkit-overflow-scrolling:touch;}
 .bottom-nav::-webkit-scrollbar{display:none;}
-.bn-item{flex:1;min-width:60px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;color:var(--T3);font-size:9px;font-weight:500;letter-spacing:.5px;text-transform:uppercase;padding:6px 4px;border-top:2px solid transparent;transition:all .12s;user-select:none;-webkit-user-select:none;}
+.bn-item{flex:1;min-width:55px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;cursor:pointer;color:var(--T3);font-size:9px;font-weight:500;letter-spacing:.5px;text-transform:uppercase;padding:6px 4px;border-top:2px solid transparent;transition:all .12s;user-select:none;-webkit-user-select:none;}
 .bn-item:hover,.bn-item.on{color:#ff6666;border-top-color:var(--R);}
-.bn-icon{font-size:18px;}
-.bn-badge{background:var(--R);color:#fff;font-size:9px;font-weight:700;padding:1px 5px;border-radius:8px;min-width:16px;text-align:center;}
+.bn-icon{font-size:17px;}
 
-/* ── SIDEBAR (desktop only) ── */
+/* SIDEBAR (desktop) */
 .sidebar{display:none;}
 @media(min-width:900px){
   .layout{display:grid;grid-template-columns:200px 1fr;}
   .sidebar{display:block;background:var(--P);border-right:1px solid var(--BD);padding:14px 0;position:fixed;top:90px;left:0;width:200px;height:calc(100vh - 90px);overflow-y:auto;z-index:100;}
   .bottom-nav{display:none;}
   .content{margin-left:200px;}
-  .page-body{padding-top:90px;}
 }
 .nl{font-size:9px;font-weight:600;letter-spacing:2px;color:var(--T3);padding:0 14px 5px;text-transform:uppercase;}
 .ni{display:flex;align-items:center;gap:8px;padding:10px 14px;cursor:pointer;color:var(--T2);font-size:12px;border-left:3px solid transparent;transition:all .12s;user-select:none;}
@@ -66,17 +63,16 @@ html,body{background:var(--BG);color:var(--T);font-family:'Barlow',sans-serif;fo
 .nb.a{background:var(--A);color:#fff;}
 .nb.b{background:var(--B);color:#fff;}
 
-/* ── CONTENT ── */
+/* CONTENT */
 .content{padding:14px 14px 70px;}
 @media(min-width:900px){.content{padding:18px 18px 20px;}}
 .view{display:none;}
 .view.on{display:block;}
 
-/* ── STAT CARDS ── */
+/* STAT CARDS */
 .sg{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;}
+@media(min-width:600px){.sg{grid-template-columns:repeat(4,1fr);}}
 .sg3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px;}
-.sg4{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;}
-@media(min-width:600px){.sg{grid-template-columns:repeat(4,1fr);}.sg4{grid-template-columns:repeat(4,1fr);}}
 .sg2{display:grid;grid-template-columns:1fr;gap:12px;margin-bottom:12px;}
 @media(min-width:700px){.sg2{grid-template-columns:1fr 1fr;}}
 .sc{background:var(--P);border:1px solid var(--BD);border-radius:8px;padding:12px 14px;position:relative;overflow:hidden;}
@@ -89,15 +85,14 @@ html,body{background:var(--BG);color:var(--T);font-family:'Barlow',sans-serif;fo
 .sl{font-size:9px;color:var(--T2);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;}
 .sv{font-family:'Rajdhani',sans-serif;font-size:26px;font-weight:700;color:var(--T);line-height:1;}
 .ss{font-size:11px;color:var(--T3);margin-top:3px;}
-.sw{color:var(--A);font-weight:500;}
 
-/* ── PANELS ── */
+/* PANELS */
 .panel{background:var(--P);border:1px solid var(--BD);border-radius:8px;overflow:hidden;margin-bottom:12px;}
 .ph{padding:10px 14px;border-bottom:1px solid var(--BD);display:flex;align-items:center;justify-content:space-between;gap:8px;background:var(--P2);flex-wrap:wrap;}
 .pt{font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:600;letter-spacing:1px;color:var(--T);}
 .pb{padding:12px 14px;}
 
-/* ── KEY TYPE CARDS ── */
+/* KEY TYPE CARDS */
 .ktg{display:grid;grid-template-columns:1fr;gap:8px;margin-bottom:12px;}
 @media(min-width:500px){.ktg{grid-template-columns:repeat(3,1fr);}}
 .kt{background:var(--P2);border:1px solid var(--BD);border-radius:8px;padding:12px;}
@@ -119,7 +114,7 @@ html,body{background:var(--BG);color:var(--T);font-family:'Barlow',sans-serif;fo
 .kbf.r{background:var(--R);}
 .ktf{display:flex;justify-content:space-between;font-size:11px;color:var(--T2);}
 
-/* ── BUTTONS ── */
+/* BUTTONS */
 .btn{background:transparent;border:1px solid var(--BD);border-radius:6px;color:var(--T2);font-family:'Barlow',sans-serif;font-size:12px;padding:6px 12px;cursor:pointer;transition:all .12s;white-space:nowrap;-webkit-appearance:none;}
 .btn:hover{background:rgba(255,255,255,0.05);color:var(--T);}
 .btn.pr{background:var(--R);border-color:var(--R);color:#fff;}
@@ -128,7 +123,7 @@ html,body{background:var(--BG);color:var(--T);font-family:'Barlow',sans-serif;fo
 .btn.pb2{background:var(--B);border-color:var(--B);color:#fff;}
 .btn-row{display:flex;gap:7px;flex-wrap:wrap;}
 
-/* ── FILTER ROW ── */
+/* FILTER ROW */
 .frow{display:flex;gap:7px;padding:10px 12px;border-bottom:1px solid var(--BD);background:var(--P3);flex-wrap:wrap;align-items:center;}
 .fi{background:var(--BG);border:1px solid var(--BD);border-radius:6px;color:var(--T);font-family:'Barlow',sans-serif;font-size:13px;padding:8px 10px;outline:none;flex:1;min-width:120px;-webkit-appearance:none;}
 .fi:focus{border-color:var(--R);}
@@ -136,36 +131,36 @@ html,body{background:var(--BG);color:var(--T);font-family:'Barlow',sans-serif;fo
 .fs{background:var(--BG);border:1px solid var(--BD);border-radius:6px;color:var(--T2);font-family:'Barlow',sans-serif;font-size:13px;padding:8px 10px;outline:none;cursor:pointer;-webkit-appearance:none;min-width:120px;}
 .fs:focus{border-color:var(--R);}
 
-/* ── TABLES ── */
+/* TABLES */
 .tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
-.tbl{width:100%;border-collapse:collapse;min-width:500px;}
+.tbl{width:100%;border-collapse:collapse;min-width:480px;}
 .tbl th{font-size:9px;letter-spacing:1.5px;color:var(--T3);text-transform:uppercase;padding:8px 10px;border-bottom:1px solid var(--BD);text-align:left;font-weight:500;background:var(--P2);white-space:nowrap;}
 .tbl td{padding:9px 10px;border-bottom:1px solid rgba(42,42,42,0.4);font-size:12px;color:var(--T2);vertical-align:middle;white-space:nowrap;}
 .tbl tr:last-child td{border-bottom:none;}
 .tbl tr:hover td{background:rgba(255,255,255,0.015);}
+.tbl-empty{text-align:center;color:var(--T3);padding:28px 10px!important;font-size:12px;}
 
-/* ── PILLS ── */
+/* PILLS */
 .pill{display:inline-block;font-size:10px;font-weight:600;padding:2px 8px;border-radius:10px;}
 .p-av{background:rgba(26,158,74,0.15);color:#4ade80;border:1px solid rgba(26,158,74,0.3);}
 .p-so{background:rgba(26,111,212,0.15);color:#60a5fa;border:1px solid rgba(26,111,212,0.3);}
 .p-dm{background:rgba(204,0,0,0.15);color:#f87171;border:1px solid rgba(204,0,0,0.3);}
 .p-ct{background:rgba(180,148,31,0.15);color:#fbbf24;border:1px solid rgba(180,148,31,0.3);}
-.p-ul{background:rgba(139,92,246,0.15);color:#c4b5fd;border:1px solid rgba(139,92,246,0.3);}
 .vin{font-family:monospace;font-size:10px;color:var(--T3);}
 
-/* ── TABS ── */
+/* TABS */
 .tabs{display:flex;border-bottom:1px solid var(--BD);background:var(--P2);overflow-x:auto;-webkit-overflow-scrolling:touch;}
 .tabs::-webkit-scrollbar{display:none;}
 .tab{padding:9px 13px;font-size:11px;font-weight:500;color:var(--T3);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap;transition:all .12s;}
 .tab:hover{color:var(--T);}
 .tab.on{color:#ff6666;border-bottom-color:var(--R);}
 
-/* ── SCANNER ── */
+/* SCANNER */
 .sbox{background:var(--P2);border:2px dashed var(--BD);border-radius:10px;padding:22px 16px;text-align:center;cursor:pointer;transition:all .2s;}
 .sbox.active{border-color:var(--R);border-style:solid;animation:pb 1.2s infinite;}
 @keyframes pb{0%,100%{border-color:var(--R);}50%{border-color:var(--Rh);}}
-.sico{font-size:34px;margin-bottom:8px;color:var(--T3);}
-.stt{font-family:'Rajdhani',sans-serif;font-size:17px;font-weight:600;color:var(--T);margin-bottom:3px;}
+.sico{font-size:30px;margin-bottom:7px;color:var(--T3);}
+.stt{font-family:'Rajdhani',sans-serif;font-size:16px;font-weight:600;color:var(--T);margin-bottom:3px;}
 .sub{font-size:12px;color:var(--T3);}
 .sinput{margin-top:12px;background:var(--BG);border:1px solid var(--BD);border-radius:6px;color:var(--T);font-family:monospace;font-size:15px;padding:10px 14px;width:100%;outline:none;text-align:center;letter-spacing:2px;-webkit-appearance:none;}
 .sinput:focus{border-color:var(--R);}
@@ -182,9 +177,9 @@ html,body{background:var(--BG);color:var(--T);font-family:'Barlow',sans-serif;fo
 .sres{margin-top:10px;border-radius:6px;padding:8px 12px;font-size:12px;display:none;}
 .sres.show{display:block;}
 
-/* ── SERVICE LOG ── */
-.slog{background:var(--P2);border:1px solid var(--BD);border-radius:6px;overflow:hidden;}
-.sl-row{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border-bottom:1px solid rgba(42,42,42,0.4);}
+/* SERVICE LOG */
+.slog{overflow:hidden;}
+.sl-row{display:flex;align-items:flex-start;gap:10px;padding:10px 14px;border-bottom:1px solid rgba(42,42,42,0.4);}
 .sl-row:last-child{border-bottom:none;}
 .sl-ic{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;margin-top:1px;}
 .ic-k{background:rgba(26,158,74,0.15);border:1px solid rgba(26,158,74,0.3);}
@@ -193,12 +188,13 @@ html,body{background:var(--BG);color:var(--T);font-family:'Barlow',sans-serif;fo
 .ic-d{background:rgba(204,0,0,0.15);border:1px solid rgba(204,0,0,0.3);}
 .sl-body{flex:1;min-width:0;}
 .sl-main{font-size:13px;color:var(--T);font-weight:500;}
-.sl-det{font-size:11px;color:var(--T3);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.sl-det{font-size:11px;color:var(--T3);margin-top:2px;overflow:hidden;text-overflow:ellipsis;}
 .sl-meta{display:flex;gap:6px;align-items:center;margin-top:4px;flex-wrap:wrap;}
 .sl-user{font-size:10px;background:rgba(204,0,0,0.12);color:#ff8888;padding:1px 6px;border-radius:3px;}
 .sl-time{font-size:10px;color:var(--T3);}
+.slog-empty{text-align:center;color:var(--T3);padding:24px 14px;font-size:12px;}
 
-/* ── REVENUE ── */
+/* REVENUE */
 .rev-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;}
 @media(min-width:600px){.rev-grid{grid-template-columns:repeat(4,1fr);}}
 .rev-card{background:var(--P);border:1px solid var(--BD);border-radius:8px;padding:12px 14px;}
@@ -206,13 +202,12 @@ html,body{background:var(--BG);color:var(--T);font-family:'Barlow',sans-serif;fo
 .rev-val{font-family:'Rajdhani',sans-serif;font-size:24px;font-weight:700;color:var(--T);}
 .rev-sub{font-size:11px;color:var(--T3);margin-top:2px;}
 .rev-pos{color:var(--G);}
-
 .price-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(42,42,42,0.4);font-size:13px;}
 .price-row:last-child{border-bottom:none;}
 .pi{background:var(--BG);border:1px solid var(--BD);border-radius:5px;color:var(--T);font-family:'Barlow',sans-serif;font-size:13px;padding:5px 9px;width:85px;outline:none;text-align:right;-webkit-appearance:none;}
 .pi:focus{border-color:var(--R);}
 
-/* ── ALERT PANEL ── */
+/* ALERT PANEL */
 .ap-item{display:flex;align-items:center;gap:12px;padding:12px 14px;border-bottom:1px solid rgba(42,42,42,0.4);}
 .ap-item:last-child{border-bottom:none;}
 .ap-icon{width:38px;height:38px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:700;flex-shrink:0;}
@@ -224,29 +219,27 @@ html,body{background:var(--BG);color:var(--T);font-family:'Barlow',sans-serif;fo
 .ap-right{margin-left:auto;text-align:right;flex-shrink:0;}
 .ap-count{font-family:'Rajdhani',sans-serif;font-size:24px;font-weight:700;}
 .ap-thresh{font-size:10px;color:var(--T3);}
-
-/* ── PROGRESS ── */
 .prog-row{display:flex;align-items:center;gap:8px;margin:5px 0;}
 .prog-lbl{font-size:11px;color:var(--T2);width:95px;flex-shrink:0;}
 .prog-bar{flex:1;height:6px;background:var(--BD);border-radius:3px;overflow:hidden;}
-.prog-fill{height:100%;border-radius:3px;}
+.prog-fill{height:100%;border-radius:3px;transition:width .4s;}
 .prog-val{font-size:11px;color:var(--T2);width:26px;text-align:right;flex-shrink:0;}
 
-/* ── HISTORY TIMELINE ── */
+/* HISTORY TIMELINE */
 .hist-timeline{padding:12px 14px;}
 .ht-item{display:flex;gap:12px;position:relative;padding-bottom:14px;}
 .ht-item:last-child{padding-bottom:0;}
-.ht-line{position:absolute;left:14px;top:30px;bottom:0;width:1px;background:var(--BD);}
+.ht-line{position:absolute;left:13px;top:28px;bottom:0;width:1px;background:var(--BD);}
 .ht-item:last-child .ht-line{display:none;}
-.ht-dot{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;z-index:1;border:2px solid var(--P);}
-.ht-in{background:rgba(26,158,74,0.2);border-color:rgba(26,158,74,0.4);color:#4ade80;}
-.ht-sold{background:rgba(26,111,212,0.2);border-color:rgba(26,111,212,0.4);color:#60a5fa;}
-.ht-cut{background:rgba(180,148,31,0.2);border-color:rgba(180,148,31,0.4);color:#fbbf24;}
-.ht-dmg{background:rgba(204,0,0,0.2);border-color:rgba(204,0,0,0.4);color:#f87171;}
+.ht-dot{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;z-index:1;}
+.ht-in{background:rgba(26,158,74,0.2);color:#4ade80;}
+.ht-sold{background:rgba(26,111,212,0.2);color:#60a5fa;}
+.ht-cut{background:rgba(180,148,31,0.2);color:#fbbf24;}
+.ht-dmg{background:rgba(204,0,0,0.2);color:#f87171;}
 .ht-main{font-size:13px;color:var(--T);font-weight:500;padding-top:3px;}
 .ht-sub{font-size:11px;color:var(--T3);margin-top:2px;}
 
-/* ── REPORTS ── */
+/* REPORTS */
 .rpt-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;}
 @media(min-width:700px){.rpt-grid{grid-template-columns:repeat(4,1fr);}}
 .rpt-card{background:var(--P2);border:1px solid var(--BD);border-radius:8px;padding:12px;}
@@ -255,30 +248,61 @@ html,body{background:var(--BG);color:var(--T);font-family:'Barlow',sans-serif;fo
 .rpt-line:last-child{border-bottom:none;}
 .rpt-val{color:var(--T);font-weight:500;}
 
-/* ── USER CARDS ── */
-.user-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:0;}
+/* USER CARDS */
+.user-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
 .uc{background:var(--P2);border:1px solid var(--BD);border-radius:8px;padding:12px;text-align:center;}
 .ua{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:700;margin:0 auto 8px;}
 
-/* ── MISC ── */
+/* MISC */
 .sep{height:1px;background:var(--BD);margin:12px 0;}
 .sec-t{font-size:9px;font-weight:600;letter-spacing:2px;color:var(--T3);text-transform:uppercase;margin-bottom:10px;}
-.prefix-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:8px;}
+.prefix-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;}
 .prefix-card{background:var(--P2);border:1px solid var(--BD);border-radius:6px;padding:8px;text-align:center;}
-.sidebar-alert{padding:12px 14px;margin-top:8px;}
-.sa-box{background:rgba(204,0,0,0.07);border:1px solid #2a0000;border-radius:6px;padding:10px 12px;}
-.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:300;align-items:center;justify-content:center;padding:16px;}
+
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:300;align-items:flex-end;justify-content:center;padding:0;}
 .modal-overlay.show{display:flex;}
-.modal{background:var(--P);border:1px solid var(--BD);border-radius:12px;width:100%;max-width:440px;max-height:90vh;overflow-y:auto;}
-.modal-hdr{padding:14px 16px;border-bottom:1px solid var(--BD);display:flex;justify-content:space-between;align-items:center;}
+@media(min-width:600px){.modal-overlay{align-items:center;padding:16px;}}
+.modal{background:var(--P);border:1px solid var(--BD);width:100%;max-width:460px;max-height:92vh;overflow-y:auto;border-radius:16px 16px 0 0;}
+@media(min-width:600px){.modal{border-radius:12px;}}
+.modal-hdr{padding:14px 16px;border-bottom:1px solid var(--BD);display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:var(--P);z-index:1;}
+.modal-drag{width:36px;height:4px;background:var(--BD);border-radius:2px;margin:10px auto 0;display:block;}
+@media(min-width:600px){.modal-drag{display:none;}}
 .modal-title{font-family:'Rajdhani',sans-serif;font-size:15px;font-weight:600;color:var(--T);}
 .modal-body{padding:16px;}
 .form-group{margin-bottom:14px;}
 .form-label{font-size:11px;color:var(--T2);letter-spacing:1px;text-transform:uppercase;margin-bottom:5px;display:block;}
-.form-input{width:100%;background:var(--BG);border:1px solid var(--BD);border-radius:6px;color:var(--T);font-family:'Barlow',sans-serif;font-size:14px;padding:9px 12px;outline:none;-webkit-appearance:none;}
+.form-input{width:100%;background:var(--BG);border:1px solid var(--BD);border-radius:6px;color:var(--T);font-family:'Barlow',sans-serif;font-size:14px;padding:10px 12px;outline:none;-webkit-appearance:none;}
 .form-input:focus{border-color:var(--R);}
-.form-select{width:100%;background:var(--BG);border:1px solid var(--BD);border-radius:6px;color:var(--T);font-family:'Barlow',sans-serif;font-size:14px;padding:9px 12px;outline:none;cursor:pointer;-webkit-appearance:none;}
+.form-select{width:100%;background:var(--BG);border:1px solid var(--BD);border-radius:6px;color:var(--T);font-family:'Barlow',sans-serif;font-size:14px;padding:10px 12px;outline:none;cursor:pointer;-webkit-appearance:none;}
 .form-select:focus{border-color:var(--R);}
+
+/* PDF IMPORT */
+.pdf-drop{background:var(--P2);border:2px dashed var(--BD);border-radius:10px;padding:28px 20px;text-align:center;cursor:pointer;transition:all .2s;position:relative;}
+.pdf-drop:hover,.pdf-drop.drag{border-color:var(--R);background:rgba(204,0,0,0.04);}
+.pdf-drop input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+.pdf-ico{font-size:36px;margin-bottom:10px;color:var(--R);}
+.pdf-title{font-family:'Rajdhani',sans-serif;font-size:17px;font-weight:600;color:var(--T);margin-bottom:4px;}
+.pdf-sub{font-size:12px;color:var(--T3);}
+.pdf-progress{margin-top:14px;display:none;}
+.pdf-progress.show{display:block;}
+.pdf-prog-bar{height:5px;background:var(--BD);border-radius:3px;overflow:hidden;margin-top:6px;}
+.pdf-prog-fill{height:100%;background:var(--R);border-radius:3px;width:0%;transition:width .3s;}
+.pdf-status{font-size:12px;color:var(--T2);margin-top:8px;}
+.pdf-results{margin-top:14px;background:var(--P3);border:1px solid var(--BD);border-radius:8px;overflow:hidden;display:none;}
+.pdf-results.show{display:block;}
+.pdf-result-hdr{padding:10px 14px;background:var(--P2);border-bottom:1px solid var(--BD);font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:600;color:var(--T);display:flex;justify-content:space-between;align-items:center;}
+.pdf-result-row{display:flex;align-items:center;gap:10px;padding:8px 14px;border-bottom:1px solid rgba(42,42,42,0.3);font-size:12px;}
+.pdf-result-row:last-child{border-bottom:none;}
+.pdf-chk{width:16px;height:16px;accent-color:var(--R);flex-shrink:0;}
+.pdf-row-type{flex-shrink:0;}
+.pdf-row-info{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;color:var(--T);}
+.pdf-row-det{font-size:10px;color:var(--T3);}
+.pdf-actions{padding:12px 14px;background:var(--P2);border-top:1px solid var(--BD);display:flex;gap:8px;flex-wrap:wrap;}
+.format-guide{background:var(--P3);border:1px solid var(--BD);border-radius:8px;padding:14px;margin-top:14px;}
+.fg-title{font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:600;color:var(--T);margin-bottom:10px;}
+.fg-col{font-family:monospace;font-size:11px;color:#fbbf24;background:rgba(180,148,31,0.1);padding:2px 6px;border-radius:3px;display:inline-block;margin:2px;}
+.fg-row{font-size:11px;color:var(--T3);margin-bottom:6px;line-height:1.6;}
 </style>
 </head>
 <body>
@@ -307,19 +331,21 @@ html,body{background:var(--BG);color:var(--T);font-family:'Barlow',sans-serif;fo
 </div>
 
 <div class="page-body">
-<!-- SIDEBAR (desktop) -->
-<div class="sidebar" id="sidebar">
+
+<!-- SIDEBAR -->
+<div class="sidebar">
   <div style="margin-bottom:10px;">
     <div class="nl">Overview</div>
     <div class="ni on" onclick="go('dashboard')">◧ Dashboard</div>
-    <div class="ni" onclick="go('alerts')">⚠ Stock Alerts <span class="nb a" id="snb-d">2</span></div>
+    <div class="ni" onclick="go('alerts')">⚠ Stock Alerts <span class="nb a" id="snb-d">0</span></div>
     <div class="ni" onclick="go('scanner')">⊡ Scanner</div>
+    <div class="ni" onclick="go('import')">⬆ Import PDF</div>
   </div>
   <div style="margin-bottom:10px;">
     <div class="nl">Inventory</div>
-    <div class="ni" onclick="go('inventory')">⊟ All Keys <span class="nb g">47</span></div>
-    <div class="ni" onclick="go('sold')">✓ Sold <span class="nb b">128</span></div>
-    <div class="ni" onclick="go('damaged')">✕ Damaged <span class="nb r">7</span></div>
+    <div class="ni" onclick="go('inventory')">⊟ All Keys <span class="nb g" id="nb-all">0</span></div>
+    <div class="ni" onclick="go('sold')">✓ Sold <span class="nb b" id="nb-sold">0</span></div>
+    <div class="ni" onclick="go('damaged')">✕ Damaged <span class="nb r" id="nb-dmg">0</span></div>
     <div class="ni" onclick="go('services')">⚙ Services</div>
     <div class="ni" onclick="go('history')">◷ Key History</div>
   </div>
@@ -328,133 +354,137 @@ html,body{background:var(--BG);color:var(--T);font-family:'Barlow',sans-serif;fo
     <div class="ni" onclick="go('revenue')">$ Revenue</div>
     <div class="ni" onclick="go('reports')">⊞ Reports</div>
   </div>
-  <div class="sidebar-alert">
-    <div class="sa-box">
+  <div style="padding:12px 14px;margin-top:8px;">
+    <div style="background:rgba(204,0,0,0.07);border:1px solid #2a0000;border-radius:6px;padding:10px 12px;">
       <div style="font-size:9px;color:#ff6666;font-weight:600;letter-spacing:1px;margin-bottom:3px;">THRESHOLD: 5 UNITS</div>
-      <div id="sb-txt" style="font-size:11px;color:var(--T3);">2 types below limit</div>
+      <div id="sb-txt" style="font-size:11px;color:var(--T3);">All stock levels OK</div>
     </div>
   </div>
 </div>
 
-<!-- MAIN CONTENT -->
+<!-- CONTENT -->
 <div class="content">
 
-<!-- ═══════════ DASHBOARD ═══════════ -->
+<!-- ═══ DASHBOARD ═══ -->
 <div class="view on" id="v-dashboard">
   <div class="sg">
-    <div class="sc g"><div class="sl">Available</div><div class="sv">47</div><div class="ss">All types</div></div>
-    <div class="sc r"><div class="sl">Sold (all time)</div><div class="sv">128</div><div class="ss">Since launch</div></div>
-    <div class="sc a"><div class="sl">Damaged</div><div class="sv">7</div><div class="ss sw">+2 this week</div></div>
-    <div class="sc gold"><div class="sl">Services</div><div class="sv">34</div><div class="ss">Cuts + Unlocks</div></div>
+    <div class="sc g"><div class="sl">Available</div><div class="sv" id="stat-avail">0</div><div class="ss">All types</div></div>
+    <div class="sc r"><div class="sl">Sold</div><div class="sv" id="stat-sold">0</div><div class="ss">All time</div></div>
+    <div class="sc a"><div class="sl">Damaged</div><div class="sv" id="stat-dmg">0</div><div class="ss">Removed</div></div>
+    <div class="sc gold"><div class="sl">Services</div><div class="sv" id="stat-svc">0</div><div class="ss">Cuts + Unlocks</div></div>
   </div>
   <div class="sec-t">Key Types — Live Stock</div>
   <div class="ktg">
-    <div class="kt">
+    <div class="kt" id="kt-am">
       <div class="kth"><div class="ktn">Aftermarket</div><span class="ktag tag-am">Standard</span></div>
-      <div class="kc">28</div>
-      <div class="kbar"><div class="kbf g" style="width:70%"></div></div>
-      <div class="ktf"><span>Sold: 62</span><span style="color:#4ade80;">✓ In Stock</span></div>
+      <div class="kc" id="kc-am">0</div>
+      <div class="kbar"><div class="kbf g" id="kb-am" style="width:0%"></div></div>
+      <div class="ktf"><span id="ks-am">Sold: 0</span><span id="kst-am" style="color:#4ade80;">No stock yet</span></div>
     </div>
-    <div class="kt low">
+    <div class="kt" id="kt-or">
       <div class="kth"><div class="ktn">OEM Recase</div><span class="ktag tag-or">OEM</span></div>
-      <div class="kc warn">3</div>
-      <div class="kbar"><div class="kbf a" style="width:15%"></div></div>
-      <div class="ktf"><span>Sold: 41</span><span style="color:var(--A);">⚠ Low</span></div>
+      <div class="kc" id="kc-or">0</div>
+      <div class="kbar"><div class="kbf g" id="kb-or" style="width:0%"></div></div>
+      <div class="ktf"><span id="ks-or">Sold: 0</span><span id="kst-or" style="color:#4ade80;">No stock yet</span></div>
     </div>
-    <div class="kt crit">
+    <div class="kt" id="kt-of">
       <div class="kth"><div class="ktn">OEM Refurb</div><span class="ktag tag-of">Refurb</span></div>
-      <div class="kc crit">2</div>
-      <div class="kbar"><div class="kbf r" style="width:10%"></div></div>
-      <div class="ktf"><span>Sold: 25</span><span style="color:#f87171;">⚠ Critical</span></div>
+      <div class="kc" id="kc-of">0</div>
+      <div class="kbar"><div class="kbf g" id="kb-of" style="width:0%"></div></div>
+      <div class="ktf"><span id="ks-of">Sold: 0</span><span id="kst-of" style="color:#4ade80;">No stock yet</span></div>
     </div>
   </div>
   <div class="sg2">
     <div class="panel">
-      <div class="ph"><span class="pt">RECENT ACTIVITY</span><span style="font-size:10px;color:var(--T3);">Today</span></div>
-      <div class="slog">
-        <div class="sl-row"><div class="sl-ic ic-k">🔑</div><div class="sl-body"><div class="sl-main">Key Sold — OEM Recase</div><div class="sl-det">VIN: 1HGBH41JXMN109186 · Toyota Camry 21</div><div class="sl-meta"><span class="sl-user">Carlos</span><span class="sl-time">2:14 PM</span></div></div></div>
-        <div class="sl-row"><div class="sl-ic ic-c">✂</div><div class="sl-body"><div class="sl-main">Key Cut — Aftermarket</div><div class="sl-det">VIN: 2T1BURHE0JC011234 · Ford F-150</div><div class="sl-meta"><span class="sl-user">Maria</span><span class="sl-time">1:47 PM</span></div></div></div>
-        <div class="sl-row"><div class="sl-ic ic-u">🔓</div><div class="sl-body"><div class="sl-main">Lock Opened — Service</div><div class="sl-det">Hyundai Elantra 2020 · No VIN</div><div class="sl-meta"><span class="sl-user">Alex</span><span class="sl-time">11:32 AM</span></div></div></div>
-        <div class="sl-row"><div class="sl-ic ic-k">🔑</div><div class="sl-body"><div class="sl-main">Key Sold — Aftermarket</div><div class="sl-det">VIN: 5TDDZRFH0HS012345 · Chevy Silverado</div><div class="sl-meta"><span class="sl-user">Carlos</span><span class="sl-time">9:05 AM</span></div></div></div>
+      <div class="ph"><span class="pt">RECENT ACTIVITY</span><span style="font-size:10px;color:var(--T3);">Latest entries</span></div>
+      <div id="recent-log">
+        <div class="slog-empty">No activity yet. Add keys or log services to get started.</div>
       </div>
     </div>
     <div class="panel">
       <div class="ph"><span class="pt">TODAY'S REVENUE</span></div>
       <div class="pb">
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
-          <div style="background:var(--P2);border:1px solid var(--BD);border-radius:6px;padding:10px;"><div class="rev-lbl">Keys Sold</div><div style="font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:700;color:var(--T);">$340</div><div class="rev-sub">4 keys</div></div>
-          <div style="background:var(--P2);border:1px solid var(--BD);border-radius:6px;padding:10px;"><div class="rev-lbl">Key Cuts</div><div style="font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:700;color:var(--T);">$75</div><div class="rev-sub">3 cuts</div></div>
-          <div style="background:var(--P2);border:1px solid var(--BD);border-radius:6px;padding:10px;"><div class="rev-lbl">Unlocks</div><div style="font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:700;color:var(--T);">$45</div><div class="rev-sub">1 service</div></div>
-          <div style="background:var(--P2);border:2px solid var(--G);border-radius:6px;padding:10px;"><div class="rev-lbl">Total Today</div><div style="font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:700;color:#4ade80;">$460</div><div class="rev-sub rev-pos">▲ 12% vs avg</div></div>
+          <div style="background:var(--P2);border:1px solid var(--BD);border-radius:6px;padding:10px;"><div class="rev-lbl">Keys Sold</div><div style="font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:700;color:var(--T);" id="rev-keys-today">$0</div><div class="rev-sub" id="rev-keys-count">0 keys</div></div>
+          <div style="background:var(--P2);border:1px solid var(--BD);border-radius:6px;padding:10px;"><div class="rev-lbl">Key Cuts</div><div style="font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:700;color:var(--T);" id="rev-cuts-today">$0</div><div class="rev-sub" id="rev-cuts-count">0 cuts</div></div>
+          <div style="background:var(--P2);border:1px solid var(--BD);border-radius:6px;padding:10px;"><div class="rev-lbl">Unlocks</div><div style="font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:700;color:var(--T);" id="rev-ul-today">$0</div><div class="rev-sub" id="rev-ul-count">0 services</div></div>
+          <div style="background:var(--P2);border:2px solid var(--G);border-radius:6px;padding:10px;"><div class="rev-lbl">Total Today</div><div style="font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:700;color:#4ade80;" id="rev-total-today">$0</div><div class="rev-sub rev-pos">—</div></div>
         </div>
         <div style="margin-top:10px;"><button class="btn" style="width:100%;" onclick="go('revenue')">Full Revenue Report →</button></div>
       </div>
     </div>
   </div>
+  <div style="text-align:center;padding:16px;background:var(--P);border:1px solid var(--BD);border-radius:8px;margin-bottom:12px;">
+    <div style="font-size:28px;margin-bottom:8px;">📦</div>
+    <div style="font-family:'Rajdhani',sans-serif;font-size:15px;font-weight:600;color:var(--T);margin-bottom:4px;">Ready for your inventory</div>
+    <div style="font-size:12px;color:var(--T3);margin-bottom:14px;">Add keys manually, scan barcodes, or import a PDF to get started.</div>
+    <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;">
+      <button class="btn pr" onclick="openModal('add-key-modal')">+ Add Key Manually</button>
+      <button class="btn" onclick="go('scanner')">⊡ Open Scanner</button>
+      <button class="btn" onclick="go('import')">⬆ Import PDF</button>
+    </div>
+  </div>
 </div>
 
-<!-- ═══════════ STOCK ALERTS ═══════════ -->
+<!-- ═══ STOCK ALERTS ═══ -->
 <div class="view" id="v-alerts">
   <div class="sec-t">Stock Alert Dashboard</div>
   <div class="panel">
     <div class="ph"><span class="pt">ALL KEY TYPES — STATUS</span><span style="font-size:10px;color:var(--T3);">Threshold: 5 units</span></div>
     <div class="ap-item">
-      <div class="ap-icon ap-ok">AM</div>
+      <div class="ap-icon" id="ap-icon-am">AM</div>
       <div><div class="ap-main">Aftermarket Keys</div><div class="ap-sub">Standard replacement</div></div>
-      <div class="ap-right"><div class="ap-count" style="color:#4ade80;">28</div><div class="ap-thresh">/ min: 5</div></div>
+      <div class="ap-right"><div class="ap-count" id="ap-am">0</div><div class="ap-thresh" id="ap-am-s">No stock</div></div>
     </div>
     <div class="ap-item">
-      <div class="ap-icon ap-warn">OR</div>
+      <div class="ap-icon" id="ap-icon-or">OR</div>
       <div><div class="ap-main">OEM Recase Keys</div><div class="ap-sub">OEM shell + aftermarket</div></div>
-      <div class="ap-right"><div class="ap-count" style="color:var(--A);">3</div><div class="ap-thresh">⚠ Below min</div></div>
+      <div class="ap-right"><div class="ap-count" id="ap-or">0</div><div class="ap-thresh" id="ap-or-s">No stock</div></div>
     </div>
     <div class="ap-item">
-      <div class="ap-icon ap-crit">OF</div>
+      <div class="ap-icon" id="ap-icon-of">OF</div>
       <div><div class="ap-main">OEM Refurb Keys</div><div class="ap-sub">Fully restored OEM</div></div>
-      <div class="ap-right"><div class="ap-count" style="color:#f87171;">2</div><div class="ap-thresh">⚠ Critical</div></div>
+      <div class="ap-right"><div class="ap-count" id="ap-of">0</div><div class="ap-thresh" id="ap-of-s">No stock</div></div>
     </div>
   </div>
   <div class="panel">
     <div class="ph"><span class="pt">VISUAL STOCK LEVELS</span></div>
     <div class="pb">
-      <div class="prog-row"><span class="prog-lbl">Aftermarket</span><div class="prog-bar"><div class="prog-fill" style="width:70%;background:var(--G);"></div></div><span class="prog-val">28</span></div>
-      <div class="prog-row"><span class="prog-lbl">OEM Recase</span><div class="prog-bar"><div class="prog-fill" style="width:15%;background:var(--A);"></div></div><span class="prog-val">3</span></div>
-      <div class="prog-row"><span class="prog-lbl">OEM Refurb</span><div class="prog-bar"><div class="prog-fill" style="width:10%;background:var(--R);"></div></div><span class="prog-val">2</span></div>
+      <div class="prog-row"><span class="prog-lbl">Aftermarket</span><div class="prog-bar"><div class="prog-fill" id="pf-am" style="width:0%;background:var(--G);"></div></div><span class="prog-val" id="pv-am">0</span></div>
+      <div class="prog-row"><span class="prog-lbl">OEM Recase</span><div class="prog-bar"><div class="prog-fill" id="pf-or" style="width:0%;background:var(--G);"></div></div><span class="prog-val" id="pv-or">0</span></div>
+      <div class="prog-row"><span class="prog-lbl">OEM Refurb</span><div class="prog-bar"><div class="prog-fill" id="pf-of" style="width:0%;background:var(--G);"></div></div><span class="prog-val" id="pv-of">0</span></div>
     </div>
   </div>
   <div class="sg2">
     <div class="panel">
       <div class="ph"><span class="pt">ALERT HISTORY</span></div>
-      <div class="slog">
-        <div class="sl-row"><div class="sl-ic ap-warn" style="font-size:14px;">⚠</div><div class="sl-body"><div class="sl-main">OEM Refurb below 5</div><div class="sl-det">Triggered by sale · Apr 25</div></div></div>
-        <div class="sl-row"><div class="sl-ic ap-warn" style="font-size:14px;">⚠</div><div class="sl-body"><div class="sl-main">OEM Recase below 5</div><div class="sl-det">Triggered by sale · Apr 26</div></div></div>
-        <div class="sl-row"><div class="sl-ic ap-ok" style="font-size:14px;">✓</div><div class="sl-body"><div class="sl-main">Aftermarket restocked</div><div class="sl-det">+15 units added · Apr 20</div></div></div>
+      <div id="alert-history-log">
+        <div class="slog-empty">No alerts triggered yet.</div>
       </div>
     </div>
     <div class="panel">
-      <div class="ph"><span class="pt">QUICK RESTOCK</span></div>
+      <div class="ph"><span class="pt">QUICK RESTOCK LOG</span></div>
       <div class="pb">
         <div style="margin-bottom:12px;">
           <div style="font-size:12px;color:var(--T);margin-bottom:7px;font-weight:500;">OEM Recase</div>
-          <div style="display:flex;gap:7px;">
-            <input class="fi" placeholder="Qty..." style="max-width:90px;" type="number">
-            <button class="btn pr">Log Restock</button>
-          </div>
+          <div style="display:flex;gap:7px;"><input class="fi" id="rs-or" placeholder="Qty..." style="max-width:90px;" type="number" min="1"><button class="btn pr" onclick="logRestock('OEM Recase','rs-or')">Log Restock</button></div>
         </div>
         <div class="sep"></div>
         <div>
           <div style="font-size:12px;color:var(--T);margin-bottom:7px;font-weight:500;">OEM Refurb</div>
-          <div style="display:flex;gap:7px;">
-            <input class="fi" placeholder="Qty..." style="max-width:90px;" type="number">
-            <button class="btn pr">Log Restock</button>
-          </div>
+          <div style="display:flex;gap:7px;"><input class="fi" id="rs-of" placeholder="Qty..." style="max-width:90px;" type="number" min="1"><button class="btn pr" onclick="logRestock('OEM Refurb','rs-of')">Log Restock</button></div>
+        </div>
+        <div class="sep"></div>
+        <div>
+          <div style="font-size:12px;color:var(--T);margin-bottom:7px;font-weight:500;">Aftermarket</div>
+          <div style="display:flex;gap:7px;"><input class="fi" id="rs-am" placeholder="Qty..." style="max-width:90px;" type="number" min="1"><button class="btn pr" onclick="logRestock('Aftermarket','rs-am')">Log Restock</button></div>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ═══════════ SCANNER ═══════════ -->
+<!-- ═══ SCANNER ═══ -->
 <div class="view" id="v-scanner">
   <div class="sg3">
     <div class="sc g"><div class="sl">Scanned Today</div><div class="sv" id="sc-count">0</div><div class="ss">Processed</div></div>
@@ -465,13 +495,14 @@ html,body{background:var(--BG);color:var(--T);font-family:'Barlow',sans-serif;fo
     <div class="panel">
       <div class="ph"><span class="pt">SCAN ACTION</span><span style="font-size:10px;color:var(--G);">● Ready</span></div>
       <div class="pb">
-        <div class="sec-t">Select action first</div>
+        <div class="sec-t">1. Select action first</div>
         <div class="sact" style="margin-bottom:14px;">
           <div class="sac s-add sel" id="sa-add" onclick="selAction('add')"><div class="sac-l" style="color:#4ade80;">+ Add Stock</div><div class="sac-s">Receive new keys</div></div>
           <div class="sac s-sold" id="sa-sold" onclick="selAction('sold')"><div class="sac-l" style="color:#60a5fa;">Mark Sold</div><div class="sac-s">Complete a sale</div></div>
           <div class="sac s-dmg" id="sa-dmg" onclick="selAction('dmg')"><div class="sac-l" style="color:#f87171;">Damaged</div><div class="sac-s">Remove from stock</div></div>
           <div class="sac s-cut" id="sa-cut" onclick="selAction('cut')"><div class="sac-l" style="color:#fbbf24;">Key Cut</div><div class="sac-s">Log cutting service</div></div>
         </div>
+        <div class="sec-t">2. Scan barcode</div>
         <div class="sbox active" onclick="document.getElementById('main-scan').focus()">
           <div class="sico">⊡</div>
           <div class="stt">Ready to Scan</div>
@@ -491,234 +522,232 @@ html,body{background:var(--BG);color:var(--T);font-family:'Barlow',sans-serif;fo
       <div class="ph"><span class="pt">SCAN LOG — TODAY</span></div>
       <div class="tbl-wrap">
         <table class="tbl" style="min-width:300px;">
-          <thead><tr><th style="width:60px">Time</th><th style="width:90px">Key ID</th><th>Type</th><th style="width:70px">Action</th></tr></thead>
-          <tbody id="scan-log-body"><tr><td colspan="4" style="text-align:center;color:var(--T3);padding:18px;">No scans yet</td></tr></tbody>
+          <thead><tr><th style="width:60px">Time</th><th>Key ID</th><th style="width:90px">Type</th><th style="width:70px">Action</th></tr></thead>
+          <tbody id="scan-log-body"><tr><td colspan="4" class="tbl-empty">No scans yet today</td></tr></tbody>
         </table>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ═══════════ INVENTORY ═══════════ -->
+<!-- ═══ PDF IMPORT ═══ -->
+<div class="view" id="v-import">
+  <div class="panel">
+    <div class="ph"><span class="pt">IMPORT INVENTORY FROM PDF</span></div>
+    <div class="pb">
+      <div class="pdf-drop" id="pdf-drop">
+        <input type="file" id="pdf-file-input" accept=".pdf,application/pdf" onchange="handlePDFFile(this.files[0])">
+        <div class="pdf-ico">📄</div>
+        <div class="pdf-title">Drop PDF here or tap to browse</div>
+        <div class="pdf-sub">Supports PDF inventory lists — the system will read and sort keys automatically</div>
+      </div>
+      <div class="pdf-progress" id="pdf-progress">
+        <div style="font-size:12px;color:var(--T2);margin-bottom:4px;" id="pdf-step">Reading file...</div>
+        <div class="pdf-prog-bar"><div class="pdf-prog-fill" id="pdf-prog-fill"></div></div>
+        <div class="pdf-status" id="pdf-status"></div>
+      </div>
+      <div class="pdf-results" id="pdf-results">
+        <div class="pdf-result-hdr">
+          <span id="pdf-result-title">Detected Keys</span>
+          <span style="font-size:10px;color:var(--T3);" id="pdf-result-count"></span>
+        </div>
+        <div id="pdf-result-rows"></div>
+        <div class="pdf-actions">
+          <button class="btn pr" onclick="importSelected()">Import Selected</button>
+          <button class="btn pg" onclick="selectAllPDF(true)">Select All</button>
+          <button class="btn" onclick="selectAllPDF(false)">Deselect All</button>
+          <button class="btn" onclick="resetPDF()">Clear / Try Again</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="panel">
+    <div class="ph"><span class="pt">PDF FORMAT GUIDE</span></div>
+    <div class="pb">
+      <div class="format-guide">
+        <div class="fg-title">For best auto-detection, your PDF should have columns like:</div>
+        <div style="margin-bottom:10px;">
+          <span class="fg-col">Key ID</span>
+          <span class="fg-col">Type</span>
+          <span class="fg-col">Make</span>
+          <span class="fg-col">Model</span>
+          <span class="fg-col">Year</span>
+          <span class="fg-col">VIN</span>
+          <span class="fg-col">Status</span>
+          <span class="fg-col">Date</span>
+        </div>
+        <div class="fg-row">• <strong style="color:var(--T);">Key Type</strong> — use "Aftermarket", "OEM Recase", or "OEM Refurb" (partial matches like "aftermarket", "recase", "refurb" also work)</div>
+        <div class="fg-row">• <strong style="color:var(--T);">Status</strong> — use "Available", "Sold", or "Damaged"</div>
+        <div class="fg-row">• <strong style="color:var(--T);">VIN</strong> — optional 17-character vehicle ID</div>
+        <div class="fg-row">• <strong style="color:var(--T);">Barcodes</strong> — if your PDF has barcodes starting with AM-, OR-, OF-, those will auto-classify the key type</div>
+        <div style="margin-top:10px;padding:10px;background:rgba(204,0,0,0.07);border:1px solid rgba(204,0,0,0.2);border-radius:6px;font-size:11px;color:var(--T2);">
+          💡 <strong style="color:var(--T);">Tip:</strong> If your PDF doesn't parse perfectly, you can review and edit each detected row before importing. Any unrecognized key type will be flagged for manual selection.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ INVENTORY ═══ -->
 <div class="view" id="v-inventory">
   <div class="panel">
     <div class="ph">
       <span class="pt">FULL INVENTORY</span>
       <div class="btn-row">
         <button class="btn pr" onclick="openModal('add-key-modal')">+ Add Key</button>
-        <button class="btn">Export CSV</button>
+        <button class="btn" onclick="exportCSV('inventory')">Export CSV</button>
       </div>
     </div>
     <div class="tabs">
-      <span class="tab on">All (47)</span>
-      <span class="tab">Aftermarket (28)</span>
-      <span class="tab">OEM Recase (3)</span>
-      <span class="tab">OEM Refurb (2)</span>
+      <span class="tab on" onclick="filterInv('all',this)">All (<span id="tab-all">0</span>)</span>
+      <span class="tab" onclick="filterInv('Aftermarket',this)">Aftermarket (<span id="tab-am">0</span>)</span>
+      <span class="tab" onclick="filterInv('OEM Recase',this)">OEM Recase (<span id="tab-or">0</span>)</span>
+      <span class="tab" onclick="filterInv('OEM Refurb',this)">OEM Refurb (<span id="tab-of">0</span>)</span>
     </div>
     <div class="frow">
-      <input class="fi" placeholder="Search VIN, Key ID, make..." style="min-width:100%;">
-      <select class="fs"><option>All Status</option><option>Available</option><option>Sold</option><option>Damaged</option></select>
-      <select class="fs"><option>All Types</option><option>Aftermarket</option><option>OEM Recase</option><option>OEM Refurb</option></select>
-      <input type="date" class="fi" style="min-width:0;flex:none;">
+      <input class="fi" id="inv-search" placeholder="Search VIN, Key ID, vehicle..." oninput="renderInventory()" style="min-width:100%;margin-bottom:6px;">
+      <select class="fs" id="inv-status" onchange="renderInventory()"><option value="">All Status</option><option>Available</option><option>Sold</option><option>Damaged</option><option>Cut</option></select>
+      <input type="date" class="fi" id="inv-date" onchange="renderInventory()" style="flex:none;">
     </div>
     <div class="tbl-wrap">
       <table class="tbl">
-        <thead><tr><th style="width:85px">Key ID</th><th style="width:85px">Type</th><th style="width:120px">Vehicle</th><th style="width:120px">VIN</th><th style="width:75px">Date</th><th style="width:65px">User</th><th style="width:70px">Status</th><th style="width:55px"></th></tr></thead>
-        <tbody>
-          <tr><td style="font-family:monospace;color:var(--T);">AM-00128</td><td><span class="ktag tag-am">Aftermarket</span></td><td style="color:var(--T);">Toyota Camry 22</td><td><span class="vin">1HGBH41JXMN109186</span></td><td>Apr 25</td><td style="color:#ff8888;">Carlos</td><td><span class="pill p-av">Available</span></td><td><button class="btn" style="padding:4px 7px;font-size:10px;" onclick="go('history')">History</button></td></tr>
-          <tr><td style="font-family:monospace;color:var(--T);">OR-00041</td><td><span class="ktag tag-or">OEM Recase</span></td><td style="color:var(--T);">Ford F-150 2020</td><td><span class="vin">2T1BURHE0JC011234</span></td><td>Apr 22</td><td style="color:#ff8888;">Maria</td><td><span class="pill p-so">Sold</span></td><td><button class="btn" style="padding:4px 7px;font-size:10px;">History</button></td></tr>
-          <tr><td style="font-family:monospace;color:var(--T);">OF-00025</td><td><span class="ktag tag-of">OEM Refurb</span></td><td style="color:var(--T);">Chevy Silverado</td><td><span class="vin">5TDDZRFH0HS012345</span></td><td>Apr 18</td><td style="color:#ff8888;">Alex</td><td><span class="pill p-av">Available</span></td><td><button class="btn" style="padding:4px 7px;font-size:10px;">History</button></td></tr>
-          <tr><td style="font-family:monospace;color:var(--T);">AM-00119</td><td><span class="ktag tag-am">Aftermarket</span></td><td style="color:var(--T);">Nissan Altima 19</td><td><span class="vin">1N4AL3AP7JC127456</span></td><td>Apr 15</td><td style="color:#ff8888;">Carlos</td><td><span class="pill p-dm">Damaged</span></td><td><button class="btn" style="padding:4px 7px;font-size:10px;">History</button></td></tr>
-          <tr><td style="font-family:monospace;color:var(--T);">OR-00038</td><td><span class="ktag tag-or">OEM Recase</span></td><td style="color:var(--T);">Jeep Wrangler 21</td><td><span class="vin">1C4HJXFN8LW123456</span></td><td>Apr 10</td><td style="color:#ff8888;">Maria</td><td><span class="pill p-av">Available</span></td><td><button class="btn" style="padding:4px 7px;font-size:10px;">History</button></td></tr>
-          <tr><td style="font-family:monospace;color:var(--T);">AM-00115</td><td><span class="ktag tag-am">Aftermarket</span></td><td style="color:var(--T);">GMC Sierra 2021</td><td><span class="vin">—</span></td><td>Apr 8</td><td style="color:#ff8888;">Alex</td><td><span class="pill p-ct">Cut</span></td><td><button class="btn" style="padding:4px 7px;font-size:10px;">History</button></td></tr>
-        </tbody>
+        <thead><tr><th style="width:85px">Key ID</th><th style="width:85px">Type</th><th style="width:130px">Vehicle</th><th style="width:120px">VIN</th><th style="width:75px">Date</th><th style="width:65px">User</th><th style="width:70px">Status</th><th style="width:55px"></th></tr></thead>
+        <tbody id="inv-tbody"><tr><td colspan="8" class="tbl-empty">No keys in inventory yet. Add keys or import a PDF to get started.</td></tr></tbody>
       </table>
     </div>
   </div>
 </div>
 
-<!-- ═══════════ SOLD ═══════════ -->
+<!-- ═══ SOLD ═══ -->
 <div class="view" id="v-sold">
   <div class="panel">
-    <div class="ph"><span class="pt">SOLD KEYS</span><button class="btn">Export CSV</button></div>
+    <div class="ph"><span class="pt">SOLD KEYS</span><button class="btn" onclick="exportCSV('sold')">Export CSV</button></div>
     <div class="frow">
-      <input class="fi" placeholder="Search VIN, Key ID, vehicle...">
-      <select class="fs"><option>All Types</option><option>Aftermarket</option><option>OEM Recase</option><option>OEM Refurb</option></select>
-      <select class="fs"><option>All Users</option><option>Carlos</option><option>Maria</option><option>Alex</option></select>
-      <input type="date" class="fi" style="flex:none;">
+      <input class="fi" id="sold-search" placeholder="Search VIN, Key ID, vehicle..." oninput="renderSold()">
+      <select class="fs" id="sold-type" onchange="renderSold()"><option value="">All Types</option><option>Aftermarket</option><option>OEM Recase</option><option>OEM Refurb</option></select>
+      <select class="fs" id="sold-user" onchange="renderSold()"><option value="">All Users</option><option>Carlos</option><option>Maria</option><option>Alex</option></select>
     </div>
     <div class="tbl-wrap">
       <table class="tbl">
-        <thead><tr><th style="width:85px">Key ID</th><th style="width:85px">Type</th><th style="width:120px">Vehicle</th><th style="width:120px">VIN</th><th style="width:75px">Date</th><th style="width:65px">Sold By</th><th style="width:65px">Price</th></tr></thead>
-        <tbody>
-          <tr><td style="font-family:monospace;color:var(--T);">OR-00041</td><td><span class="ktag tag-or">OEM Recase</span></td><td style="color:var(--T);">Toyota Camry 21</td><td><span class="vin">1HGBH41JXMN109186</span></td><td>Apr 27</td><td style="color:#ff8888;">Carlos</td><td style="color:#4ade80;font-weight:600;">$85</td></tr>
-          <tr><td style="font-family:monospace;color:var(--T);">AM-00127</td><td><span class="ktag tag-am">Aftermarket</span></td><td style="color:var(--T);">Chevy Silverado</td><td><span class="vin">5TDDZRFH0HS012345</span></td><td>Apr 27</td><td style="color:#ff8888;">Carlos</td><td style="color:#4ade80;font-weight:600;">$45</td></tr>
-          <tr><td style="font-family:monospace;color:var(--T);">OF-00023</td><td><span class="ktag tag-of">OEM Refurb</span></td><td style="color:var(--T);">Nissan Altima 20</td><td><span class="vin">1N4AL3AP0KC107821</span></td><td>Apr 26</td><td style="color:#ff8888;">Maria</td><td style="color:#4ade80;font-weight:600;">$120</td></tr>
-          <tr><td style="font-family:monospace;color:var(--T);">AM-00126</td><td><span class="ktag tag-am">Aftermarket</span></td><td style="color:var(--T);">Ford F-150 2019</td><td><span class="vin">2T1BURHE0JC011234</span></td><td>Apr 26</td><td style="color:#ff8888;">Alex</td><td style="color:#4ade80;font-weight:600;">$45</td></tr>
-          <tr><td style="font-family:monospace;color:var(--T);">OR-00040</td><td><span class="ktag tag-or">OEM Recase</span></td><td style="color:var(--T);">Jeep Cherokee 22</td><td><span class="vin">1C4PJLAB3FW123456</span></td><td>Apr 25</td><td style="color:#ff8888;">Carlos</td><td style="color:#4ade80;font-weight:600;">$85</td></tr>
-        </tbody>
+        <thead><tr><th style="width:85px">Key ID</th><th style="width:85px">Type</th><th style="width:130px">Vehicle</th><th style="width:120px">VIN</th><th style="width:75px">Date</th><th style="width:65px">Sold By</th><th style="width:65px">Price</th></tr></thead>
+        <tbody id="sold-tbody"><tr><td colspan="7" class="tbl-empty">No sold keys yet.</td></tr></tbody>
       </table>
     </div>
   </div>
 </div>
 
-<!-- ═══════════ DAMAGED ═══════════ -->
+<!-- ═══ DAMAGED ═══ -->
 <div class="view" id="v-damaged">
   <div class="panel">
-    <div class="ph"><span class="pt">DAMAGED KEYS</span><span style="font-size:11px;color:var(--A);">7 removed from stock</span></div>
+    <div class="ph"><span class="pt">DAMAGED KEYS</span><button class="btn" onclick="exportCSV('damaged')">Export CSV</button></div>
     <div class="tbl-wrap">
       <table class="tbl">
-        <thead><tr><th style="width:85px">Key ID</th><th style="width:85px">Type</th><th style="width:120px">Vehicle</th><th style="width:75px">Date</th><th style="width:70px">Reported By</th><th>Notes</th></tr></thead>
-        <tbody>
-          <tr><td style="font-family:monospace;color:var(--T);">AM-00119</td><td><span class="ktag tag-am">Aftermarket</span></td><td style="color:var(--T);">Nissan Altima 19</td><td>Apr 15</td><td style="color:#ff8888;">Carlos</td><td style="color:var(--T3);">Chip cracked</td></tr>
-          <tr><td style="font-family:monospace;color:var(--T);">OF-00018</td><td><span class="ktag tag-of">OEM Refurb</span></td><td style="color:var(--T);">Ford Escape 2020</td><td>Apr 10</td><td style="color:#ff8888;">Maria</td><td style="color:var(--T3);">Housing broken</td></tr>
-          <tr><td style="font-family:monospace;color:var(--T);">OR-00034</td><td><span class="ktag tag-or">OEM Recase</span></td><td style="color:var(--T);">Dodge Ram 2018</td><td>Apr 5</td><td style="color:#ff8888;">Alex</td><td style="color:var(--T3);">Buttons failed</td></tr>
-        </tbody>
+        <thead><tr><th style="width:85px">Key ID</th><th style="width:85px">Type</th><th style="width:130px">Vehicle</th><th style="width:75px">Date</th><th style="width:70px">Reported By</th><th>Notes</th></tr></thead>
+        <tbody id="dmg-tbody"><tr><td colspan="6" class="tbl-empty">No damaged keys recorded.</td></tr></tbody>
       </table>
     </div>
   </div>
 </div>
 
-<!-- ═══════════ SERVICES ═══════════ -->
+<!-- ═══ SERVICES ═══ -->
 <div class="view" id="v-services">
   <div class="sg3">
-    <div class="sc gold"><div class="sl">Key Cuts</div><div class="sv">18</div><div class="ss">$450 this month</div></div>
-    <div class="sc b"><div class="sl">Lock Openings</div><div class="sv">9</div><div class="ss">$405 this month</div></div>
-    <div class="sc g"><div class="sl">Keys Sold</div><div class="sv">128</div><div class="ss">All time</div></div>
+    <div class="sc gold"><div class="sl">Key Cuts</div><div class="sv" id="svc-cuts">0</div><div class="ss" id="svc-cuts-rev">$0 revenue</div></div>
+    <div class="sc b"><div class="sl">Lock Openings</div><div class="sv" id="svc-ul">0</div><div class="ss" id="svc-ul-rev">$0 revenue</div></div>
+    <div class="sc g"><div class="sl">Keys Sold</div><div class="sv" id="svc-keysold">0</div><div class="ss">All time</div></div>
   </div>
   <div class="panel">
     <div class="ph">
       <span class="pt">SERVICE LOG</span>
       <div class="btn-row">
         <button class="btn pr" onclick="openModal('add-service-modal')">+ Log Service</button>
-        <button class="btn">Export</button>
+        <button class="btn" onclick="exportCSV('services')">Export</button>
       </div>
     </div>
     <div class="frow">
-      <input class="fi" placeholder="Search vehicle, VIN, user...">
-      <select class="fs"><option>All Services</option><option>Key Sale</option><option>Key Cut</option><option>Lock Opened</option></select>
-      <select class="fs"><option>All Users</option><option>Carlos</option><option>Maria</option><option>Alex</option></select>
-      <input type="date" class="fi" style="flex:none;">
+      <input class="fi" id="svc-search" placeholder="Search vehicle, VIN, user..." oninput="renderServices()">
+      <select class="fs" id="svc-type-filter" onchange="renderServices()"><option value="">All Services</option><option>Key Sale</option><option>Key Cut</option><option>Lock Opened</option></select>
+      <select class="fs" id="svc-user-filter" onchange="renderServices()"><option value="">All Users</option><option>Carlos</option><option>Maria</option><option>Alex</option></select>
     </div>
-    <div class="slog">
-      <div class="sl-row"><div class="sl-ic ic-k">🔑</div><div class="sl-body"><div class="sl-main">Key Sold — OEM Recase · OR-00041</div><div class="sl-det">Toyota Camry 2021 · VIN: 1HGBH41JXMN109186 · $85.00</div><div class="sl-meta"><span class="sl-user">Carlos</span><span class="sl-time">Apr 27 · 2:14 PM</span></div></div></div>
-      <div class="sl-row"><div class="sl-ic ic-c">✂</div><div class="sl-body"><div class="sl-main">Key Cut — Aftermarket blank</div><div class="sl-det">Ford F-150 2019 · VIN: 2T1BURHE0JC011234 · $25.00</div><div class="sl-meta"><span class="sl-user">Maria</span><span class="sl-time">Apr 27 · 1:47 PM</span></div></div></div>
-      <div class="sl-row"><div class="sl-ic ic-u">🔓</div><div class="sl-body"><div class="sl-main">Lock Opened — Hyundai Elantra 2020</div><div class="sl-det">Customer locked out · $45.00</div><div class="sl-meta"><span class="sl-user">Alex</span><span class="sl-time">Apr 27 · 11:32 AM</span></div></div></div>
-      <div class="sl-row"><div class="sl-ic ic-k">🔑</div><div class="sl-body"><div class="sl-main">Key Sold — Aftermarket · AM-00127</div><div class="sl-det">Chevy Silverado · VIN: 5TDDZRFH0HS012345 · $45.00</div><div class="sl-meta"><span class="sl-user">Carlos</span><span class="sl-time">Apr 27 · 9:05 AM</span></div></div></div>
-      <div class="sl-row"><div class="sl-ic ic-c">✂</div><div class="sl-body"><div class="sl-main">Key Cut — OEM blank</div><div class="sl-det">Kia Sorento 2022 · VIN: 5XYPGDA30LG123456 · $30.00</div><div class="sl-meta"><span class="sl-user">Maria</span><span class="sl-time">Apr 26 · 3:20 PM</span></div></div></div>
-      <div class="sl-row"><div class="sl-ic ic-u">🔓</div><div class="sl-body"><div class="sl-main">Lock Opened — GMC Sierra 2021</div><div class="sl-det">Keys locked inside · $45.00</div><div class="sl-meta"><span class="sl-user">Alex</span><span class="sl-time">Apr 26 · 1:10 PM</span></div></div></div>
+    <div id="svc-log">
+      <div class="slog-empty">No services logged yet. Tap + Log Service to add one.</div>
     </div>
   </div>
 </div>
 
-<!-- ═══════════ KEY HISTORY ═══════════ -->
+<!-- ═══ KEY HISTORY ═══ -->
 <div class="view" id="v-history">
   <div class="panel" style="margin-bottom:12px;">
     <div class="ph"><span class="pt">KEY HISTORY LOOKUP</span></div>
     <div class="frow">
-      <input class="fi" placeholder="Enter Key ID (e.g. AM-00128) or VIN...">
-      <button class="btn pr">Search</button>
+      <input class="fi" id="hist-input" placeholder="Enter Key ID (e.g. AM-00001) or VIN...">
+      <button class="btn pr" onclick="lookupHistory()">Search</button>
     </div>
   </div>
-  <div class="sg2">
-    <div class="panel">
-      <div class="ph"><span class="pt">AM-00128 · TIMELINE</span></div>
-      <div class="hist-timeline">
-        <div class="ht-item"><div class="ht-line"></div><div class="ht-dot ht-in">+</div><div><div class="ht-main">Received into stock</div><div class="ht-sub">Apr 20, 2026 · Added by Carlos</div></div></div>
-        <div class="ht-item"><div class="ht-line"></div><div class="ht-dot ht-cut">✂</div><div><div class="ht-main">Key Cut</div><div class="ht-sub">Apr 23, 2026 · Cut by Maria · Toyota Camry</div></div></div>
-        <div class="ht-item"><div class="ht-dot ht-sold">$</div><div><div class="ht-main">Sold to customer</div><div class="ht-sub">Apr 27, 2026 · Sold by Carlos · $45.00</div></div></div>
-      </div>
-    </div>
-    <div class="panel">
-      <div class="ph"><span class="pt">KEY DETAILS</span></div>
-      <div class="pb">
-        <table style="width:100%;font-size:13px;border-collapse:collapse;">
-          <tr><td style="color:var(--T3);padding:6px 0;border-bottom:1px solid rgba(42,42,42,0.3);">Key ID</td><td style="font-family:monospace;color:var(--T);text-align:right;border-bottom:1px solid rgba(42,42,42,0.3);padding:6px 0;">AM-00128</td></tr>
-          <tr><td style="color:var(--T3);padding:6px 0;border-bottom:1px solid rgba(42,42,42,0.3);">Type</td><td style="text-align:right;border-bottom:1px solid rgba(42,42,42,0.3);padding:6px 0;"><span class="ktag tag-am">Aftermarket</span></td></tr>
-          <tr><td style="color:var(--T3);padding:6px 0;border-bottom:1px solid rgba(42,42,42,0.3);">Vehicle</td><td style="color:var(--T);text-align:right;border-bottom:1px solid rgba(42,42,42,0.3);padding:6px 0;">Toyota Camry 2022</td></tr>
-          <tr><td style="color:var(--T3);padding:6px 0;border-bottom:1px solid rgba(42,42,42,0.3);">VIN</td><td style="text-align:right;border-bottom:1px solid rgba(42,42,42,0.3);padding:6px 0;"><span class="vin">1HGBH41JXMN109186</span></td></tr>
-          <tr><td style="color:var(--T3);padding:6px 0;border-bottom:1px solid rgba(42,42,42,0.3);">Date Added</td><td style="color:var(--T);text-align:right;border-bottom:1px solid rgba(42,42,42,0.3);padding:6px 0;">Apr 20, 2026</td></tr>
-          <tr><td style="color:var(--T3);padding:6px 0;border-bottom:1px solid rgba(42,42,42,0.3);">Status</td><td style="text-align:right;border-bottom:1px solid rgba(42,42,42,0.3);padding:6px 0;"><span class="pill p-so">Sold</span></td></tr>
-          <tr><td style="color:var(--T3);padding:6px 0;">Sale Price</td><td style="color:#4ade80;font-weight:600;text-align:right;padding:6px 0;">$45.00</td></tr>
-        </table>
-      </div>
-    </div>
+  <div id="hist-result">
+    <div style="text-align:center;color:var(--T3);padding:28px;font-size:12px;">Enter a Key ID or VIN above to see its full history.</div>
   </div>
 </div>
 
-<!-- ═══════════ REVENUE ═══════════ -->
+<!-- ═══ REVENUE ═══ -->
 <div class="view" id="v-revenue">
   <div class="rev-grid">
-    <div class="rev-card"><div class="rev-lbl">Total Revenue</div><div class="rev-val">$7,840</div><div class="rev-sub rev-pos">All time</div></div>
-    <div class="rev-card"><div class="rev-lbl">This Month</div><div class="rev-val">$1,240</div><div class="rev-sub rev-pos">▲ 8% vs last month</div></div>
-    <div class="rev-card"><div class="rev-lbl">This Week</div><div class="rev-val">$460</div><div class="rev-sub rev-pos">▲ 12% vs avg</div></div>
-    <div class="rev-card"><div class="rev-lbl">Today</div><div class="rev-val">$460</div><div class="rev-sub">4 sales · 3 cuts</div></div>
+    <div class="rev-card"><div class="rev-lbl">Total Revenue</div><div class="rev-val" id="rev-total">$0</div><div class="rev-sub rev-pos">All time</div></div>
+    <div class="rev-card"><div class="rev-lbl">This Month</div><div class="rev-val" id="rev-month">$0</div><div class="rev-sub">Current month</div></div>
+    <div class="rev-card"><div class="rev-lbl">From Key Sales</div><div class="rev-val" id="rev-from-keys">$0</div><div class="rev-sub">All time</div></div>
+    <div class="rev-card"><div class="rev-lbl">From Services</div><div class="rev-val" id="rev-from-svc">$0</div><div class="rev-sub">Cuts + Unlocks</div></div>
   </div>
   <div class="sg2">
     <div class="panel">
-      <div class="ph"><span class="pt">REVENUE BY SOURCE</span></div>
+      <div class="ph"><span class="pt">REVENUE BY USER</span></div>
       <div class="pb">
-        <div class="price-row"><span style="color:var(--T);">Key Sales</span><div style="display:flex;align-items:center;gap:8px;"><div style="width:70px;height:5px;background:var(--BD);border-radius:2px;overflow:hidden;"><div style="width:65%;height:100%;background:var(--G);border-radius:2px;"></div></div><span style="color:#4ade80;font-weight:600;">$5,760</span></div></div>
-        <div class="price-row"><span style="color:var(--T);">Key Cuts</span><div style="display:flex;align-items:center;gap:8px;"><div style="width:70px;height:5px;background:var(--BD);border-radius:2px;overflow:hidden;"><div style="width:25%;height:100%;background:var(--A);border-radius:2px;"></div></div><span style="color:#fbbf24;font-weight:600;">$1,530</span></div></div>
-        <div class="price-row"><span style="color:var(--T);">Lock Openings</span><div style="display:flex;align-items:center;gap:8px;"><div style="width:70px;height:5px;background:var(--BD);border-radius:2px;overflow:hidden;"><div style="width:10%;height:100%;background:var(--B);border-radius:2px;"></div></div><span style="color:#60a5fa;font-weight:600;">$550</span></div></div>
-        <div class="sep"></div>
-        <div class="price-row"><span style="color:var(--T);font-weight:500;">Total</span><span style="color:#4ade80;font-weight:600;font-size:15px;">$7,840</span></div>
+        <div class="user-grid" id="rev-by-user">
+          <div class="uc"><div class="ua" style="background:rgba(204,0,0,0.2);border:1px solid rgba(204,0,0,0.4);color:#ff8888;">CA</div><div style="font-size:13px;color:var(--T);font-weight:500;margin-bottom:3px;">Carlos</div><div style="font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:700;color:#4ade80;" id="rev-carlos">$0</div></div>
+          <div class="uc"><div class="ua" style="background:rgba(26,111,212,0.2);border:1px solid rgba(26,111,212,0.4);color:#60a5fa;">MA</div><div style="font-size:13px;color:var(--T);font-weight:500;margin-bottom:3px;">Maria</div><div style="font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:700;color:#4ade80;" id="rev-maria">$0</div></div>
+          <div class="uc"><div class="ua" style="background:rgba(180,148,31,0.2);border:1px solid rgba(180,148,31,0.4);color:#fbbf24;">AL</div><div style="font-size:13px;color:var(--T);font-weight:500;margin-bottom:3px;">Alex</div><div style="font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:700;color:#4ade80;" id="rev-alex">$0</div></div>
+        </div>
       </div>
     </div>
     <div class="panel">
       <div class="ph"><span class="pt">SET SERVICE PRICES</span></div>
       <div class="pb">
-        <div class="price-row"><span style="color:var(--T);">Aftermarket key</span><div style="display:flex;align-items:center;gap:5px;"><span style="color:var(--T3);">$</span><input class="pi" value="45" type="number"></div></div>
-        <div class="price-row"><span style="color:var(--T);">OEM Recase key</span><div style="display:flex;align-items:center;gap:5px;"><span style="color:var(--T3);">$</span><input class="pi" value="85" type="number"></div></div>
-        <div class="price-row"><span style="color:var(--T);">OEM Refurb key</span><div style="display:flex;align-items:center;gap:5px;"><span style="color:var(--T3);">$</span><input class="pi" value="120" type="number"></div></div>
-        <div class="price-row"><span style="color:var(--T);">Key Cut</span><div style="display:flex;align-items:center;gap:5px;"><span style="color:var(--T3);">$</span><input class="pi" value="25" type="number"></div></div>
-        <div class="price-row"><span style="color:var(--T);">Lock Opening</span><div style="display:flex;align-items:center;gap:5px;"><span style="color:var(--T3);">$</span><input class="pi" value="45" type="number"></div></div>
-        <div style="margin-top:12px;"><button class="btn pr" style="width:100%;">Save Prices</button></div>
-      </div>
-    </div>
-  </div>
-  <div class="panel">
-    <div class="ph"><span class="pt">REVENUE BY USER</span></div>
-    <div class="pb">
-      <div class="user-grid">
-        <div class="uc"><div class="ua" style="background:rgba(204,0,0,0.2);border:1px solid rgba(204,0,0,0.4);color:#ff8888;">CA</div><div style="font-size:13px;color:var(--T);font-weight:500;margin-bottom:3px;">Carlos</div><div style="font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:700;color:#4ade80;">$3,240</div><div style="font-size:10px;color:var(--T3);">52 transactions</div></div>
-        <div class="uc"><div class="ua" style="background:rgba(26,111,212,0.2);border:1px solid rgba(26,111,212,0.4);color:#60a5fa;">MA</div><div style="font-size:13px;color:var(--T);font-weight:500;margin-bottom:3px;">Maria</div><div style="font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:700;color:#4ade80;">$2,890</div><div style="font-size:10px;color:var(--T3);">44 transactions</div></div>
-        <div class="uc"><div class="ua" style="background:rgba(180,148,31,0.2);border:1px solid rgba(180,148,31,0.4);color:#fbbf24;">AL</div><div style="font-size:13px;color:var(--T);font-weight:500;margin-bottom:3px;">Alex</div><div style="font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:700;color:#4ade80;">$1,710</div><div style="font-size:10px;color:var(--T3);">35 transactions</div></div>
+        <div class="price-row"><span style="color:var(--T);">Aftermarket key</span><div style="display:flex;align-items:center;gap:5px;"><span style="color:var(--T3);">$</span><input class="pi" id="p-am" value="45" type="number" onchange="savePrice()"></div></div>
+        <div class="price-row"><span style="color:var(--T);">OEM Recase key</span><div style="display:flex;align-items:center;gap:5px;"><span style="color:var(--T3);">$</span><input class="pi" id="p-or" value="85" type="number" onchange="savePrice()"></div></div>
+        <div class="price-row"><span style="color:var(--T);">OEM Refurb key</span><div style="display:flex;align-items:center;gap:5px;"><span style="color:var(--T3);">$</span><input class="pi" id="p-of" value="120" type="number" onchange="savePrice()"></div></div>
+        <div class="price-row"><span style="color:var(--T);">Key Cut</span><div style="display:flex;align-items:center;gap:5px;"><span style="color:var(--T3);">$</span><input class="pi" id="p-cut" value="25" type="number" onchange="savePrice()"></div></div>
+        <div class="price-row"><span style="color:var(--T);">Lock Opening</span><div style="display:flex;align-items:center;gap:5px;"><span style="color:var(--T3);">$</span><input class="pi" id="p-ul" value="45" type="number" onchange="savePrice()"></div></div>
+        <div style="margin-top:12px;"><button class="btn pr" style="width:100%;" onclick="savePrice();alert('Prices saved!')">Save Prices</button></div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ═══════════ REPORTS ═══════════ -->
+<!-- ═══ REPORTS ═══ -->
 <div class="view" id="v-reports">
   <div class="panel" style="margin-bottom:12px;">
     <div class="ph"><span class="pt">GENERATE REPORT</span></div>
     <div class="frow">
-      <select class="fs"><option>Daily Report</option><option>Weekly Report</option><option>Monthly Report</option><option>Custom Range</option></select>
-      <select class="fs"><option>All Users</option><option>Carlos</option><option>Maria</option><option>Alex</option></select>
-      <input type="date" class="fi" style="flex:none;">
-      <input type="date" class="fi" style="flex:none;">
-      <button class="btn pr">Generate</button>
-      <button class="btn">Export CSV</button>
+      <select class="fs" id="rpt-range"><option value="today">Today</option><option value="week">This Week</option><option value="month">This Month</option><option value="all">All Time</option></select>
+      <select class="fs" id="rpt-user"><option value="">All Users</option><option>Carlos</option><option>Maria</option><option>Alex</option></select>
+      <button class="btn pr" onclick="generateReport()">Generate</button>
+      <button class="btn" onclick="exportCSV('report')">Export CSV</button>
       <button class="btn" onclick="window.print()">Print</button>
     </div>
   </div>
-  <div class="rpt-grid">
-    <div class="rpt-card"><div class="rpt-title">Keys Sold — April</div><div class="rpt-line"><span>Aftermarket</span><span class="rpt-val">62 · $2,790</span></div><div class="rpt-line"><span>OEM Recase</span><span class="rpt-val">41 · $3,485</span></div><div class="rpt-line"><span>OEM Refurb</span><span class="rpt-val">25 · $3,000</span></div><div class="rpt-line"><span style="font-weight:500;color:var(--T);">Total</span><span class="rpt-val" style="color:#4ade80;">$9,275</span></div></div>
-    <div class="rpt-card"><div class="rpt-title">Services — April</div><div class="rpt-line"><span>Key Cuts</span><span class="rpt-val">18 · $450</span></div><div class="rpt-line"><span>Lock Openings</span><span class="rpt-val">9 · $405</span></div><div class="rpt-line"><span>Grand Total</span><span class="rpt-val" style="color:#4ade80;">$855</span></div></div>
-    <div class="rpt-card"><div class="rpt-title">Inventory Movement</div><div class="rpt-line"><span>Added</span><span class="rpt-val">+32</span></div><div class="rpt-line"><span>Sold</span><span class="rpt-val">-128</span></div><div class="rpt-line"><span>Damaged</span><span class="rpt-val">-7</span></div><div class="rpt-line"><span>Net</span><span class="rpt-val" style="color:var(--A);">-103</span></div></div>
-    <div class="rpt-card"><div class="rpt-title">Top Performer</div><div style="text-align:center;padding:8px 0;"><div class="ua" style="background:rgba(204,0,0,0.15);border:1px solid rgba(204,0,0,0.3);color:#ff8888;margin:0 auto 6px;">CA</div><div style="font-size:13px;color:var(--T);font-weight:500;">Carlos</div><div style="font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:700;color:#4ade80;margin-top:3px;">$3,240</div><div style="font-size:10px;color:var(--T3);">52 transactions</div></div></div>
+  <div id="report-output">
+    <div style="text-align:center;color:var(--T3);padding:28px;font-size:12px;">Select a range and tap Generate to build your report.</div>
   </div>
 </div>
 
 </div><!-- end content -->
 </div><!-- end page-body -->
 
-<!-- BOTTOM NAV (mobile) -->
-<div class="bottom-nav" id="bottom-nav">
+<!-- BOTTOM NAV -->
+<div class="bottom-nav">
   <div class="bn-item on" onclick="go('dashboard')"><span class="bn-icon">◧</span><span>Home</span></div>
   <div class="bn-item" onclick="go('alerts')"><span class="bn-icon">⚠</span><span>Alerts</span></div>
   <div class="bn-item" onclick="go('scanner')"><span class="bn-icon">⊡</span><span>Scan</span></div>
+  <div class="bn-item" onclick="go('import')"><span class="bn-icon">⬆</span><span>Import</span></div>
   <div class="bn-item" onclick="go('inventory')"><span class="bn-icon">⊟</span><span>Keys</span></div>
   <div class="bn-item" onclick="go('services')"><span class="bn-icon">⚙</span><span>Services</span></div>
   <div class="bn-item" onclick="go('revenue')"><span class="bn-icon">$</span><span>Revenue</span></div>
@@ -728,19 +757,19 @@ html,body{background:var(--BG);color:var(--T);font-family:'Barlow',sans-serif;fo
 <!-- ADD KEY MODAL -->
 <div class="modal-overlay" id="add-key-modal" onclick="closeModal('add-key-modal',event)">
   <div class="modal">
-    <div class="modal-hdr">
-      <span class="modal-title">ADD NEW KEY</span>
-      <button class="btn" onclick="closeModal('add-key-modal')">✕</button>
-    </div>
+    <div class="modal-drag"></div>
+    <div class="modal-hdr"><span class="modal-title">ADD NEW KEY</span><button class="btn" onclick="closeModal('add-key-modal')">✕</button></div>
     <div class="modal-body">
-      <div class="form-group"><label class="form-label">Key Type</label><select class="form-select"><option>Aftermarket</option><option>OEM Recase</option><option>OEM Refurb</option></select></div>
-      <div class="form-group"><label class="form-label">Key ID / Barcode</label><input class="form-input" placeholder="e.g. AM-00129"></div>
-      <div class="form-group"><label class="form-label">Make &amp; Model</label><input class="form-input" placeholder="e.g. Toyota Camry 2022"></div>
-      <div class="form-group"><label class="form-label">VIN (optional)</label><input class="form-input" placeholder="17-character VIN" maxlength="17"></div>
-      <div class="form-group"><label class="form-label">Date Received</label><input class="form-input" type="date"></div>
-      <div class="form-group"><label class="form-label">Added By</label><select class="form-select"><option>Carlos</option><option>Maria</option><option>Alex</option></select></div>
-      <div class="form-group"><label class="form-label">Notes</label><input class="form-input" placeholder="Optional notes..."></div>
-      <div style="display:flex;gap:8px;margin-top:4px;"><button class="btn pr" style="flex:1;">Add to Inventory</button><button class="btn" style="flex:1;" onclick="closeModal('add-key-modal')">Cancel</button></div>
+      <div class="form-group"><label class="form-label">Key Type *</label><select class="form-select" id="ak-type"><option value="">Select type...</option><option>Aftermarket</option><option>OEM Recase</option><option>OEM Refurb</option></select></div>
+      <div class="form-group"><label class="form-label">Key ID / Barcode</label><input class="form-input" id="ak-id" placeholder="e.g. AM-00001"></div>
+      <div class="form-group"><label class="form-label">Make &amp; Model</label><input class="form-input" id="ak-vehicle" placeholder="e.g. Toyota Camry 2022"></div>
+      <div class="form-group"><label class="form-label">VIN (optional)</label><input class="form-input" id="ak-vin" placeholder="17-character VIN" maxlength="17"></div>
+      <div class="form-group"><label class="form-label">Status</label><select class="form-select" id="ak-status"><option>Available</option><option>Sold</option><option>Damaged</option></select></div>
+      <div class="form-group"><label class="form-label">Date</label><input class="form-input" type="date" id="ak-date"></div>
+      <div class="form-group"><label class="form-label">Added By</label><select class="form-select" id="ak-user"><option>Carlos</option><option>Maria</option><option>Alex</option></select></div>
+      <div class="form-group"><label class="form-label">Notes</label><input class="form-input" id="ak-notes" placeholder="Optional..."></div>
+      <div style="display:flex;gap:8px;margin-top:4px;"><button class="btn pr" style="flex:1;" onclick="addKey()">Add to Inventory</button><button class="btn" style="flex:1;" onclick="closeModal('add-key-modal')">Cancel</button></div>
+      <div id="ak-err" style="color:#f87171;font-size:12px;margin-top:8px;display:none;"></div>
     </div>
   </div>
 </div>
@@ -748,131 +777,78 @@ html,body{background:var(--BG);color:var(--T);font-family:'Barlow',sans-serif;fo
 <!-- ADD SERVICE MODAL -->
 <div class="modal-overlay" id="add-service-modal" onclick="closeModal('add-service-modal',event)">
   <div class="modal">
-    <div class="modal-hdr">
-      <span class="modal-title">LOG SERVICE</span>
-      <button class="btn" onclick="closeModal('add-service-modal')">✕</button>
-    </div>
+    <div class="modal-drag"></div>
+    <div class="modal-hdr"><span class="modal-title">LOG SERVICE</span><button class="btn" onclick="closeModal('add-service-modal')">✕</button></div>
     <div class="modal-body">
-      <div class="form-group"><label class="form-label">Service Type</label><select class="form-select"><option>Key Sale</option><option>Key Cut</option><option>Lock Opened</option></select></div>
-      <div class="form-group"><label class="form-label">Key ID (if applicable)</label><input class="form-input" placeholder="e.g. AM-00128"></div>
-      <div class="form-group"><label class="form-label">Vehicle Make &amp; Model</label><input class="form-input" placeholder="e.g. Ford F-150 2020"></div>
-      <div class="form-group"><label class="form-label">VIN (optional)</label><input class="form-input" placeholder="17-character VIN" maxlength="17"></div>
-      <div class="form-group"><label class="form-label">Price Charged ($)</label><input class="form-input" type="number" placeholder="0.00"></div>
-      <div class="form-group"><label class="form-label">Performed By</label><select class="form-select"><option>Carlos</option><option>Maria</option><option>Alex</option></select></div>
-      <div class="form-group"><label class="form-label">Notes</label><input class="form-input" placeholder="Optional notes..."></div>
-      <div style="display:flex;gap:8px;margin-top:4px;"><button class="btn pr" style="flex:1;">Save Service</button><button class="btn" style="flex:1;" onclick="closeModal('add-service-modal')">Cancel</button></div>
+      <div class="form-group"><label class="form-label">Service Type *</label><select class="form-select" id="sv-type"><option value="">Select service...</option><option>Key Sale</option><option>Key Cut</option><option>Lock Opened</option></select></div>
+      <div class="form-group"><label class="form-label">Key ID (if applicable)</label><input class="form-input" id="sv-keyid" placeholder="e.g. AM-00001"></div>
+      <div class="form-group"><label class="form-label">Vehicle Make &amp; Model</label><input class="form-input" id="sv-vehicle" placeholder="e.g. Ford F-150 2020"></div>
+      <div class="form-group"><label class="form-label">VIN (optional)</label><input class="form-input" id="sv-vin" placeholder="17-character VIN" maxlength="17"></div>
+      <div class="form-group"><label class="form-label">Price Charged ($)</label><input class="form-input" type="number" id="sv-price" placeholder="0.00" step="0.01"></div>
+      <div class="form-group"><label class="form-label">Date</label><input class="form-input" type="date" id="sv-date"></div>
+      <div class="form-group"><label class="form-label">Performed By</label><select class="form-select" id="sv-user"><option>Carlos</option><option>Maria</option><option>Alex</option></select></div>
+      <div class="form-group"><label class="form-label">Notes</label><input class="form-input" id="sv-notes" placeholder="Optional..."></div>
+      <div style="display:flex;gap:8px;margin-top:4px;"><button class="btn pr" style="flex:1;" onclick="addService()">Save Service</button><button class="btn" style="flex:1;" onclick="closeModal('add-service-modal')">Cancel</button></div>
+      <div id="sv-err" style="color:#f87171;font-size:12px;margin-top:8px;display:none;"></div>
     </div>
   </div>
 </div>
 
+<!-- PDF.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script>
-var VIEWS=['dashboard','alerts','scanner','inventory','sold','damaged','services','history','revenue','reports'];
-var scanAction='add';
-var scanCount=0,scanAuto=0,scanManual=0;
+// ── DATA STORE ──────────────────────────────────────────────
+var DB = {
+  keys: [],      // {id, keyId, type, vehicle, vin, status, date, user, notes, history:[]}
+  services: [],  // {id, type, keyId, vehicle, vin, price, date, user, notes}
+  prices: {Aftermarket:45,'OEM Recase':85,'OEM Refurb':120,'Key Cut':25,'Lock Opening':45},
+  nextId: 1
+};
+var THRESH = 5;
+var invFilter = 'all';
+var scanAction = 'add';
+var scanCount = 0, scanAuto = 0, scanManual = 0;
 
-function go(id){
-  VIEWS.forEach(function(v){
-    var el=document.getElementById('v-'+v);
-    if(el) el.className='view'+(v===id?' on':'');
-  });
-  // sidebar
+// ── NAVIGATION ──────────────────────────────────────────────
+var VIEWS = ['dashboard','alerts','scanner','import','inventory','sold','damaged','services','history','revenue','reports'];
+function go(id) {
+  VIEWS.forEach(function(v){ var el=document.getElementById('v-'+v); if(el) el.className='view'+(v===id?' on':''); });
   document.querySelectorAll('.ni').forEach(function(n){n.classList.remove('on');});
   document.querySelectorAll('.ni').forEach(function(n){
-    if(n.textContent.toLowerCase().indexOf(id.replace('-',' '))>-1||
-       (id==='dashboard'&&n.textContent.indexOf('Dashboard')>-1)||
-       (id==='alerts'&&n.textContent.indexOf('Stock')>-1)||
-       (id==='scanner'&&n.textContent.indexOf('Scanner')>-1)||
-       (id==='inventory'&&n.textContent.indexOf('All Keys')>-1)||
-       (id==='sold'&&n.textContent.trim().indexOf('Sold')===0)||
-       (id==='damaged'&&n.textContent.indexOf('Damaged')>-1)||
-       (id==='services'&&n.textContent.indexOf('Services')>-1)||
-       (id==='history'&&n.textContent.indexOf('History')>-1)||
-       (id==='revenue'&&n.textContent.indexOf('Revenue')>-1)||
-       (id==='reports'&&n.textContent.indexOf('Reports')>-1)
-    ) n.classList.add('on');
+    var t=n.textContent.trim().toLowerCase();
+    if((id==='dashboard'&&t.startsWith('◧'))||(id==='alerts'&&t.startsWith('⚠'))||(id==='scanner'&&t.startsWith('⊡'))||(id==='import'&&t.startsWith('⬆'))||(id==='inventory'&&t.startsWith('⊟'))||(id==='sold'&&t.startsWith('✓'))||(id==='damaged'&&t.startsWith('✕'))||(id==='services'&&t.startsWith('⚙'))||(id==='history'&&t.startsWith('◷'))||(id==='revenue'&&t.startsWith('$'))||(id==='reports'&&t.startsWith('⊞'))) n.classList.add('on');
   });
-  // bottom nav
   document.querySelectorAll('.bn-item').forEach(function(b){b.classList.remove('on');});
-  var bnMap={dashboard:0,alerts:1,scanner:2,inventory:3,services:4,revenue:5,reports:6,sold:3,damaged:3,history:3};
-  var idx=bnMap[id];
+  var bnMap={dashboard:0,alerts:1,scanner:2,import:3,inventory:4,sold:4,damaged:4,services:5,history:4,revenue:6,reports:7};
   var bns=document.querySelectorAll('.bn-item');
-  if(bns[idx]) bns[idx].classList.add('on');
-  // scroll top
+  if(bns[bnMap[id]]) bns[bnMap[id]].classList.add('on');
   window.scrollTo(0,0);
+  if(id==='inventory') renderInventory();
+  if(id==='sold') renderSold();
+  if(id==='damaged') renderDamaged();
+  if(id==='services') renderServices();
+  if(id==='revenue') renderRevenue();
+  if(id==='alerts') renderAlertPage();
 }
 
-function selAction(a){
-  scanAction=a;
-  ['add','sold','dmg','cut'].forEach(function(x){document.getElementById('sa-'+x).classList.remove('sel');});
-  document.getElementById('sa-'+a).classList.add('sel');
-}
-
-function classifyKey(code){
-  var c=code.toUpperCase();
-  if(c.startsWith('AM-')) return 'Aftermarket';
-  if(c.startsWith('OR-')) return 'OEM Recase';
-  if(c.startsWith('OF-')) return 'OEM Refurb';
-  return null;
-}
-
-function processScan(val){
-  if(val.length<4) return;
-  var input=document.getElementById('main-scan');
-  var res=document.getElementById('scan-res');
-  var type=classifyKey(val);
-  var user=document.getElementById('cur-user').value;
-  scanCount++;document.getElementById('sc-count').textContent=scanCount;
-  if(type){scanAuto++;document.getElementById('sc-auto').textContent=scanAuto;}
-  else{scanManual++;document.getElementById('sc-manual').textContent=scanManual;type='Unknown';}
-  var actionLabels={add:'Added to stock',sold:'Marked Sold',dmg:'Marked Damaged',cut:'Cut logged'};
-  var colors={add:'#4ade80',sold:'#60a5fa',dmg:'#f87171',cut:'#fbbf24'};
-  var bgColors={add:'rgba(26,158,74,0.08)',sold:'rgba(26,111,212,0.08)',dmg:'rgba(204,0,0,0.08)',cut:'rgba(180,148,31,0.08)'};
-  var bdColors={add:'rgba(26,158,74,0.3)',sold:'rgba(26,111,212,0.3)',dmg:'rgba(204,0,0,0.3)',cut:'rgba(180,148,31,0.3)'};
-  res.style.background=bgColors[scanAction];
-  res.style.border='1px solid '+bdColors[scanAction];
-  res.style.color=colors[scanAction];
-  res.textContent='✓ '+val.toUpperCase()+' → '+type+' · '+actionLabels[scanAction]+' · '+user;
-  res.className='sres show';
-  var now=new Date();
-  var t=now.getHours().toString().padStart(2,'0')+':'+now.getMinutes().toString().padStart(2,'0');
-  var tagMap={'Aftermarket':'tag-am','OEM Recase':'tag-or','OEM Refurb':'tag-of','Unknown':''};
-  var pMap={add:'p-av',sold:'p-so',dmg:'p-dm',cut:'p-ct'};
-  var pTxt={add:'Added',sold:'Sold',dmg:'Damaged',cut:'Cut'};
-  var tbody=document.getElementById('scan-log-body');
-  if(tbody.children.length===1&&tbody.children[0].children[0]&&tbody.children[0].children[0].colSpan>1) tbody.innerHTML='';
-  var row=document.createElement('tr');
-  row.innerHTML='<td>'+t+'</td><td style="font-family:monospace;color:var(--T);">'+val.toUpperCase()+'</td><td><span class="ktag '+tagMap[type]+'">'+type+'</span></td><td><span class="pill '+pMap[scanAction]+'">'+pTxt[scanAction]+'</span></td>';
-  tbody.insertBefore(row,tbody.firstChild);
-  setTimeout(function(){input.value='';res.classList.remove('show');},2800);
-}
-
+// ── CLOCK ────────────────────────────────────────────────────
 function updateClock(){
   var now=new Date();
   var days=['SUN','MON','TUE','WED','THU','FRI','SAT'];
   var months=['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
-  var d=document.getElementById('dt');
-  var t=document.getElementById('tm');
+  var d=document.getElementById('dt'), t=document.getElementById('tm');
   if(d) d.textContent=days[now.getDay()]+' '+months[now.getMonth()]+' '+now.getDate()+' '+now.getFullYear();
   if(t) t.textContent=now.getHours().toString().padStart(2,'0')+':'+now.getMinutes().toString().padStart(2,'0')+':'+now.getSeconds().toString().padStart(2,'0');
 }
-setInterval(updateClock,1000);
-updateClock();
+setInterval(updateClock,1000); updateClock();
 
-var stockData=[{name:'Aftermarket',qty:28},{name:'OEM Recase',qty:3},{name:'OEM Refurb',qty:2}];
-var thresh=5;
-function renderAlerts(){
-  var chips=document.getElementById('alert-chips');
-  var low=stockData.filter(function(s){return s.qty<thresh;});
-  chips.innerHTML=low.map(function(s){return '<span class="alert-chip"><span class="adot"></span>'+s.name+' — '+s.qty+' left</span>';}).join('');
-  document.getElementById('alert-count').textContent=low.length+' alert'+(low.length!==1?'s':'')+' active';
-  var snb=document.getElementById('snb-d');
-  if(snb) snb.textContent=low.length;
-}
-renderAlerts();
-
+// ── MODAL ────────────────────────────────────────────────────
 function openModal(id){
   document.getElementById(id).classList.add('show');
   document.body.style.overflow='hidden';
+  var today=new Date().toISOString().split('T')[0];
+  if(id==='add-key-modal') document.getElementById('ak-date').value=today;
+  if(id==='add-service-modal') document.getElementById('sv-date').value=today;
 }
 function closeModal(id,e){
   if(!e||e.target===document.getElementById(id)){
@@ -881,8 +857,569 @@ function closeModal(id,e){
   }
 }
 
-// Tab switching
-document.querySelectorAll('.tab').forEach(function(tab){
+// ── TYPE HELPERS ─────────────────────────────────────────────
+function classifyKey(code){
+  var c=(code||'').toUpperCase();
+  if(c.startsWith('AM-')) return 'Aftermarket';
+  if(c.startsWith('OR-')) return 'OEM Recase';
+  if(c.startsWith('OF-')) return 'OEM Refurb';
+  return null;
+}
+function typeTag(type){
+  var map={Aftermarket:'tag-am','OEM Recase':'tag-or','OEM Refurb':'tag-of'};
+  return '<span class="ktag '+(map[type]||'')+'">'+(type||'Unknown')+'</span>';
+}
+function statusPill(s){
+  var map={Available:'p-av',Sold:'p-so',Damaged:'p-dm',Cut:'p-ct'};
+  return '<span class="pill '+(map[s]||'p-av')+'">'+(s||'Available')+'</span>';
+}
+function fmtDate(d){ return d ? new Date(d+'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'2-digit'}) : '—'; }
+function getStock(type){ return DB.keys.filter(function(k){return k.type===type&&k.status==='Available';}).length; }
+function getSold(type){ return DB.keys.filter(function(k){return k.type===type&&k.status==='Sold';}).length; }
+
+// ── DASHBOARD UPDATE ─────────────────────────────────────────
+function updateDashboard(){
+  var avail=DB.keys.filter(function(k){return k.status==='Available';}).length;
+  var sold=DB.keys.filter(function(k){return k.status==='Sold';}).length;
+  var dmg=DB.keys.filter(function(k){return k.status==='Damaged';}).length;
+  var svc=DB.services.filter(function(s){return s.type==='Key Cut'||s.type==='Lock Opened';}).length;
+  setText('stat-avail',avail); setText('stat-sold',sold); setText('stat-dmg',dmg); setText('stat-svc',svc);
+  setText('nb-all',DB.keys.filter(function(k){return k.status==='Available';}).length);
+  setText('nb-sold',sold); setText('nb-dmg',dmg);
+
+  var am=getStock('Aftermarket'), or_=getStock('OEM Recase'), of_=getStock('OEM Refurb');
+  var max=Math.max(am,or_,of_,1);
+  setText('kc-am',am); setText('kc-or',or_); setText('kc-of',of_);
+  setText('ks-am','Sold: '+getSold('Aftermarket'));
+  setText('ks-or','Sold: '+getSold('OEM Recase'));
+  setText('ks-of','Sold: '+getSold('OEM Refurb'));
+  setWidth('kb-am',Math.round(am/max*100)+'%');
+  setWidth('kb-or',Math.round(or_/max*100)+'%');
+  setWidth('kb-of',Math.round(of_/max*100)+'%');
+  updateKtColor('am','kt-am','kc-am','kb-am','kst-am',am);
+  updateKtColor('or','kt-or','kc-or','kb-or','kst-or',or_);
+  updateKtColor('of','kt-of','kc-of','kb-of','kst-of',of_);
+  updateAlertBar();
+  updateTabCounts();
+
+  // Today's revenue
+  var today=new Date().toISOString().split('T')[0];
+  var todaySvc=DB.services.filter(function(s){return s.date===today;});
+  var rKeys=todaySvc.filter(function(s){return s.type==='Key Sale';}).reduce(function(a,s){return a+(parseFloat(s.price)||0);},0);
+  var rCuts=todaySvc.filter(function(s){return s.type==='Key Cut';}).reduce(function(a,s){return a+(parseFloat(s.price)||0);},0);
+  var rUl=todaySvc.filter(function(s){return s.type==='Lock Opened';}).reduce(function(a,s){return a+(parseFloat(s.price)||0);},0);
+  setText('rev-keys-today','$'+rKeys.toFixed(0)); setText('rev-keys-count',todaySvc.filter(function(s){return s.type==='Key Sale';}).length+' keys');
+  setText('rev-cuts-today','$'+rCuts.toFixed(0)); setText('rev-cuts-count',todaySvc.filter(function(s){return s.type==='Key Cut';}).length+' cuts');
+  setText('rev-ul-today','$'+rUl.toFixed(0)); setText('rev-ul-count',todaySvc.filter(function(s){return s.type==='Lock Opened';}).length+' services');
+  setText('rev-total-today','$'+(rKeys+rCuts+rUl).toFixed(0));
+
+  renderRecentActivity();
+}
+
+function updateKtColor(k,ktId,kcId,kbId,kstId,qty){
+  var kt=document.getElementById(ktId);
+  var kc=document.getElementById(kcId);
+  var kb=document.getElementById(kbId);
+  var kst=document.getElementById(kstId);
+  if(!kt) return;
+  kt.className='kt';
+  kc.className='kc';
+  if(qty===0){kst.textContent='No stock';kst.style.color='var(--T3)';kb.className='kbf g';}
+  else if(qty<THRESH&&qty<=2){kt.className='kt crit';kc.className='kc crit';kst.textContent='⚠ Critical';kst.style.color='#f87171';kb.className='kbf r';}
+  else if(qty<THRESH){kt.className='kt low';kc.className='kc warn';kst.textContent='⚠ Low Stock';kst.style.color='var(--A)';kb.className='kbf a';}
+  else{kst.textContent='✓ In Stock';kst.style.color='#4ade80';kb.className='kbf g';}
+}
+
+function updateAlertBar(){
+  var types=['Aftermarket','OEM Recase','OEM Refurb'];
+  var low=types.filter(function(t){return getStock(t)<THRESH;});
+  var chips=document.getElementById('alert-chips');
+  chips.innerHTML=low.map(function(t){return '<span class="alert-chip"><span class="adot"></span>'+t+' — '+getStock(t)+' left</span>';}).join('');
+  setText('alert-count',low.length>0?low.length+' alert'+(low.length!==1?'s':'')+' active':'');
+  setText('snb-d',low.length);
+  setText('sb-txt',low.length>0?low.length+' type'+(low.length!==1?'s':'')+' below '+THRESH:'All levels OK');
+}
+
+function updateTabCounts(){
+  var all=DB.keys.length;
+  var am=DB.keys.filter(function(k){return k.type==='Aftermarket';}).length;
+  var or_=DB.keys.filter(function(k){return k.type==='OEM Recase';}).length;
+  var of_=DB.keys.filter(function(k){return k.type==='OEM Refurb';}).length;
+  setText('tab-all',all); setText('tab-am',am); setText('tab-or',or_); setText('tab-of',of_);
+}
+
+function renderRecentActivity(){
+  var log=document.getElementById('recent-log');
+  var items=[].concat(
+    DB.keys.map(function(k){return {ts:k.date+' '+k.id,date:k.date,label:'Key '+k.status+' — '+k.type+(k.keyId?' · '+k.keyId:''),det:(k.vehicle||'')+(k.vin?' · VIN: '+k.vin:''),user:k.user,icon:k.status==='Damaged'?'ic-d':'ic-k'};}),
+    DB.services.map(function(s){return {ts:s.date+' '+s.id,date:s.date,label:s.type+(s.keyId?' · '+s.keyId:''),det:(s.vehicle||'')+(s.price?' · $'+parseFloat(s.price).toFixed(0):''),user:s.user,icon:s.type==='Key Cut'?'ic-c':s.type==='Lock Opened'?'ic-u':'ic-k'};})
+  ).sort(function(a,b){return b.ts.localeCompare(a.ts);}).slice(0,8);
+  if(items.length===0){log.innerHTML='<div class="slog-empty">No activity yet.</div>';return;}
+  var icons={ic_k:'🔑','ic-k':'🔑','ic-c':'✂','ic-u':'🔓','ic-d':'💥'};
+  log.innerHTML=items.map(function(i){return '<div class="sl-row"><div class="sl-ic '+i.icon+'">'+(icons[i.icon]||'🔑')+'</div><div class="sl-body"><div class="sl-main">'+esc(i.label)+'</div>'+(i.det?'<div class="sl-det">'+esc(i.det)+'</div>':'')+'<div class="sl-meta"><span class="sl-user">'+esc(i.user)+'</span><span class="sl-time">'+fmtDate(i.date)+'</span></div></div></div>';}).join('');
+}
+
+// ── ADD KEY ──────────────────────────────────────────────────
+function addKey(){
+  var type=document.getElementById('ak-type').value;
+  var err=document.getElementById('ak-err');
+  if(!type){err.textContent='Please select a key type.';err.style.display='block';return;}
+  var today=new Date().toISOString().split('T')[0];
+  var key={
+    id:DB.nextId++,
+    keyId:document.getElementById('ak-id').value.trim()||autoKeyId(type),
+    type:type,
+    vehicle:document.getElementById('ak-vehicle').value.trim(),
+    vin:document.getElementById('ak-vin').value.trim().toUpperCase(),
+    status:document.getElementById('ak-status').value,
+    date:document.getElementById('ak-date').value||today,
+    user:document.getElementById('ak-user').value,
+    notes:document.getElementById('ak-notes').value.trim(),
+    history:[{action:'Added to inventory',date:document.getElementById('ak-date').value||today,user:document.getElementById('ak-user').value}]
+  };
+  DB.keys.push(key);
+  updateDashboard();
+  closeModal('add-key-modal');
+  clearForm(['ak-type','ak-id','ak-vehicle','ak-vin','ak-notes']);
+  document.getElementById('ak-err').style.display='none';
+  flashMsg('Key added to inventory!','g');
+}
+
+function autoKeyId(type){
+  var prefix={Aftermarket:'AM',OEM_Recase:'OR','OEM Recase':'OR',OEM_Refurb:'OF','OEM Refurb':'OF'}[type]||'XX';
+  var count=DB.keys.filter(function(k){return k.type===type;}).length+1;
+  return prefix+'-'+count.toString().padStart(5,'0');
+}
+
+// ── ADD SERVICE ───────────────────────────────────────────────
+function addService(){
+  var type=document.getElementById('sv-type').value;
+  var err=document.getElementById('sv-err');
+  if(!type){err.textContent='Please select a service type.';err.style.display='block';return;}
+  var today=new Date().toISOString().split('T')[0];
+  var svc={
+    id:DB.nextId++,
+    type:type,
+    keyId:document.getElementById('sv-keyid').value.trim(),
+    vehicle:document.getElementById('sv-vehicle').value.trim(),
+    vin:document.getElementById('sv-vin').value.trim().toUpperCase(),
+    price:document.getElementById('sv-price').value||'0',
+    date:document.getElementById('sv-date').value||today,
+    user:document.getElementById('sv-user').value,
+    notes:document.getElementById('sv-notes').value.trim()
+  };
+  DB.services.push(svc);
+  // if key sold, update key status
+  if(type==='Key Sale'&&svc.keyId){
+    var k=DB.keys.find(function(k){return k.keyId===svc.keyId;});
+    if(k){k.status='Sold';k.history.push({action:'Sold — $'+svc.price,date:svc.date,user:svc.user});}
+  }
+  updateDashboard();
+  renderServices();
+  renderRevenue();
+  closeModal('add-service-modal');
+  clearForm(['sv-type','sv-keyid','sv-vehicle','sv-vin','sv-price','sv-notes']);
+  document.getElementById('sv-err').style.display='none';
+  flashMsg('Service logged!','g');
+}
+
+// ── RENDER TABLES ─────────────────────────────────────────────
+function renderInventory(){
+  var search=(document.getElementById('inv-search')||{value:''}).value.toLowerCase();
+  var statusF=(document.getElementById('inv-status')||{value:''}).value;
+  var dateF=(document.getElementById('inv-date')||{value:''}).value;
+  var rows=DB.keys.filter(function(k){
+    if(invFilter!=='all'&&k.type!==invFilter) return false;
+    if(statusF&&k.status!==statusF) return false;
+    if(dateF&&k.date!==dateF) return false;
+    if(search&&!(k.keyId+k.vehicle+k.vin+k.type+k.status).toLowerCase().includes(search)) return false;
+    return true;
+  });
+  var tbody=document.getElementById('inv-tbody');
+  if(rows.length===0){tbody.innerHTML='<tr><td colspan="8" class="tbl-empty">No keys match your filters.</td></tr>';return;}
+  tbody.innerHTML=rows.map(function(k){return '<tr><td style="font-family:monospace;color:var(--T);">'+esc(k.keyId)+'</td><td>'+typeTag(k.type)+'</td><td style="color:var(--T);">'+esc(k.vehicle||'—')+'</td><td><span class="vin">'+esc(k.vin||'—')+'</span></td><td>'+fmtDate(k.date)+'</td><td style="color:#ff8888;">'+esc(k.user)+'</td><td>'+statusPill(k.status)+'</td><td><button class="btn" style="padding:4px 7px;font-size:10px;" onclick="viewHistory('+k.id+')">History</button></td></tr>';}).join('');
+}
+
+function filterInv(type,tab){
+  invFilter=type;
+  document.querySelectorAll('.tabs .tab').forEach(function(t){t.classList.remove('on');});
+  if(tab) tab.classList.add('on');
+  renderInventory();
+}
+
+function renderSold(){
+  var search=(document.getElementById('sold-search')||{value:''}).value.toLowerCase();
+  var typeF=(document.getElementById('sold-type')||{value:''}).value;
+  var userF=(document.getElementById('sold-user')||{value:''}).value;
+  var rows=DB.keys.filter(function(k){ return k.status==='Sold'; }).filter(function(k){
+    if(typeF&&k.type!==typeF) return false;
+    if(userF&&k.user!==userF) return false;
+    if(search&&!(k.keyId+k.vehicle+k.vin).toLowerCase().includes(search)) return false;
+    return true;
+  });
+  var tbody=document.getElementById('sold-tbody');
+  if(rows.length===0){tbody.innerHTML='<tr><td colspan="7" class="tbl-empty">No sold keys recorded.</td></tr>';return;}
+  var prices=DB.prices;
+  tbody.innerHTML=rows.map(function(k){
+    var svc=DB.services.find(function(s){return s.type==='Key Sale'&&s.keyId===k.keyId;});
+    var price=svc?'$'+parseFloat(svc.price).toFixed(0):'—';
+    return '<tr><td style="font-family:monospace;color:var(--T);">'+esc(k.keyId)+'</td><td>'+typeTag(k.type)+'</td><td style="color:var(--T);">'+esc(k.vehicle||'—')+'</td><td><span class="vin">'+esc(k.vin||'—')+'</span></td><td>'+fmtDate(k.date)+'</td><td style="color:#ff8888;">'+esc(k.user)+'</td><td style="color:#4ade80;font-weight:600;">'+price+'</td></tr>';
+  }).join('');
+}
+
+function renderDamaged(){
+  var rows=DB.keys.filter(function(k){return k.status==='Damaged';});
+  var tbody=document.getElementById('dmg-tbody');
+  if(rows.length===0){tbody.innerHTML='<tr><td colspan="6" class="tbl-empty">No damaged keys recorded.</td></tr>';return;}
+  tbody.innerHTML=rows.map(function(k){return '<tr><td style="font-family:monospace;color:var(--T);">'+esc(k.keyId)+'</td><td>'+typeTag(k.type)+'</td><td style="color:var(--T);">'+esc(k.vehicle||'—')+'</td><td>'+fmtDate(k.date)+'</td><td style="color:#ff8888;">'+esc(k.user)+'</td><td style="color:var(--T3);">'+esc(k.notes||'—')+'</td></tr>';}).join('');
+}
+
+function renderServices(){
+  var search=(document.getElementById('svc-search')||{value:''}).value.toLowerCase();
+  var typeF=(document.getElementById('svc-type-filter')||{value:''}).value;
+  var userF=(document.getElementById('svc-user-filter')||{value:''}).value;
+  var rows=DB.services.filter(function(s){
+    if(typeF&&s.type!==typeF) return false;
+    if(userF&&s.user!==userF) return false;
+    if(search&&!(s.keyId+s.vehicle+s.vin+s.user).toLowerCase().includes(search)) return false;
+    return true;
+  }).sort(function(a,b){return b.id-a.id;});
+  var icons={'Key Sale':'🔑','Key Cut':'✂','Lock Opened':'🔓'};
+  var icClass={'Key Sale':'ic-k','Key Cut':'ic-c','Lock Opened':'ic-u'};
+  var svcCounts={KC:0,UL:0,KS:0};
+  DB.services.forEach(function(s){if(s.type==='Key Cut')svcCounts.KC++;else if(s.type==='Lock Opened')svcCounts.UL++;else if(s.type==='Key Sale')svcCounts.KS++;});
+  var cutRev=DB.services.filter(function(s){return s.type==='Key Cut';}).reduce(function(a,s){return a+(parseFloat(s.price)||0);},0);
+  var ulRev=DB.services.filter(function(s){return s.type==='Lock Opened';}).reduce(function(a,s){return a+(parseFloat(s.price)||0);},0);
+  setText('svc-cuts',svcCounts.KC); setText('svc-ul',svcCounts.UL); setText('svc-keysold',svcCounts.KS);
+  setText('svc-cuts-rev','$'+cutRev.toFixed(0)+' revenue');
+  setText('svc-ul-rev','$'+ulRev.toFixed(0)+' revenue');
+  var log=document.getElementById('svc-log');
+  if(rows.length===0){log.innerHTML='<div class="slog-empty">No services match your filters.</div>';return;}
+  log.innerHTML=rows.map(function(s){return '<div class="sl-row"><div class="sl-ic '+icClass[s.type]+'">'+(icons[s.type]||'🔑')+'</div><div class="sl-body"><div class="sl-main">'+esc(s.type)+(s.keyId?' · '+esc(s.keyId):'')+'</div><div class="sl-det">'+(s.vehicle?esc(s.vehicle):'')+(s.vin?' · VIN: '+esc(s.vin):'')+(s.price?' · $'+parseFloat(s.price).toFixed(0):'')+'</div><div class="sl-meta"><span class="sl-user">'+esc(s.user)+'</span><span class="sl-time">'+fmtDate(s.date)+'</span>'+(s.notes?'<span style="font-size:10px;color:var(--T3);">'+esc(s.notes)+'</span>':'')+'</div></div></div>';}).join('');
+}
+
+function renderRevenue(){
+  var total=DB.services.reduce(function(a,s){return a+(parseFloat(s.price)||0);},0);
+  var now=new Date(); var ym=now.getFullYear()+'-'+(now.getMonth()+1).toString().padStart(2,'0');
+  var monthRev=DB.services.filter(function(s){return s.date&&s.date.startsWith(ym);}).reduce(function(a,s){return a+(parseFloat(s.price)||0);},0);
+  var keyRev=DB.services.filter(function(s){return s.type==='Key Sale';}).reduce(function(a,s){return a+(parseFloat(s.price)||0);},0);
+  var svcRev=DB.services.filter(function(s){return s.type!=='Key Sale';}).reduce(function(a,s){return a+(parseFloat(s.price)||0);},0);
+  setText('rev-total','$'+total.toFixed(0));
+  setText('rev-month','$'+monthRev.toFixed(0));
+  setText('rev-from-keys','$'+keyRev.toFixed(0));
+  setText('rev-from-svc','$'+svcRev.toFixed(0));
+  ['Carlos','Maria','Alex'].forEach(function(u){
+    var r=DB.services.filter(function(s){return s.user===u;}).reduce(function(a,s){return a+(parseFloat(s.price)||0);},0);
+    var el=document.getElementById('rev-'+u.toLowerCase());
+    if(el) el.textContent='$'+r.toFixed(0);
+  });
+}
+
+function renderAlertPage(){
+  var types=['Aftermarket','OEM Recase','OEM Refurb'];
+  var ids={Aftermarket:['ap-icon-am','ap-am','ap-am-s','pf-am','pv-am'],'OEM Recase':['ap-icon-or','ap-or','ap-or-s','pf-or','pv-or'],'OEM Refurb':['ap-icon-of','ap-of','ap-of-s','pf-of','pv-of']};
+  types.forEach(function(t){
+    var qty=getStock(t); var idd=ids[t];
+    var icon=document.getElementById(idd[0]);
+    var cnt=document.getElementById(idd[1]);
+    var sub=document.getElementById(idd[2]);
+    var pf=document.getElementById(idd[3]);
+    var pv=document.getElementById(idd[4]);
+    if(!icon) return;
+    if(qty===0){icon.className='ap-icon';icon.style.background='rgba(100,100,100,0.15)';icon.style.color='var(--T3)';icon.style.border='1px solid var(--BD)';cnt.textContent='0';cnt.style.color='var(--T3)';sub.textContent='No stock';}
+    else if(qty<=2){icon.className='ap-icon ap-crit';cnt.textContent=qty;cnt.style.color='#f87171';sub.textContent='⚠ Critical';}
+    else if(qty<THRESH){icon.className='ap-icon ap-warn';cnt.textContent=qty;cnt.style.color='var(--A)';sub.textContent='⚠ Below threshold';}
+    else{icon.className='ap-icon ap-ok';cnt.textContent=qty;cnt.style.color='#4ade80';sub.textContent='/ min: '+THRESH;}
+    var max=Math.max(getStock('Aftermarket'),getStock('OEM Recase'),getStock('OEM Refurb'),1);
+    if(pf){pf.style.width=Math.round(qty/max*100)+'%';pf.style.background=qty<THRESH?(qty<=2?'var(--R)':'var(--A)'):'var(--G)';}
+    if(pv) pv.textContent=qty;
+  });
+}
+
+// ── RESTOCK ───────────────────────────────────────────────────
+function logRestock(type,inputId){
+  var qty=parseInt(document.getElementById(inputId).value)||0;
+  if(qty<=0){flashMsg('Enter a quantity.','r');return;}
+  for(var i=0;i<qty;i++){
+    var key={id:DB.nextId++,keyId:autoKeyId(type),type:type,vehicle:'',vin:'',status:'Available',date:new Date().toISOString().split('T')[0],user:document.getElementById('cur-user').value,notes:'Restock',history:[{action:'Restocked',date:new Date().toISOString().split('T')[0],user:document.getElementById('cur-user').value}]};
+    DB.keys.push(key);
+  }
+  document.getElementById(inputId).value='';
+  updateDashboard();
+  renderAlertPage();
+  flashMsg(qty+' '+type+' keys restocked!','g');
+}
+
+// ── SCANNER ───────────────────────────────────────────────────
+function selAction(a){
+  scanAction=a;
+  ['add','sold','dmg','cut'].forEach(function(x){document.getElementById('sa-'+x).classList.remove('sel');});
+  document.getElementById('sa-'+a).classList.add('sel');
+}
+
+function processScan(val){
+  if(val.length<4) return;
+  var input=document.getElementById('main-scan');
+  var res=document.getElementById('scan-res');
+  var type=classifyKey(val)||'Unknown';
+  var user=document.getElementById('cur-user').value;
+  scanCount++; document.getElementById('sc-count').textContent=scanCount;
+  if(type!=='Unknown'){scanAuto++;document.getElementById('sc-auto').textContent=scanAuto;}
+  else{scanManual++;document.getElementById('sc-manual').textContent=scanManual;}
+  var clrs={add:'#4ade80',sold:'#60a5fa',dmg:'#f87171',cut:'#fbbf24'};
+  var bgClrs={add:'rgba(26,158,74,0.08)',sold:'rgba(26,111,212,0.08)',dmg:'rgba(204,0,0,0.08)',cut:'rgba(180,148,31,0.08)'};
+  var bdClrs={add:'rgba(26,158,74,0.3)',sold:'rgba(26,111,212,0.3)',dmg:'rgba(204,0,0,0.3)',cut:'rgba(180,148,31,0.3)'};
+  var lbl={add:'Added to stock',sold:'Marked Sold',dmg:'Marked Damaged',cut:'Cut logged'};
+  var status={add:'Available',sold:'Sold',dmg:'Damaged',cut:'Cut'}[scanAction];
+  if(scanAction==='add'&&type!=='Unknown'){
+    var key={id:DB.nextId++,keyId:val.toUpperCase(),type:type,vehicle:'',vin:'',status:'Available',date:new Date().toISOString().split('T')[0],user:user,notes:'',history:[{action:'Scanned in',date:new Date().toISOString().split('T')[0],user:user}]};
+    DB.keys.push(key);
+  } else if(scanAction!=='add'){
+    var existing=DB.keys.find(function(k){return k.keyId===val.toUpperCase();});
+    if(existing){existing.status=status;existing.history.push({action:lbl[scanAction],date:new Date().toISOString().split('T')[0],user:user});}
+  }
+  res.style.cssText='background:'+bgClrs[scanAction]+';border:1px solid '+bdClrs[scanAction]+';color:'+clrs[scanAction]+';';
+  res.textContent='✓ '+val.toUpperCase()+' → '+type+' · '+lbl[scanAction]+' · '+user;
+  res.className='sres show';
+  var now=new Date(); var t=now.getHours().toString().padStart(2,'0')+':'+now.getMinutes().toString().padStart(2,'0');
+  var tagMap={'Aftermarket':'tag-am','OEM Recase':'tag-or','OEM Refurb':'tag-of',Unknown:''};
+  var pMap={add:'p-av',sold:'p-so',dmg:'p-dm',cut:'p-ct'};
+  var pTxt={add:'Added',sold:'Sold',dmg:'Damaged',cut:'Cut'};
+  var tbody=document.getElementById('scan-log-body');
+  if(tbody.children.length===1&&tbody.children[0].children[0]&&tbody.children[0].children[0].colSpan>1) tbody.innerHTML='';
+  var row=document.createElement('tr');
+  row.innerHTML='<td>'+t+'</td><td style="font-family:monospace;color:var(--T);">'+val.toUpperCase()+'</td><td><span class="ktag '+tagMap[type]+'">'+type+'</span></td><td><span class="pill '+pMap[scanAction]+'">'+pTxt[scanAction]+'</span></td>';
+  tbody.insertBefore(row,tbody.firstChild);
+  updateDashboard();
+  setTimeout(function(){input.value='';res.classList.remove('show');},2800);
+}
+
+// ── KEY HISTORY ───────────────────────────────────────────────
+function viewHistory(id){
+  var k=DB.keys.find(function(x){return x.id===id;});
+  if(!k) return;
+  document.getElementById('hist-input').value=k.keyId;
+  go('history');
+  lookupHistory(k);
+}
+
+function lookupHistory(keyObj){
+  var q=keyObj||(document.getElementById('hist-input').value||'').trim().toUpperCase();
+  var k=typeof q==='object'?q:DB.keys.find(function(x){return x.keyId===q||x.vin===q;});
+  var out=document.getElementById('hist-result');
+  if(!k){out.innerHTML='<div style="text-align:center;color:var(--T3);padding:28px;font-size:12px;">No key found with that ID or VIN.</div>';return;}
+  var dots={Added:'ht-in','Scanned in':'ht-in',Sold:'ht-sold','Marked Sold':'ht-sold',Cut:'ht-cut','Cut logged':'ht-cut',Damaged:'ht-dmg','Marked Damaged':'ht-dmg',Restocked:'ht-in'};
+  var icns={Added:'+','Scanned in':'+',Sold:'$','Marked Sold':'$',Cut:'✂','Cut logged':'✂',Damaged:'!','Marked Damaged':'!',Restocked:'+'};
+  var timeline=k.history.map(function(h){var cls=Object.keys(dots).find(function(d){return h.action.includes(d)})||'ht-in';return '<div class="ht-item"><div class="ht-line"></div><div class="ht-dot '+dots[cls]+'">'+(icns[cls]||'+')+'</div><div><div class="ht-main">'+esc(h.action)+'</div><div class="ht-sub">'+fmtDate(h.date)+'&nbsp;·&nbsp;'+esc(h.user)+'</div></div></div>';}).join('');
+  out.innerHTML='<div class="sg2"><div class="panel"><div class="ph"><span class="pt">'+esc(k.keyId)+' · TIMELINE</span></div><div class="hist-timeline">'+timeline+'</div></div><div class="panel"><div class="ph"><span class="pt">KEY DETAILS</span></div><div class="pb"><table style="width:100%;font-size:13px;border-collapse:collapse;"><tr><td style="color:var(--T3);padding:6px 0;border-bottom:1px solid rgba(42,42,42,0.3);">Key ID</td><td style="font-family:monospace;color:var(--T);text-align:right;border-bottom:1px solid rgba(42,42,42,0.3);padding:6px 0;">'+esc(k.keyId)+'</td></tr><tr><td style="color:var(--T3);padding:6px 0;border-bottom:1px solid rgba(42,42,42,0.3);">Type</td><td style="text-align:right;border-bottom:1px solid rgba(42,42,42,0.3);padding:6px 0;">'+typeTag(k.type)+'</td></tr><tr><td style="color:var(--T3);padding:6px 0;border-bottom:1px solid rgba(42,42,42,0.3);">Vehicle</td><td style="color:var(--T);text-align:right;border-bottom:1px solid rgba(42,42,42,0.3);padding:6px 0;">'+esc(k.vehicle||'—')+'</td></tr><tr><td style="color:var(--T3);padding:6px 0;border-bottom:1px solid rgba(42,42,42,0.3);">VIN</td><td style="text-align:right;border-bottom:1px solid rgba(42,42,42,0.3);padding:6px 0;font-family:monospace;font-size:10px;color:var(--T3);">'+esc(k.vin||'—')+'</td></tr><tr><td style="color:var(--T3);padding:6px 0;border-bottom:1px solid rgba(42,42,42,0.3);">Status</td><td style="text-align:right;border-bottom:1px solid rgba(42,42,42,0.3);padding:6px 0;">'+statusPill(k.status)+'</td></tr><tr><td style="color:var(--T3);padding:6px 0;">Notes</td><td style="color:var(--T2);text-align:right;padding:6px 0;">'+esc(k.notes||'—')+'</td></tr></table></div></div></div>';
+}
+
+// ── REPORTS ───────────────────────────────────────────────────
+function generateReport(){
+  var range=document.getElementById('rpt-range').value;
+  var userF=document.getElementById('rpt-user').value;
+  var now=new Date(); var today=now.toISOString().split('T')[0];
+  var startDate=today;
+  if(range==='week'){var d=new Date(now);d.setDate(d.getDate()-d.getDay());startDate=d.toISOString().split('T')[0];}
+  else if(range==='month'){startDate=now.getFullYear()+'-'+(now.getMonth()+1).toString().padStart(2,'0')+'-01';}
+  else if(range==='all'){startDate='2000-01-01';}
+  var keys=DB.keys.filter(function(k){return k.date>=startDate&&(userF===''||k.user===userF);});
+  var svcs=DB.services.filter(function(s){return s.date>=startDate&&(userF===''||s.user===userF);});
+  var totalRev=svcs.reduce(function(a,s){return a+(parseFloat(s.price)||0);},0);
+  var am=keys.filter(function(k){return k.type==='Aftermarket'&&k.status==='Sold';}).length;
+  var or_=keys.filter(function(k){return k.type==='OEM Recase'&&k.status==='Sold';}).length;
+  var of_=keys.filter(function(k){return k.type==='OEM Refurb'&&k.status==='Sold';}).length;
+  var cuts=svcs.filter(function(s){return s.type==='Key Cut';}).length;
+  var uls=svcs.filter(function(s){return s.type==='Lock Opened';}).length;
+  var amRev=svcs.filter(function(s){return s.type==='Key Sale';}).reduce(function(a,s){return a+(parseFloat(s.price)||0);},0);
+  var cutRev=svcs.filter(function(s){return s.type==='Key Cut';}).reduce(function(a,s){return a+(parseFloat(s.price)||0);},0);
+  var ulRev=svcs.filter(function(s){return s.type==='Lock Opened';}).reduce(function(a,s){return a+(parseFloat(s.price)||0);},0);
+  var rangeLabels={today:'Today',week:'This Week',month:'This Month',all:'All Time'};
+  document.getElementById('report-output').innerHTML='<div class="rpt-grid"><div class="rpt-card"><div class="rpt-title">Keys Sold — '+rangeLabels[range]+'</div><div class="rpt-line"><span>Aftermarket</span><span class="rpt-val">'+am+' units</span></div><div class="rpt-line"><span>OEM Recase</span><span class="rpt-val">'+or_+' units</span></div><div class="rpt-line"><span>OEM Refurb</span><span class="rpt-val">'+of_+' units</span></div><div class="rpt-line"><span style="font-weight:500;color:var(--T);">Total Sold</span><span class="rpt-val" style="color:#4ade80;">'+(am+or_+of_)+' keys</span></div></div><div class="rpt-card"><div class="rpt-title">Services — '+rangeLabels[range]+'</div><div class="rpt-line"><span>Key Cuts</span><span class="rpt-val">'+cuts+' · $'+cutRev.toFixed(0)+'</span></div><div class="rpt-line"><span>Lock Openings</span><span class="rpt-val">'+uls+' · $'+ulRev.toFixed(0)+'</span></div><div class="rpt-line"><span>Key Sales</span><span class="rpt-val">$'+amRev.toFixed(0)+'</span></div><div class="rpt-line"><span style="font-weight:500;color:var(--T);">Total Revenue</span><span class="rpt-val" style="color:#4ade80;">$'+totalRev.toFixed(0)+'</span></div></div><div class="rpt-card"><div class="rpt-title">Inventory</div><div class="rpt-line"><span>Available (AM)</span><span class="rpt-val">'+getStock('Aftermarket')+'</span></div><div class="rpt-line"><span>Available (OR)</span><span class="rpt-val">'+getStock('OEM Recase')+'</span></div><div class="rpt-line"><span>Available (OF)</span><span class="rpt-val">'+getStock('OEM Refurb')+'</span></div><div class="rpt-line"><span>Damaged</span><span class="rpt-val">'+DB.keys.filter(function(k){return k.status==='Damaged';}).length+'</span></div></div><div class="rpt-card"><div class="rpt-title">Top User</div>'+topUserCard(svcs)+'</div></div>';
+}
+
+function topUserCard(svcs){
+  if(svcs.length===0) return '<div style="text-align:center;color:var(--T3);padding:12px;font-size:12px;">No data</div>';
+  var users={};
+  svcs.forEach(function(s){users[s.user]=(users[s.user]||0)+(parseFloat(s.price)||0);});
+  var top=Object.keys(users).sort(function(a,b){return users[b]-users[a];})[0];
+  var initials=top.substring(0,2).toUpperCase();
+  return '<div style="text-align:center;padding:8px 0;"><div style="width:38px;height:38px;border-radius:50%;background:rgba(204,0,0,0.15);border:1px solid rgba(204,0,0,0.3);color:#ff8888;display:flex;align-items:center;justify-content:center;font-family:Rajdhani,sans-serif;font-size:14px;font-weight:700;margin:0 auto 6px;">'+initials+'</div><div style="font-size:13px;color:var(--T);font-weight:500;">'+esc(top)+'</div><div style="font-family:Rajdhani,sans-serif;font-size:22px;font-weight:700;color:#4ade80;margin-top:3px;">$'+users[top].toFixed(0)+'</div></div>';
+}
+
+// ── PDF IMPORT ────────────────────────────────────────────────
+var pdfParsedRows = [];
+
+if(typeof pdfjsLib!=='undefined') pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+var dropZone=document.getElementById('pdf-drop');
+dropZone.addEventListener('dragover',function(e){e.preventDefault();dropZone.classList.add('drag');});
+dropZone.addEventListener('dragleave',function(){dropZone.classList.remove('drag');});
+dropZone.addEventListener('drop',function(e){e.preventDefault();dropZone.classList.remove('drag');var f=e.dataTransfer.files[0];if(f&&f.type==='application/pdf') handlePDFFile(f);else flashMsg('Please drop a PDF file.','r');});
+
+function handlePDFFile(file){
+  if(!file) return;
+  var prog=document.getElementById('pdf-progress');
+  var fill=document.getElementById('pdf-prog-fill');
+  var step=document.getElementById('pdf-step');
+  var status=document.getElementById('pdf-status');
+  prog.className='pdf-progress show';
+  fill.style.width='10%'; step.textContent='Reading PDF...'; status.textContent='File: '+file.name;
+  var reader=new FileReader();
+  reader.onload=function(e){
+    fill.style.width='30%'; step.textContent='Extracting text...';
+    var typedArray=new Uint8Array(e.target.result);
+    pdfjsLib.getDocument(typedArray).promise.then(function(pdf){
+      fill.style.width='50%'; step.textContent='Reading '+pdf.numPages+' page(s)...';
+      var allText=''; var pagePromises=[];
+      for(var i=1;i<=pdf.numPages;i++){
+        pagePromises.push(pdf.getPage(i).then(function(page){return page.getTextContent();}));
+      }
+      Promise.all(pagePromises).then(function(pages){
+        fill.style.width='70%'; step.textContent='Parsing inventory rows...';
+        pages.forEach(function(tc){
+          var line='';
+          tc.items.forEach(function(item){
+            if(item.str.trim()){line+=item.str+'\t';}
+            else if(line.trim()){allText+=line.trim()+'\n';line='';}
+          });
+          if(line.trim()) allText+=line.trim()+'\n';
+        });
+        fill.style.width='85%'; step.textContent='Classifying keys...';
+        pdfParsedRows=parsePDFText(allText);
+        fill.style.width='100%'; step.textContent='Done! Found '+pdfParsedRows.length+' row(s).';
+        renderPDFResults();
+      }).catch(function(err){fill.style.width='100%';step.textContent='Error reading PDF.';status.textContent=err.message;});
+    }).catch(function(err){fill.style.width='100%';step.textContent='Could not open PDF.';status.textContent=err.message;});
+  };
+  reader.readAsArrayBuffer(file);
+}
+
+function parsePDFText(text){
+  var rows=[];
+  var lines=text.split('\n').map(function(l){return l.trim();}).filter(function(l){return l.length>2;});
+  lines.forEach(function(line){
+    var cols=line.split(/\t+/);
+    var row={keyId:'',type:'',vehicle:'',vin:'',status:'Available',date:'',notes:'',raw:line};
+    // Detect type
+    var lc=line.toLowerCase();
+    if(lc.includes('aftermarket')||lc.includes('after market')) row.type='Aftermarket';
+    else if(lc.includes('recase')||lc.includes('re-case')) row.type='OEM Recase';
+    else if(lc.includes('refurb')||lc.includes('refurbished')) row.type='OEM Refurb';
+    // Detect status
+    if(lc.includes('sold')) row.status='Sold';
+    else if(lc.includes('damaged')||lc.includes('broken')) row.status='Damaged';
+    // Detect VIN (17 alphanumeric)
+    var vinMatch=line.match(/\b([A-HJ-NPR-Z0-9]{17})\b/i);
+    if(vinMatch) row.vin=vinMatch[1].toUpperCase();
+    // Detect Key ID (AM-, OR-, OF-, or similar)
+    var kidMatch=line.match(/\b(AM|OR|OF)-\d{2,}/i);
+    if(kidMatch) row.keyId=kidMatch[0].toUpperCase();
+    // Auto-classify by barcode prefix if no type yet
+    if(!row.type&&row.keyId) row.type=classifyKey(row.keyId)||'';
+    // Detect date
+    var dateMatch=line.match(/\b(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{2,4})\b/);
+    if(dateMatch){var y=dateMatch[3].length===2?'20'+dateMatch[3]:dateMatch[3];row.date=y+'-'+dateMatch[2].padStart(2,'0')+'-'+dateMatch[1].padStart(2,'0');}
+    // Build vehicle string from remaining text
+    var leftover=cols.filter(function(c){return c.trim()&&!c.match(/^(aftermarket|recase|refurb|sold|damaged|available|am-|or-|of-)/i)&&!c.match(/^[A-HJ-NPR-Z0-9]{17}$/i)&&!c.match(/^\d{1,2}[\/\-]\d/);});
+    if(!row.vehicle) row.vehicle=leftover.slice(0,2).join(' ').trim();
+    // Only keep rows that have some data
+    if(row.type||row.keyId||row.vin) rows.push(row);
+  });
+  // Deduplicate by keyId/vin
+  var seen={};
+  return rows.filter(function(r){var k=r.keyId||r.vin||r.raw;if(seen[k]) return false;seen[k]=true;return true;});
+}
+
+function renderPDFResults(){
+  var results=document.getElementById('pdf-results');
+  var rowsEl=document.getElementById('pdf-result-rows');
+  var title=document.getElementById('pdf-result-title');
+  var count=document.getElementById('pdf-result-count');
+  if(pdfParsedRows.length===0){
+    rowsEl.innerHTML='<div style="padding:16px 14px;font-size:12px;color:var(--T3);">No keys could be automatically detected in this PDF. Make sure your PDF contains text (not just images). See the format guide below for tips.</div>';
+  } else {
+    rowsEl.innerHTML=pdfParsedRows.map(function(r,i){
+      var typeDisplay=r.type?typeTag(r.type):'<span style="color:var(--A);font-size:11px;">⚠ Unknown — select</span>';
+      return '<div class="pdf-result-row"><input type="checkbox" class="pdf-chk" id="pdf-chk-'+i+'" checked><div class="pdf-row-type">'+typeDisplay+'</div><div style="flex:1;min-width:0;"><div class="pdf-row-info">'+(r.keyId?'<span style="font-family:monospace;font-size:11px;color:var(--T);">'+esc(r.keyId)+'</span> · ':'')+(r.vehicle?esc(r.vehicle):'<span style="color:var(--T3);">No vehicle info</span>')+'</div><div class="pdf-row-det">'+(r.vin?'VIN: '+r.vin+' · ':'')+statusPill(r.status)+(r.date?' · '+fmtDate(r.date):'')+'</div></div></div>';
+    }).join('');
+  }
+  title.textContent='Detected Keys ('+pdfParsedRows.length+')';
+  count.textContent=pdfParsedRows.filter(function(r){return r.type;}).length+' auto-classified';
+  results.className='pdf-results show';
+}
+
+function selectAllPDF(val){
+  document.querySelectorAll('.pdf-chk').forEach(function(c){c.checked=val;});
+}
+
+function importSelected(){
+  var today=new Date().toISOString().split('T')[0];
+  var user=document.getElementById('cur-user').value;
+  var imported=0;
+  pdfParsedRows.forEach(function(r,i){
+    var chk=document.getElementById('pdf-chk-'+i);
+    if(chk&&chk.checked&&r.type){
+      var key={id:DB.nextId++,keyId:r.keyId||autoKeyId(r.type),type:r.type,vehicle:r.vehicle||'',vin:r.vin||'',status:r.status||'Available',date:r.date||today,user:user,notes:'Imported from PDF',history:[{action:'Imported from PDF',date:today,user:user}]};
+      DB.keys.push(key);
+      imported++;
+    }
+  });
+  updateDashboard();
+  if(imported>0){
+    flashMsg(imported+' key'+(imported!==1?'s':'')+' imported successfully!','g');
+    resetPDF();
+    setTimeout(function(){go('inventory');},1200);
+  } else {
+    flashMsg('No keys imported. Make sure types are identified.','r');
+  }
+}
+
+function resetPDF(){
+  pdfParsedRows=[];
+  document.getElementById('pdf-file-input').value='';
+  document.getElementById('pdf-progress').className='pdf-progress';
+  document.getElementById('pdf-results').className='pdf-results';
+  document.getElementById('pdf-prog-fill').style.width='0%';
+}
+
+// ── EXPORT CSV ────────────────────────────────────────────────
+function exportCSV(type){
+  var rows,headers,filename;
+  if(type==='inventory'||type==='sold'||type==='damaged'){
+    var data=type==='sold'?DB.keys.filter(function(k){return k.status==='Sold';}):type==='damaged'?DB.keys.filter(function(k){return k.status==='Damaged';}):DB.keys;
+    headers=['Key ID','Type','Vehicle','VIN','Status','Date','User','Notes'];
+    rows=data.map(function(k){return [k.keyId,k.type,k.vehicle,k.vin,k.status,k.date,k.user,k.notes];});
+    filename=type+'.csv';
+  } else {
+    headers=['Type','Key ID','Vehicle','VIN','Price','Date','User','Notes'];
+    rows=DB.services.map(function(s){return [s.type,s.keyId,s.vehicle,s.vin,s.price,s.date,s.user,s.notes];});
+    filename='services.csv';
+  }
+  var csv=[headers.join(',')].concat(rows.map(function(r){return r.map(function(c){return '"'+(c||'').toString().replace(/"/g,'""')+'"';}).join(',');})).join('\n');
+  var a=document.createElement('a');
+  a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv);
+  a.download=filename; a.click();
+}
+
+// ── UTILS ─────────────────────────────────────────────────────
+function setText(id,val){var el=document.getElementById(id);if(el) el.textContent=val;}
+function setWidth(id,val){var el=document.getElementById(id);if(el) el.style.width=val;}
+function esc(s){return (s||'').toString().replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function clearForm(ids){ids.forEach(function(id){var el=document.getElementById(id);if(el) el.value='';});}
+function savePrice(){}
+
+function flashMsg(msg,type){
+  var div=document.createElement('div');
+  div.style.cssText='position:fixed;bottom:70px;left:50%;transform:translateX(-50%);background:'+(type==='g'?'var(--G)':'var(--R)')+';color:#fff;font-size:13px;font-weight:500;padding:10px 20px;border-radius:20px;z-index:500;white-space:nowrap;box-shadow:0 4px 20px rgba(0,0,0,0.4);';
+  div.textContent=msg;
+  document.body.appendChild(div);
+  setTimeout(function(){div.remove();},2500);
+}
+
+// ── INIT ──────────────────────────────────────────────────────
+updateDashboard();
+document.querySelectorAll('.tabs .tab').forEach(function(tab){
   tab.addEventListener('click',function(){
     var tabs=this.parentElement.querySelectorAll('.tab');
     tabs.forEach(function(t){t.classList.remove('on');});
